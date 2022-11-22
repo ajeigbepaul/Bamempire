@@ -1,0 +1,20 @@
+.products{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: black;
+}
+.products__product{
+    display: flex;
+    width: 100%;
+    padding: 25px;
+    padding-top: 50px;
+    flex-wrap: wrap;
+}
+.products h2{
+    text-align: center;
+    font-size: 36px;
+    font-family:"Lato", sans-serif ;
+    padding:25px 0px;
+    color:aliceblue;
+}

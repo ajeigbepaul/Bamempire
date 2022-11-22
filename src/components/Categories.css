@@ -1,0 +1,19 @@
+.categories{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgb(12, 12, 12);
+}
+.categories__category{
+    display: flex;
+    width: 100%;
+    padding: 25px;
+    padding-top: 50px;
+}
+.categories h2{
+    text-align: center;
+    font-size: 36px;
+    font-family:"Lato", sans-serif ;
+    padding:25px 0px;
+    color:aliceblue;
+}
