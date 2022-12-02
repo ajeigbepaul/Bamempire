@@ -1,8 +1,11 @@
-.banner {
+.slider {
   width: 100%;
   position: relative;
   height: auto;
   /* display: flex;
   flex-direction: column;
   height: auto; */
+}
+@media screen and (max-width: 380px){
+  .slider{display: none;}
 }

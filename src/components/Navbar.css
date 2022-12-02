@@ -1,5 +1,5 @@
 .nav__container{
-    /* background-color: beige; */
+    /* background-color: rgb(51, 51, 38); */
     height: 10vh;
     display: flex;
     align-items: center;
@@ -16,7 +16,19 @@
 .MuiBadge-badge{
 background-color:#fed426!important;
 }
-
+@media screen and (max-width: 380px){
+    .nav__container{height: 100px; padding:0.5rem 0.5rem;flex-direction: column; display: flex; justify-content: flex-start;}
+    .nav__searchcontainer{padding: 0px !important; justify-content: flex-start;}
+    .nav__search input{width: 100%;}
+    .nav__search{width: 100%; }
+    /* .nav__logo{display:none}
+    .nav__menu{display:none;} */
+    /* .nav__search{width: 40%;}
+    .nav__searchcontainer{width: 100%!important;}
+    .nav__search input{padding:7px 0px;} */
+    .nav__logo{font-size: 14px; flex: 1; margin: 5px;}
+    .nav__menu{flex: 2; font-size:12px; display: flex; justify-content: space-between;}
+  }
 
 @media screen and (max-width: 768px) {
     .nav__container{
@@ -29,3 +41,4 @@ background-color:#fed426!important;
     .nav__menu div{margin:0 5px; font-size: 13px;}
     .nav__reg, .nav__reg{font-size: 14px;}
 }
+

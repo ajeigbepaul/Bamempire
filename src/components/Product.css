@@ -22,25 +22,17 @@
     align-items: center;
     justify-content: center;
     transition: all ease 0.5s;
+    border-radius: 15px;
 }
 .product__info:hover{
 opacity: 1;
 }
     .product__iconcontainer .MuiBadge-badge{
     background-color:#fed426!important;
-    /* background-color: rgb(241, 230, 74)!important; */
     color: black !important;
     }
     
-/* .product__icon{
-    width:100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-   
 
-} */
 .product__iconcontainer{
     width: 50px;
     height: 50px;
@@ -52,6 +44,7 @@ opacity: 1;
     justify-content:center;
     cursor: pointer;
     transition: all ease 0.5s;
+    
 }
 .product__iconcontainer:hover{
     background-color: orange;
@@ -60,10 +53,11 @@ opacity: 1;
 .product__img{
     width:100%;
     height: 100%;
-    background-color: aliceblue;
+    border-radius: 15px;
 }
 .product__img img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 15px;
 }

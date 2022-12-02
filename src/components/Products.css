@@ -2,7 +2,8 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    background-color: black;
+    /* background-color: rgb(12, 12, 12); */
+    background-color: rgb(59, 37, 59);
 }
 .products__product{
     display: flex;

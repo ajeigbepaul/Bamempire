@@ -52,3 +52,7 @@
 .categoryItem__info button:hover {
     transform: translateY(6px);
 }
+
+@media screen and (max-width: 380px){
+  .categoryItem__img{height: 30vh;}
+}

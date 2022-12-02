@@ -3,7 +3,7 @@ import "./Announcement.css"
 
 function Announcement() {
   return (
-    <div className='announcement'>Super Deal Free Shipping over an order above #25,000</div>
+    <div className='announcement'><span className='announce'>Super Deal Free Shipping over an order above #25,000</span></div>
   )
 }
 

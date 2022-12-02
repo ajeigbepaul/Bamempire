@@ -1,0 +1,28 @@
+.reg__container{
+    width: 100%;
+    height: 100vh;
+    background: url("../regbg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+.reg__formWrapper{
+    width: 40%;
+    background-color: rgb(207, 89, 207);
+    padding: 20px;
+}
+.reg__title{font-size: 24px; font-weight: 500;}
+.reg__formWrapper form{display: flex; flex-wrap: wrap;}
+.agreement{font-size: 12px; margin: 15px 0px;}
+.reg__btn{padding:10px 20px; width: 40%; outline: none; border: none; background-color: plum; color: white; cursor: pointer; transition: all ease 0.5s;}
+.reg__btn:hover{background-color: rgb(219, 134, 219);}
+
+@media screen and (max-width:380px) {
+    .reg__formWrapper{
+        width: 80%;}
+    
+}

@@ -17,3 +17,7 @@
     padding:25px 0px;
     color:aliceblue;
 }
+
+@media screen and (max-width: 380px){
+    .categories__category{padding: 0px; flex-direction: column;}
+  }

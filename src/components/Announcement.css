@@ -1,6 +1,14 @@
 .announcement{
-    background-color: aliceblue;
-    color:rgb(68, 68, 34);
+    background-color: rgb(194, 180, 55, 0.8);
+    color:aliceblue;
     height:50px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.announce{width: 100%;text-align: center;}
+
+@media screen and (max-width: 380px){
+    .announce{font-size: 12px; }
 }

@@ -1,0 +1,8 @@
+.amountContainer{display: flex; align-items: center; justify-content: center;padding: 10px 0px;}
+.sub,.add{cursor: pointer;}
+.sub{font-size: 20px;}
+.amount{width: 30px; height: 30px; border-radius: 5px; margin:0px 5px; font-weight: 600; border: 1px solid purple; display: flex; align-items: center; justify-content: center;}
+
+@media screen and (max-width:380px) {
+    .amount{margin:5px 15px;}
+}
