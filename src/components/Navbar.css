@@ -1,10 +1,11 @@
 .nav__container{
-    /* background-color: rgb(51, 51, 38); */
+    background-color: rgb(14, 14, 13);
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding:2rem 2rem;
+    
 }
 .nav__search{flex: 1;display: flex; align-items: center; justify-content: center;}
 .nav__search input{padding: 10px; border: none; background-color: transparent; outline: none;}
@@ -17,7 +18,7 @@
 background-color:#fed426!important;
 }
 @media screen and (max-width: 380px){
-    .nav__container{height: 100px; padding:0.5rem 0.5rem;flex-direction: column; display: flex; justify-content: flex-start;}
+    .nav__container{height: 150px; padding:0.5rem 0.5rem;flex-direction: column; display: flex; justify-content: flex-start;}
     .nav__searchcontainer{padding: 0px !important; justify-content: flex-start;}
     .nav__search input{width: 100%;}
     .nav__search{width: 100%; }

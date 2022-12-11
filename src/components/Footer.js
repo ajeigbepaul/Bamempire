@@ -55,7 +55,8 @@ function Footer() {
         </div>
     </div>
     <div className='footer__bottom'>
-      Made By Diaryofatechnovies @copyright 2022
+      <span>@copyright 2022 BAMEMPIRE</span>
+       <span>Made By Diaryofatechnovies</span> 
     </div>
     </>
     

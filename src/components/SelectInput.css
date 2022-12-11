@@ -1,0 +1,8 @@
+.selectcontainer{width: 100%;}
+.selectcontainer select{
+    flex: 1;
+    min-width: 100%;
+    padding: 10px 10px;
+    margin: 20px 10px 0px 0px;
+    border: none;
+}

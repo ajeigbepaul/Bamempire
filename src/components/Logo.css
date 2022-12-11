@@ -1,0 +1,8 @@
+.nav__logo{
+   
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav__logo img{width: 70px; height: 70px; object-fit: cover; border-radius: 50%;}

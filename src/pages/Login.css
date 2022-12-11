@@ -22,8 +22,8 @@
 .log__btn:hover{background-color: rgb(219, 134, 219);}
 
 .link{margin: 5px; cursor: pointer; text-decoration: underline; font-size: 14; color: aliceblue; transition: all ease 0.5s;}
-.link:hover{color:rgb(209, 230, 250)}
-
+.link:hover{color:#d1e6fa}
+.disabled{color:grey;cursor:not-allowed}
 @media screen and (max-width:380px) {
     .log__formWrapper{
         width: 80%;}

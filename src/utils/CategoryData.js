@@ -1,5 +1,7 @@
 export const CategoryData = [
-    {id:1, img:"/images/femaleshoe_5.jpg", title:"CLOTHES"},
-    {id:2, img:"/images/femaleshoe_7.jpg", title:"SHOES"},
-    {id:3, img:"/images/femaleshoe_11.jpg", title:"BAGS"},    
+    {id:1, img:"/images/male.jpg", title:"MALE", cat:"male"},
+    {id:2, img:"/images/female.jpg", title:"FEMALE", cat:"female"} ,
+    {id:3, img:"/images/children.jpg", title:"CHILDREN", cat:"children"},
+    {id:4, img:"/images/accessories.jpg", title:"ACCESSORIES", cat:"accessories"},    
+    
 ]

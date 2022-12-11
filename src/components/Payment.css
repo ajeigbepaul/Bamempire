@@ -1,0 +1,41 @@
+.payment {
+    width: 100%;
+  }
+  .payment__container{
+    width: 100%;
+    height: auto;
+    background: url("../regbg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+.billing__formWrapper{
+    width: 40%;
+    background-color: rgb(207, 89, 207);
+    padding: 20px;
+}
+.pay__container{
+  margin-top: 10px;
+  width: 100%;
+  background-color: rgb(219, 183, 183);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.pay__title{padding:5px 10px; border: none; outline: none; margin-bottom: 25px; cursor: pointer;}
+.pay__title:hover{background-color:ghostwhite;}
+.pay__image{width: 40%; height: 100px;}
+.pay__image img{width: 100%; object-fit: cover;}
+.billing__title{font-size: 24px; font-weight: 500;}
+.billing__formWrapper form{display: flex; flex-wrap: wrap;}
+
+@media screen and (max-width:380px) {
+  .billing__formWrapper{
+        width: 80%;}
+    
+}

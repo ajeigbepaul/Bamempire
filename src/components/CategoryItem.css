@@ -29,11 +29,13 @@
   justify-content: center;
 }
 .categoryItem__info h2 {
+  width:fit-content;
   margin: 0px;
   padding: 10px 10px;
+  font-size: 18px;
   font-family: "Lato", sans-serif;
-  color:rgb(194, 180, 55);
-  background-color: rgba(56, 53, 56, 0.493);
+  color:rgb(214, 198, 52);
+  background-color: rgba(56, 53, 56, 0.693);
   
 }
 .categoryItem__info button {
@@ -54,5 +56,5 @@
 }
 
 @media screen and (max-width: 380px){
-  .categoryItem__img{height: 30vh;}
+  .categoryItem__img{height: 70vh;}
 }

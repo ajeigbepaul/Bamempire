@@ -16,9 +16,10 @@ import "swiper/swiper.min.css";
 //   import Slider from "./Slider";
 SwiperCore.use([EffectCoverflow, Pagination, Autoplay, Navigation, EffectFade]);
 function SwipableBanner() {
-  const sliderimg1 = "images/femaleshoe_11.jpg";
-  const sliderimg2 = "images/femaleshoe_5.jpg";
-  const sliderimg3 = "images/femaleshoe_7.jpg";
+  const sliderimg1 = "images/children.jpg";
+  const sliderimg2 = "images/male.jpg";
+  const sliderimg3 = "images/female.jpg";
+  const sliderimg4 = "images/accessories.jpg";
   return (
     <div className="swipablebanner">
       <Swiper
@@ -38,21 +39,28 @@ function SwipableBanner() {
         <SwiperSlide className="swiperslide">
           <Slider
             image={sliderimg1}
-            title="African's Best"
-            desc="Male shoes made in Nigeria with quality materials"
+            title="Quality Children"
+            desc="Shop quality products "
           />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
           <Slider
             image={sliderimg2}
-            title="40% Discount"
-            desc="Finest in the Industry"
+            title="FOR MALE"
+            desc="We are reliable"
           />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
           <Slider
             image={sliderimg3}
-            title="Quality"
+            title="NO 1 FEMALE STORE"
+            desc="All you need at a spot"
+          />
+        </SwiperSlide>
+        <SwiperSlide className="swiperslide">
+          <Slider
+            image={sliderimg4}
+            title="ACCESSORY SHOP"
             desc="Finest in the Industry"
           />
         </SwiperSlide>

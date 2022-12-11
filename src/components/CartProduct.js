@@ -1,28 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FitlerColor from "../components/FilterColor";
-import QuantityContainer from "../components/QuantityContainer";
-const price = 500
-function CartProduct({img}) {
+import CartQty from './CartQty';
+function CartProduct({product}) {
+  const {_id, title,image,size,colors,price} = product
+  const [qty, setQty]= useState(1)
   return (
     <div className="cart__product">
               <div className="cart__productdetails">
-                <img src={img} alt="productimage" />
+                <img src={image?.url} alt="productimage" />
                 <div className="cart__details">
                   <span className="productname">
-                    <b>Product Name:</b> Kiddies Shoe
+                    <b>Product Name:</b> {title}
                   </span>
                   <span className="productid">
-                    <b>ID:</b> K0013478Yf
+                    <b>ID:</b> {_id}
                   </span>
                   <FitlerColor color="black" />
                   <span className="productsize">
-                    <b>Product Size:</b> 37.5
+                    <b>Product Size:</b> {size}
                   </span>
                 </div>
               </div>
               <div className="cart__pricedetails">
-                <QuantityContainer />
-                <div className="price">{price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</div>
+                <CartQty qty={qty} setQty={setQty} colors={colors} product={product}/>
+                <div className="price">{((price*product.qty)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</div>
               </div>
             </div>
   )

@@ -9,6 +9,8 @@
     width: 100%;
     padding: 25px;
     padding-top: 50px;
+    /* align-items:center;
+    justify-content: center; */
 }
 .categories h2{
     text-align: center;

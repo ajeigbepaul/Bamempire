@@ -22,7 +22,8 @@
 .footer__right span{padding: 7px 0px; display: flex;align-items: center;}
 
 .footer__bottom{
-     color: rgba(95, 88, 24, 0.8); width: 100%; padding: 15px; text-align: center;
+     color: rgba(95, 88, 24, 0.8);
+     width: 100%; padding: 15px; text-align: center; display: flex; flex-direction: column;
 }
 .footer__links{
     display: flex;
@@ -48,7 +49,8 @@
     object-fit: contain;
 }
 
+
 @media screen and (max-width: 380px){
     .footer__center{display: none;}
-    .footer{flex-direction: column; height: 100vh;}
+    .footer{flex-direction: column; height: auto;}
   }
