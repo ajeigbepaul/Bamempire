@@ -1,6 +1,7 @@
 .announcement{
-    background-color: rgb(194, 180, 55, 0.8);
-    color:aliceblue;
+    /* background-color: rgb(194, 180, 55, 0.8); */
+    background-color: #fed426;
+    color:#666;
     height:50px;
     display: flex;
     align-items: center;

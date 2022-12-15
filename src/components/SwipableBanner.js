@@ -11,15 +11,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Slider from "./Slider";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-
-//   import styles from "../../styles/Home.module.css";
-//   import Slider from "./Slider";
 SwiperCore.use([EffectCoverflow, Pagination, Autoplay, Navigation, EffectFade]);
 function SwipableBanner() {
   const sliderimg1 = "images/children.jpg";
   const sliderimg2 = "images/male.jpg";
   const sliderimg3 = "images/female.jpg";
   const sliderimg4 = "images/accessories.jpg";
+  const sliderimg5 = "images/beauty.jpg";
+  const sliderimg6 = "images/kitchen.jpg";
   return (
     <div className="swipablebanner">
       <Swiper
@@ -39,7 +38,7 @@ function SwipableBanner() {
         <SwiperSlide className="swiperslide">
           <Slider
             image={sliderimg1}
-            title="Quality Children"
+            title="CHILDREN"
             desc="Shop quality products "
           />
         </SwiperSlide>
@@ -62,6 +61,20 @@ function SwipableBanner() {
             image={sliderimg4}
             title="ACCESSORY SHOP"
             desc="Finest in the Industry"
+          />
+        </SwiperSlide>
+        <SwiperSlide className="swiperslide">
+          <Slider
+            image={sliderimg6}
+            title="KITCHEN UTENSIL"
+            desc="Quality kitchen utensil"
+          />
+        </SwiperSlide>
+        <SwiperSlide className="swiperslide">
+          <Slider
+            image={sliderimg5}
+            title="BEAUTY SHOP"
+            desc="Your skin our concern"
           />
         </SwiperSlide>
       </Swiper>

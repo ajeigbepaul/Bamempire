@@ -33,11 +33,11 @@ function Footer() {
            <h2>Links</h2>
           <div className='footer__links'>
             <div className='footer__linksa'>
-              {linka.map(link=><a href={link.links}><div className='footer__linkitems' key={link.id}>{link.heading}</div></a>
+              {linka.map(link=><a href={link.links} key={link.id}><div className='footer__linkitems' key={link.id}>{link.heading}</div></a>
 )}
             </div>
             <div className='footer__linksb'>
-            {linkb.map(link=><a href={link.links}><div className='footer__linkitems' key={link.id}>{link.heading}</div></a>
+            {linkb.map(link=><a href={link.links} key={link.id}><div className='footer__linkitems' key={link.id}>{link.heading}</div></a>
 )}
             </div>
 
@@ -45,8 +45,8 @@ function Footer() {
         </div>
         <div className='footer__right'>
           <h2>Contact</h2>
-          <span><HomeIcon/>Address: addres here.</span>
-          <span><PhoneIcon/>tel: 08033173928</span>
+          <span><HomeIcon/>Address: Plot 188 Iganmode Road Tollgate Ota</span>
+          <span><PhoneIcon/>tel: 08028580080, 08164941121</span>
           <span><MailIcon/>Email: email@yahoo.com</span>
           <div className='footer__img'>
             <div className='footer__imgcont'><img src='/images/visa-mastercard.png' alt='cardimg'/>

@@ -7,6 +7,7 @@ import Input from "../components/Input";
 import SelectInput from "../components/SelectInput";
 import SelectStock from "../components/SelectStock";
 import SelectSize from "../components/SelectSize";
+import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const CreateProduct = () => {
   const [categories, setCategories] = useState("");
   const [size, setSize] = useState("");
   const [stock, setStock] = useState("");
-  const [discount, setDiscount] = useState("");
+  // const [discount, setDiscount] = useState("");
   
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -51,10 +52,18 @@ const CreateProduct = () => {
         categories,
         size,
         stock,
-        discount,
+        // discount,
         image: productImg,
       }, dispatch)
-   
+      setProductImg("");
+      setCategories("");
+      setColors("")
+      setDescription("")
+      setPrice("")
+      setSize("")
+      setStock("")
+      setTitle("")
+      toast.success("product added successfully")
   };
 
   return (
@@ -75,7 +84,7 @@ const CreateProduct = () => {
         <SelectInput onChange={(e) => setCategories(e.target.value)}/>
         <SelectSize onChange={(e) => setSize(e.target.value)}/>
         <SelectStock onChange={(e) => setStock(e.target.value)} />
-        <Input placeholder="Discount" type="text" onChange={(e) => setDiscount(e.target.value)} />
+        {/* <Input placeholder="Discount" type="text" onChange={(e) => setDiscount(e.target.value)} /> */}
         <PrimaryButton type="submit">
           Creat product
           {/* {createStatus === "pending" ? "Submitting" : "Submit"} */}

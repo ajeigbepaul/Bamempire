@@ -1,7 +1,5 @@
 import React from "react";
 import "./Product.css";
-import { Badge } from '@mui/material'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
@@ -16,12 +14,8 @@ function Product({ product }) {
       </div>
       <div className="product__info">
       <div className="product__icon">
-        <div className="product__iconcontainer"><Badge badgeContent={4} color="warning" className="badge__color">
-        <FavoriteBorderIcon/>
-      </Badge></div>
-      <Link to={`/product/${product._id}`}><div className="product__iconcontainer"><SearchIcon/></div></Link>
-       
-        <div className="product__iconcontainer"><ShoppingBagOutlinedIcon/></div>
+      <Link to={`/product/${product._id}`}><div className="product__iconcontainer"><SearchIcon/></div>
+        <div className="product__iconcontainer"><ShoppingBagOutlinedIcon/></div></Link>
       </div>
       </div>
       

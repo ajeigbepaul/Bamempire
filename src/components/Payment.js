@@ -4,9 +4,19 @@ import Footer from "./Footer";
 import Input from "./Input";
 import Navbar from "./Navbar";
 import { PaystackButton } from 'react-paystack';
-import  {useSelector} from "react-redux"
+import  {useSelector,useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
+import { pay } from "../redux/apiRedux";
+import { order } from "../redux/apiRedux"
+import {clearCart} from "../redux/cartRedux"
+
+
 import "./Payment.css";
 function Payment() {
+const dispatch = useDispatch()
+const navigate = useNavigate()
+const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+const currentUser = user && JSON.parse(user).currentUser;
 const cart = useSelector(state=>state.cart)
 const [fullname, SetFullname] = useState("")
 const [address1, SetAddress1] = useState("")
@@ -24,13 +34,29 @@ fullname,address1,address2,state,city,phone,email
 // To PAYSTACK
 const config = {
   reference: (new Date()).getTime().toString(),
-  email: email,
-  amount: cart.total,
+  email: address.email,
+  amount: cart.total * 100,
   publicKey: publicKey,
 };
 // TO ORDER DB
-const orderdata = {
+const addressdata = {
+  fullname,
+  address1,
+  address2,
+  state,
+  city,
+  phone,
+  email
 
+}
+// 
+// const products = {}
+const orderdata = {
+  userId: currentUser?._id,
+  products:cart.products,
+  total: cart.total,
+  address: addressdata,
+  status: config.reference.status,
 }
 // TO PAYMENT DB
 const paydata = {
@@ -41,7 +67,13 @@ const paydata = {
 }
 
 const handlePaystackSuccessAction = (reference) => {
-    console.log(reference);
+    pay(dispatch, paydata);
+    order(dispatch, orderdata)
+    dispatch(clearCart())
+    navigate("/success")
+
+    
+
     // navigate to success page.
   };
   // you can call this function anything
@@ -56,6 +88,8 @@ const handlePaystackSuccessAction = (reference) => {
         handlePaystackSuccessAction(reference)},
       onClose: handlePaystackCloseAction,
   };
+
+ 
   
   return (
     <div className="payment">

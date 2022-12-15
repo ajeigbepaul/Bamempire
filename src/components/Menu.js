@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../redux/userRedux";
+import {clearCart} from "../redux/cartRedux"
+
 import "./Menu.css"
 import { toast } from "react-toastify";
 function Menu() {
@@ -15,7 +17,7 @@ function Menu() {
   const navigate = useNavigate()
   const logOut=()=>{
     dispatch(logout())
-    toast.warning("Logged out!", { position: "bottom-right" });
+    dispatch(clearCart())
     navigate("/")
     window.location.reload();
   }

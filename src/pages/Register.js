@@ -23,7 +23,7 @@ function Register() {
   const handleReg = (e) => {
     e.preventDefault();
     register(dispatch, { firstname, lastname, username, email, password });
-    toast.warning("Thank you for coming onboard", { position: "bottom-left" });
+    // toast.warning("Thank you for coming onboard", { position: "bottom-left" });
     navigate("/login")
     
   };
@@ -40,8 +40,8 @@ function Register() {
             <Input placeholder="comfirm password" type="password" onChange={e=>setComfirmpassword(e.target.value)}/>
             <div className='agreement'>By Creating an account, I consent to the processing of my personal data
             in accordance with the <b>PRIVACY POLICY</b></div>
-            <button className="reg__btn" onClick={handleReg} disabled={isFetching}>CREATE</button>
-            {error && <Error>Something went wrong...</Error>}
+            <button className="reg__btn" onClick={handleReg} >CREATE</button>
+            {/* {error && <Error/>} */}
             </form>
             
         </div>

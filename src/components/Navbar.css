@@ -1,5 +1,6 @@
 .nav__container{
-    background-color: rgb(14, 14, 13);
+    /* background-color: rgb(14, 14, 13); */
+    background-color: black;
     height: 10vh;
     display: flex;
     align-items: center;

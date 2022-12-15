@@ -5,7 +5,8 @@ function CartProduct({product}) {
   const {_id, title,image,size,colors,price} = product
   const [qty, setQty]= useState(1)
   return (
-    <div className="cart__product">
+    <>
+<div className="cart__product">
               <div className="cart__productdetails">
                 <img src={image?.url} alt="productimage" />
                 <div className="cart__details">
@@ -26,6 +27,9 @@ function CartProduct({product}) {
                 <div className="price">{((price*product.qty)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</div>
               </div>
             </div>
+            <hr className="hr" />
+    </>
+            
   )
 }
 

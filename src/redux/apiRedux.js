@@ -15,10 +15,23 @@ import {
   addProductSuccess,
 } from "./productRedux";
 import { addCart} from "./cartRedux";
+import {payStart, paySuccess, payFailure} from "./payRedux";
+import {orderStart, orderSuccess, orderFailure} from "./orderRedux";
+
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicRequest.post("/auth/login", user);
+    dispatch(loginSuccess(res.data));
+  } catch (err) {
+    dispatch(loginFailure());
+  }
+};
+
+export const adminlogin = async (dispatch, user) => {
+  dispatch(loginStart());
+  try {
+    const res = await publicRequest.post("/auth/adminlogin", user);
     dispatch(loginSuccess(res.data));
   } catch (err) {
     dispatch(loginFailure());
@@ -44,6 +57,29 @@ export const addcart = async (dispatch, user) => {
     dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure());
+  }
+};
+
+// PAY
+export const pay = async (dispatch, pay) => {
+  dispatch(payStart());
+  try {
+    const res = await userRequest.post("/payments/pay", pay);
+    dispatch(paySuccess(res.data));
+  } catch (err) {
+    dispatch(payFailure());
+  }
+};
+
+
+// ORDER
+export const order = async (dispatch, orders) => {
+  dispatch(orderStart());
+  try {
+    const res = await userRequest.post("/orders/order", orders);
+    dispatch(orderSuccess(res.data));
+  } catch (err) {
+    dispatch(orderFailure());
   }
 };
 

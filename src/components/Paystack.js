@@ -22,7 +22,7 @@ const handlePaystackSuccessAction = (reference) => {
       ...config,
       text: 'Pay',
       onSuccess: (reference) => {
-        handlePaystackSuccessAction(reference)},
+      handlePaystackSuccessAction(reference)},
       onClose: handlePaystackCloseAction,
   };
   return (

@@ -6,10 +6,12 @@ function SelectInput({name,onChange}) {
     <div className="selectcontainer">
           <select name={name} onChange={onChange} required>
             <option value="">Select Category</option>
-            <option value="men">Men</option>
-            <option value="women">women</option>
-            <option value="accessories">Accessories</option>
-            <option value="bags">Bags</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="accessories">accessories</option>
+            <option value="children">children</option>
+            <option value="kitchen">utensils</option>
+            <option value="beauty">beauty</option>
           </select>
     </div>
   )
