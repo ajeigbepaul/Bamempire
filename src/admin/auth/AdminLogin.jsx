@@ -2,7 +2,7 @@ import { useState } from "react";
 import Input from '../../components/Input'
 import {useDispatch, useSelector} from "react-redux"
 import "../../pages/Login.css"
-import Error from '../../components/Error';
+// import Error from '../../components/Error';
 import { adminlogin } from "../../redux/apiRedux";
 import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {

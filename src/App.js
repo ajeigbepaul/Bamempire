@@ -18,6 +18,9 @@ import Summary from "./admin/Summary"
 import CreateProduct from "./admin/CreateProduct"
 import Users from "./admin/Users"
 import Orders from "./admin/Oders"
+import WidgetLg from "./admin/WidgetLg"
+import WidgetSm from "./admin/WidgetSm"
+
 import AdminLogin from "./admin/auth/AdminLogin"
 import NotFound from "./admin/NotFound";
 
@@ -51,6 +54,8 @@ function App() {
               </Route>
               <Route path="users" element={<Users />} />
               <Route path="orders" element={<Orders />} />
+              <Route path="neworders" element={<WidgetLg/>}/>
+              <Route path="newusers" element={<WidgetSm/>}/>
         </Route>
        
 
