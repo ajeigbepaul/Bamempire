@@ -30,7 +30,7 @@ export default function WidgetLg() {
     }
     toast.success("Order done and deleted!! Kindly refresh your browser.")
   };
-  {console.log(orders)}
+ 
   return (
     
     <div className="widgetLg">

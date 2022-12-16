@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import Input from '../components/Input'
 import "./Register.css"
-import Error from '../components/Error';
 import { register } from "../redux/apiRedux";
 import { useNavigate } from 'react-router-dom';
-import {useDispatch,useSelector} from "react-redux"
-import { toast } from "react-toastify";
+import {useDispatch} from "react-redux"
 
 
 function Register() {
@@ -18,7 +16,6 @@ function Register() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector((state) => state.user);
 
   const handleReg = (e) => {
     e.preventDefault();

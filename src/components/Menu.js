@@ -8,7 +8,6 @@ import { logout } from "../redux/userRedux";
 import {clearCart} from "../redux/cartRedux"
 
 import "./Menu.css"
-import { toast } from "react-toastify";
 function Menu() {
   const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
   const currentUser = user && JSON.parse(user).currentUser;

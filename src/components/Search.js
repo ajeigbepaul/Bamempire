@@ -1,5 +1,4 @@
 import React from 'react'
-import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
 
 function Search() {

@@ -11,12 +11,10 @@ import BamEmpire from "./pages/BamEmpire";
 import ProductList from './pages/ProductList';
 import Payment from "./components/Payment";
 import Success from "./components/Success";
-// import { useSelector } from "react-redux";
 import Dashboard from "./admin/Dashboard"
 import Products from "./admin/Products"
 import Summary from "./admin/Summary"
 import CreateProduct from "./admin/CreateProduct"
-import Users from "./admin/Users"
 import Orders from "./admin/Oders"
 import WidgetLg from "./admin/WidgetLg"
 import WidgetSm from "./admin/WidgetSm"
@@ -29,8 +27,6 @@ function App() {
   const currentUser = user && JSON.parse(user).currentUser;
  
   const admin = JSON.parse(user).currentUser?.isadmin;
-  // console.log(admin)
-  // console.log(currentUser)
   return (
     <Router>
       <ToastContainer />
@@ -52,7 +48,6 @@ function App() {
               <Route path="products" element={<Products />}>
               <Route path="create-product" element={<CreateProduct />} />
               </Route>
-              <Route path="users" element={<Users />} />
               <Route path="orders" element={<Orders />} />
               <Route path="neworders" element={<WidgetLg/>}/>
               <Route path="newusers" element={<WidgetSm/>}/>

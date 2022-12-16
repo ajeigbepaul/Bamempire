@@ -1,25 +1,13 @@
 import React, { useState } from 'react'
 import Input from '../components/Input'
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import "./Login.css"
 // import Error from '../components/Error';
 import { login } from "../redux/apiRedux";
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { isFetching, error } = useSelector((state) => state.user);
-
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   login(dispatch, { username, password });
-  //   navigate("/")
-  //   window.location.reload();
-  // };
-  // disabled={isFetching}
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

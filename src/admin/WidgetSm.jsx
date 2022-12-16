@@ -1,5 +1,4 @@
 import "./widgetSm.css";
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { format } from "timeago.js";

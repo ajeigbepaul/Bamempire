@@ -1,5 +1,4 @@
 import React from 'react'
-import Logo from './Logo'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
