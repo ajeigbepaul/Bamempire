@@ -6,33 +6,23 @@ export const linka = [
       },
       { id:2,
         heading: "Mens",
-        links:"/men"
+        links:"/products/:category"
     
       },
       { id:3,
         heading: "Women",
-        links:"/women"
+        links:"/products/:category"
     
       },
       { id:4,
         heading: "Accessories",
-        links:"/accessories"
+        links:"/products/:category"
     
       },
     
       { id:5,
-        heading: 'Order',
-        links:"/order"
-    
-      },
-      { id:6,
-        heading: 'Wishlist',
-        links:"/wishlist"
-    
-      },
-      { id:7,
         heading: 'Tracking',
-        links:"/tracking"
+        links:"/trackorder"
     
       },
 ]
@@ -45,22 +35,6 @@ export const linkb = [
     
       },
       { id:2,
-        heading: "Latest",
-        links:"/latest"
-    
-      },
-      { id:3,
-        heading: "My account",
-        links:"/myaccount"
-    
-      },
-      { id:4,
-        heading: "Wishlist",
-        links:"/wishlist"
-    
-      },
-    
-      { id:5,
         heading: 'Teams',
         links:"/teams"
     

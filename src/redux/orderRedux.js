@@ -1,28 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const orderSlice = createSlice({
-  name: "pay",
+  name: "order",
   initialState: {
-    payment: null,
+    order: null,
     isFetching: false,
     error: false,
   },
   
   reducers: {
-    // PAY
+    // ORDER
     orderStart: (state) => {
       state.isFetching = true;
     },
     orderSuccess: (state, action) => {
       state.isFetching = false;
-      state.payment = action.payload;
+      state.order = action.payload;
     },
     orderFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+
+    statusStart: (state) => {
+      state.isFetching = true;
+    },
+    statusSuccess: (state, action) => {
+      state.isFetching = false;
+      state.order = action.payload;
+    },
+    statusFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
   },
 });
 
-export const { orderStart, orderSuccess, orderFailure } = orderSlice.actions;
+export const { orderStart, orderSuccess, orderFailure, statusStart, statusSuccess, statusFailure } = orderSlice.actions;
 export default orderSlice.reducer;

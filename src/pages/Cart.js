@@ -28,9 +28,9 @@ function Cart() {
           <button className="cart__topbutton1" onClick={()=>navigate("/")}>CONTINUE SHOPPING</button>
           <div className="cart__toptexts">
             <span className="cart__toptext">Shopping Bag {quantity}</span>
-            {/* <span className="cart__toptext">Wishlist ( 0 )</span> */}
+            {/* <span className="cart__toptext">Wishlist ( 0 )</span> cart__topbutton2 */}
           </div>
-          <Link to="/payment"><button className="cart__topbutton2">CHECK OUT</button></Link>
+          {currentUser ? <Link to="/payment"><button className="cart__topbutton2">CHECK OUT NOW</button></Link> : <button className="cart__topbutton2" onClick={() => navigate("/login")}>LOGIN TO PROCEED</button>}
         </div>
         <div className="cart__bottom">
           <div className="cart__info">
@@ -50,7 +50,8 @@ function Cart() {
             <div className="summary__items total">
               <div className="summary__itemsubtotal ">Total</div>
               <div className="summary__itemprice"> {cart.total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </div>
-            </div>{currentUser ? <Link to="/payment"><button className="cart_btn">CHECK OUT NOW</button></Link> : <button className="cart_btn" onClick={() => navigate("/login")}>LOGIN TO PROCEED</button>}
+            </div>
+            {currentUser ? <Link to="/payment"><button className="cart_btn">CHECK OUT NOW</button></Link> : <button className="cart_btn" onClick={() => navigate("/login")}>LOGIN TO PROCEED</button>}
             
           </div>
         </div>

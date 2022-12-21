@@ -44,7 +44,10 @@
   font-weight: 300;
   font-size:14px;
 }
-.widgetLgStatus button{padding: 5px 12px; outline: none; border: none; background-color: plum; color: white;}
+.btn{background-color: #d95087 !important;}
+.btn2{background-color: #3bb077 !important;}
+.btn3{background-color: #2a7ade !important;}
+.widgetLgStatus button{padding: 5px 12px; outline: none; border: none; background-color: plum; color: white; margin:2px; cursor: pointer;}
 .widgetLgitem{display: flex; justify-content: space-between;align-items: center;}
 .widgetLgProduct{
   width: 200px;
@@ -77,4 +80,12 @@
     background-color: #ebf1fe;
     color: #2a7ade;
 
+}
+
+@media screen and (max-width:380px) {
+  .widgetLg {
+    width: 100%;
+    padding: 0;
+  }
+  
 }

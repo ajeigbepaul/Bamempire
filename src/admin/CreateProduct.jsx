@@ -77,13 +77,13 @@ const CreateProduct = () => {
           onChange={handleProductImageUpload}
           required
         />
-        <Input placeholder="Title" type="text" onChange={(e) => setTitle(e.target.value)} />
-        <Input placeholder="Description" type="text" onChange={(e) => setDescription(e.target.value)} />
-        <Input placeholder="Price" type="text" onChange={(e) => setPrice(e.target.value)} />
-        <Input placeholder="Colors" type="text" onChange={(e) => setColors(e.target.value)} />
-        <SelectInput onChange={(e) => setCategories(e.target.value)}/>
-        <SelectSize onChange={(e) => setSize(e.target.value)}/>
-        <SelectStock onChange={(e) => setStock(e.target.value)} />
+        <Input placeholder="Title" type="text" onChange={(e) => setTitle(e.target.value)} value={title}/>
+        <Input placeholder="Description" type="text" onChange={(e) => setDescription(e.target.value)} value={description}/>
+        <Input placeholder="Price" type="text" onChange={(e) => setPrice(e.target.value)} value={price}/>
+        <Input placeholder="Colors" type="text" onChange={(e) => setColors(e.target.value)} value={colors}/>
+        <SelectInput onChange={(e) => setCategories(e.target.value)} value={categories}/>
+        <SelectSize onChange={(e) => setSize(e.target.value)} value={size}/>
+        <SelectStock onChange={(e) => setStock(e.target.value)} value={stock}/>
         {/* <Input placeholder="Discount" type="text" onChange={(e) => setDiscount(e.target.value)} /> */}
         <PrimaryButton type="submit">
           Creat product

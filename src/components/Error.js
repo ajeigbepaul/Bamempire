@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Error() {
+function Error({error}) {
   return (
-    <span style={{color:"#d1e6fa",fontSize:"14px"}}>Incorrect username or password</span>
+    <span style={{color:"#d1e6fa",fontSize:"14px"}}>{error}</span>
   )
 }
 

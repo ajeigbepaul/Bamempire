@@ -1,10 +1,10 @@
 import React from 'react'
 import "./SelectInput.css"
 
-function SelectInput({name,onChange}) {
+function SelectInput({name,onChange,value}) {
   return (
     <div className="selectcontainer">
-          <select name={name} onChange={onChange} required>
+          <select name={name} onChange={onChange} value={value} required>
             <option value="">Select Category</option>
             <option value="male">male</option>
             <option value="female">female</option>

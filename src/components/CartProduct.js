@@ -16,7 +16,7 @@ function CartProduct({product}) {
                   <span className="productid">
                     <b>ID:</b> {_id}
                   </span>
-                  <FitlerColor color="black" />
+                  <FitlerColor color={colors} />
                   <span className="productsize">
                     <b>Product Size:</b> {size}
                   </span>

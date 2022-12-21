@@ -16,7 +16,8 @@ import {
 } from "./productRedux";
 import { addCart} from "./cartRedux";
 import {payStart, paySuccess, payFailure} from "./payRedux";
-import {orderStart, orderSuccess, orderFailure} from "./orderRedux";
+import {orderStart, orderSuccess, orderFailure, statusStart, statusSuccess, statusFailure} from "./orderRedux";
+
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -83,6 +84,16 @@ export const order = async (dispatch, orders) => {
   }
 };
 
+// CHANGE STATUS
+export const updateStatus = async (dispatch, id, status) => {
+  dispatch(orderStart());
+  try {
+    const res = await userRequest.put("/orders/:id", id, status);
+    dispatch(orderSuccess(res.data));
+  } catch (err) {
+    dispatch(orderFailure());
+  }
+};
 // REMOVE CART
 // CART
 export const removecart = async (dispatch, id) => {

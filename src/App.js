@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Paystack from './components/Paystack';
 import Cart from './pages/Cart'
 import Login from "./pages/Login";
+import Tracking from "./pages/Tracking";
 import Productss from './pages/Productss';
 import Register from "./pages/Register";
 import BamEmpire from "./pages/BamEmpire";
@@ -40,9 +41,8 @@ function App() {
         <Route  path="/pay" element={<Paystack/>} />
         <Route  path="/payment" element={<Payment/>} />
         <Route  path="/success" element={<Success/>} />
-
+        <Route  path="/trackorder" element={<Tracking/>} />
         <Route  path="/adminlogin" element={admin ? <Navigate replace to="/admin" /> : <AdminLogin/>} />
-      
         <Route path="/admin" element={<Dashboard />}>
               <Route path="summary" element={<Summary />} />
               <Route path="products" element={<Products />}>
