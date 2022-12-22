@@ -16,7 +16,7 @@ import {
 } from "./productRedux";
 import { addCart} from "./cartRedux";
 import {payStart, paySuccess, payFailure} from "./payRedux";
-import {orderStart, orderSuccess, orderFailure, statusStart, statusSuccess, statusFailure} from "./orderRedux";
+import {orderStart, orderSuccess, orderFailure} from "./orderRedux";
 
 
 export const login = async (dispatch, user) => {

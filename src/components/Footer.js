@@ -6,6 +6,7 @@ import {linka,linkb} from "../utils/footerlinks"
 import MailIcon from '@mui/icons-material/Mail';
 import PhoneIcon from '@mui/icons-material/Phone';
 import HomeIcon from '@mui/icons-material/Home';
+import {Link} from "react-router-dom"
 import "./Footer.css"
 
 function Footer() {
@@ -54,7 +55,7 @@ function Footer() {
         </div>
     </div>
     <div className='footer__bottom'>
-      <span>@copyright 2022 BAMEMPIRE</span>
+      <span>@copyright 2022 BAMEMPIRE <button className="footerbtn"><Link to="/adminlogin">admin</Link></button></span>
        <span>Made By Diaryofatechnovies</span> 
     </div>
     </>
