@@ -99,6 +99,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   cursor: pointer;
   transition: all ease 0.5s;
 }
+.sliderinfo button a{color:white;}
 .sliderinfo button:hover {
   transform: translateY(6px);
 }

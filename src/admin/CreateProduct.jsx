@@ -11,24 +11,23 @@ import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
-  // const { createStatus } = useSelector((state) => state.products);
-
   const [productImg, setProductImg] = useState("");
+  const [otherproductImg, setOtherProductImg]=useState([])
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [colors, setColors] = useState("");
   const [categories, setCategories] = useState("");
   const [size, setSize] = useState("");
-  const [stock, setStock] = useState("");
+  const [instock, setInStock] = useState("");
+  const [instockqty, setInStockQty] = useState("");
   // const [discount, setDiscount] = useState("");
-  
+  console.log(otherproductImg)
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
 
     TransformFileData(file);
   };
-
   const TransformFileData = (file) => {
     const reader = new FileReader();
 
@@ -42,6 +41,21 @@ const CreateProduct = () => {
     }
   };
 
+  const handleProductImagesUpload = (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(file=>{
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setOtherProductImg(oldArray=> [...oldArray, reader.result]);
+      };
+    } else {
+      setOtherProductImg("");
+    }
+    })
+    
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
      addProduct({
@@ -51,17 +65,21 @@ const CreateProduct = () => {
         colors,
         categories,
         size,
-        stock,
+        instock,
+        instockqty,
         // discount,
         image: productImg,
+        otherimages:otherproductImg,
       }, dispatch)
       setProductImg("");
+      setOtherProductImg([]);
       setCategories("");
       setColors("")
       setDescription("")
       setPrice("")
       setSize("")
-      setStock("")
+      setInStock("")
+      setInStockQty("")
       setTitle("")
       toast.success("product added successfully")
   };
@@ -77,13 +95,24 @@ const CreateProduct = () => {
           onChange={handleProductImageUpload}
           required
         />
+        <label>other product images</label>
+        <input
+          id="imgUpload"
+          accept="image/*"
+          type="file"
+          onChange={handleProductImagesUpload}
+          required
+          multiple
+        />
         <Input placeholder="Title" type="text" onChange={(e) => setTitle(e.target.value)} value={title}/>
         <Input placeholder="Description" type="text" onChange={(e) => setDescription(e.target.value)} value={description}/>
         <Input placeholder="Price" type="text" onChange={(e) => setPrice(e.target.value)} value={price}/>
         <Input placeholder="Colors" type="text" onChange={(e) => setColors(e.target.value)} value={colors}/>
         <SelectInput onChange={(e) => setCategories(e.target.value)} value={categories}/>
         <SelectSize onChange={(e) => setSize(e.target.value)} value={size}/>
-        <SelectStock onChange={(e) => setStock(e.target.value)} value={stock}/>
+        <SelectStock onChange={(e) => setInStock(e.target.value)} value={instock}/>
+        <Input placeholder="stock qty" type="text" onChange={(e) => setInStockQty(e.target.value)} value={instockqty}/>
+
         {/* <Input placeholder="Discount" type="text" onChange={(e) => setDiscount(e.target.value)} /> */}
         <PrimaryButton type="submit">
           Creat product
