@@ -12,8 +12,8 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:8000/products?category=${cat}`
-            : "http://localhost:8000/products"
+            ? `https://bamempirebackend-production.up.railway.app/products?category=${cat}`
+            : "https://bamempirebackend-production.up.railway.app/products"
         );
         setProducts(res.data);
       } catch (error) {}
@@ -54,7 +54,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
               <Product key={item.id} product={item} />
             ))
           : products
-              .slice(0, 8)
+              .slice(0, 15)
               ?.map((item) => <Product key={item.id} product={item} />)}
       </div>
     </div>

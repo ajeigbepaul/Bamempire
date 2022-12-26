@@ -4,6 +4,7 @@ display: flex;
 height: 100vh;
 /* background-color: aquamarine;} */
 }
+.adminlogout{width: 100px; padding: 5px 10px; border:none; cursor: pointer; background-color: plum; border-radius: 15px; color: white;}
 .sideNav{
   border-right: 1px solid gray;
   height: calc(100vh - 70px);

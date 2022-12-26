@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
 
 function Product({ product }) {
-  
   return (
     <div className="product">
       <div className="product__circle"></div>
@@ -15,7 +14,9 @@ function Product({ product }) {
       <div className="product__info">
       <div className="product__icon">
       <Link to={`/product/${product._id}`}><div className="product__iconcontainer"><SearchIcon/></div>
-        <div className="product__iconcontainer"><ShoppingBagOutlinedIcon/></div></Link>
+        <div className="product__iconcontainer"><ShoppingBagOutlinedIcon/></div>
+      </Link>
+      <div className="product__iconcontainer">{product.instock === "yes"?<span>instock</span>:<span>sold out</span> }</div>
       </div>
       </div>
       

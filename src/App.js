@@ -22,6 +22,8 @@ import WidgetSm from "./admin/WidgetSm"
 
 import AdminLogin from "./admin/auth/AdminLogin"
 import NotFound from "./admin/NotFound";
+import CreateImages from "./admin/CreateImages";
+import AllProducts from "./admin/AllProducts";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
@@ -49,7 +51,9 @@ function App() {
               <Route path="create-product" element={<CreateProduct />} />
               </Route>
               <Route path="orders" element={<Orders />} />
+              <Route path="images/:id" element={<CreateImages />} />
               <Route path="neworders" element={<WidgetLg/>}/>
+              <Route path="allproducts" element={<AllProducts/>}/>
               <Route path="newusers" element={<WidgetSm/>}/>
         </Route>
        

@@ -23,7 +23,7 @@ function Menu() {
   return (
     <div className="nav__menu">
       <div>
-          <Link to="/register" className="nav__reg">
+          <Link to="/" className="nav__reg">
             <div className="nav__reg">HOME</div>
           </Link>
       </div>

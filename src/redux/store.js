@@ -4,6 +4,8 @@ import userReducer from "./userRedux";
 import productReducer from "./productRedux";
 import payReducer from "./payRedux";
 import orderReducer from "./orderRedux";
+// import imagesReducer from "./imagesRedux";
+
 
 import {
   persistStore,
@@ -23,7 +25,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer, product: productReducer, pay: payReducer, order: orderReducer });
+const rootReducer = combineReducers({ user: userReducer, cart: cartReducer, product: productReducer, pay: payReducer, order: orderReducer, });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

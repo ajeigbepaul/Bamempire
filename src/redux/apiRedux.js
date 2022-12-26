@@ -17,6 +17,7 @@ import {
 import { addCart} from "./cartRedux";
 import {payStart, paySuccess, payFailure} from "./payRedux";
 import {orderStart, orderSuccess, orderFailure} from "./orderRedux";
+import {imagesStart, imagesSuccess, imagesFailure} from "./imagesRedux"
 
 
 export const login = async (dispatch, user) => {
@@ -81,6 +82,17 @@ export const order = async (dispatch, orders) => {
     dispatch(orderSuccess(res.data));
   } catch (err) {
     dispatch(orderFailure());
+  }
+};
+
+// IMAGES
+export const images = async (dispatch, images) => {
+  dispatch(imagesStart());
+  try {
+    const res = await userRequest.post("/uploads", images);
+    dispatch(imagesSuccess(res.data));
+  } catch (err) {
+    dispatch(imagesFailure());
   }
 };
 

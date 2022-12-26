@@ -1,0 +1,4 @@
+.label{display: flex; flex-direction: column;}
+.label label{padding-bottom: 15px;}
+.label span{font-weight: 600; color: orangered;font-size: 14px;}
+.upload{padding: 5px 12px; margin-top: 5px; cursor: pointer;}

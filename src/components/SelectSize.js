@@ -4,8 +4,9 @@ import "./SelectInput.css"
 function SelectSize({name,onChange,value}) {
   return (
     <div className="selectcontainer">
-          <select name={name} onChange={onChange} value={value} required>
+          <select name={name} onChange={onChange} value={value}>
             <option value="">Select Size</option>
+            <option value="none">None</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>

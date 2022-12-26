@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { addProduct } from "../redux/apiRedux";
+
 import Input from "../components/Input";
 import SelectInput from "../components/SelectInput";
 import SelectStock from "../components/SelectStock";
@@ -12,7 +13,6 @@ import { toast } from "react-toastify";
 const CreateProduct = () => {
   const dispatch = useDispatch();
   const [productImg, setProductImg] = useState("");
-  const [otherproductImg, setOtherProductImg]=useState([])
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -20,17 +20,13 @@ const CreateProduct = () => {
   const [categories, setCategories] = useState("");
   const [size, setSize] = useState("");
   const [instock, setInStock] = useState("");
-  const [instockqty, setInStockQty] = useState("");
-  // const [discount, setDiscount] = useState("");
-  console.log(otherproductImg)
+  
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
-
     TransformFileData(file);
   };
   const TransformFileData = (file) => {
     const reader = new FileReader();
-
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
@@ -40,24 +36,7 @@ const CreateProduct = () => {
       setProductImg("");
     }
   };
-
-  const handleProductImagesUpload = (e) => {
-    const files = Array.from(e.target.files);
-    files.forEach(file=>{
-    const reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setOtherProductImg(oldArray=> [...oldArray, reader.result]);
-      };
-    } else {
-      setOtherProductImg("");
-    }
-    })
-    
-  };
   const handleSubmit = async (e) => {
-    e.preventDefault();
      addProduct({
         title,
         description,
@@ -66,27 +45,22 @@ const CreateProduct = () => {
         categories,
         size,
         instock,
-        instockqty,
-        // discount,
-        image: productImg,
-        otherimages:otherproductImg,
+        image:productImg,
       }, dispatch)
       setProductImg("");
-      setOtherProductImg([]);
       setCategories("");
       setColors("")
       setDescription("")
       setPrice("")
       setSize("")
       setInStock("")
-      setInStockQty("")
       setTitle("")
       toast.success("product added successfully")
   };
 
   return (
     <StyledCreateProduct>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit} encType="multipart/form-data">
         <h3>Create a Product</h3>
         <input
           id="imgUpload"
@@ -95,15 +69,6 @@ const CreateProduct = () => {
           onChange={handleProductImageUpload}
           required
         />
-        <label>other product images</label>
-        <input
-          id="imgUpload"
-          accept="image/*"
-          type="file"
-          onChange={handleProductImagesUpload}
-          required
-          multiple
-        />
         <Input placeholder="Title" type="text" onChange={(e) => setTitle(e.target.value)} value={title}/>
         <Input placeholder="Description" type="text" onChange={(e) => setDescription(e.target.value)} value={description}/>
         <Input placeholder="Price" type="text" onChange={(e) => setPrice(e.target.value)} value={price}/>
@@ -111,9 +76,6 @@ const CreateProduct = () => {
         <SelectInput onChange={(e) => setCategories(e.target.value)} value={categories}/>
         <SelectSize onChange={(e) => setSize(e.target.value)} value={size}/>
         <SelectStock onChange={(e) => setInStock(e.target.value)} value={instock}/>
-        <Input placeholder="stock qty" type="text" onChange={(e) => setInStockQty(e.target.value)} value={instockqty}/>
-
-        {/* <Input placeholder="Discount" type="text" onChange={(e) => setDiscount(e.target.value)} /> */}
         <PrimaryButton type="submit">
           Creat product
           {/* {createStatus === "pending" ? "Submitting" : "Submit"} */}

@@ -46,9 +46,17 @@ opacity: 1;
     transition: all ease 0.5s;
     
 }
+.product__icon a{
+   color: purple;
+}
 .product__iconcontainer:hover{
     background-color: orange;
     transform:scale(1.1);
+}
+.product__iconcontainer span{
+    font-size: 10px;
+    font-weight: 600;
+    color: purple;
 }
 .product__img{
     width:100%;
