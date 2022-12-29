@@ -1,28 +1,33 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import Input from '../../components/Input'
 import {useDispatch, useSelector} from "react-redux"
 import "../../pages/Login.css"
 import { adminlogin } from "../../redux/apiRedux";
 import { useNavigate } from "react-router-dom";
-import Error from "../../components/Error";
+import { toast } from "react-toastify";
 const AdminLogin = () => {
-  // const errRef = useRef()
-  // const [errmsg, setErrmsg] = useState("")
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
-  // useEffect(()=>{
-  // setErrmsg("")
-  // },[username,password])
+  const [errormsg, setErrorMsg] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state.user);
+  const { currentUser, isFetching, error } = useSelector((state) => state.user);
+
+   useEffect((error)=>{
+    if(error){
+      toast.error("wrong credentials")
+     }
+  },[error])
+
+  useEffect((currentUser)=>{
+    currentUser && navigate("/admin")
+  },[username,password,currentUser,navigate])
 
   const handleClick = (e) => {
-    e.preventDefault();
-    adminlogin(dispatch, { username, password });
-    navigate("/admin")
+     e.preventDefault();
+     adminlogin(dispatch, { username, password });
+     window.location.reload()
   };
   return (
     <div className='log__container'>
@@ -32,9 +37,9 @@ const AdminLogin = () => {
             <Input placeholder="username" type="text" onChange={(e) => setUsername(e.target.value)} />
             <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
             <button className="log__btn" onClick={handleClick} >LOGIN</button>
-            {error && <Error errmsg={error}/>}
-            <a href="something" className='link'>DO YOU REMEMBER YOUR PASSWORD ?</a>
-            <a href="something" className='link'>CREATE A NEW ACCOUNT</a>
+            {errormsg && <p className="error" aria-live="assertive">{errormsg}</p>} 
+            {/* <a href="something" className='link'>DO YOU REMEMBER YOUR PASSWORD ?</a>
+            <a href="something" className='link'>CREATE A NEW ACCOUNT</a> */}
             </form>
             
         </div>

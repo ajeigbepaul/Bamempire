@@ -40,8 +40,8 @@
   .widgetLgImg img{width: 40px; height:40px; object-fit: cover;margin-right: 10px;}
   
   .widgetLgDate,.widgetLgAmount{
-    font-weight: 300;
-    font-size:14px;
+    font-weight: 600;
+    font-size:12px;
   }
   .btn{background-color: #d95087 !important;}
   .btn2{background-color: #3bb077 !important;}

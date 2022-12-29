@@ -68,11 +68,12 @@ export default function WidgetLg() {
       <table className="widgetLgTable">
         <tr className="widgetLgTr">
            <th className="widgetLgTh">Customer</th>
+           {/* <th className="widgetLgTh">OrderID</th> */}
            <th className="widgetLgTh">Phone nos</th>
            <th className="widgetLgTh">Address</th>
            <th className="widgetLgTh">State</th>
            <th className="widgetLgTh">Date</th>
-           <th className="widgetLgTh">Products</th>
+           <th className="widgetLgTh">Products Id/Qty</th>
            <th className="widgetLgTh">Total</th>
            <th className="widgetLgTh">status</th>
            <th className="widgetLgTh">Action</th>
@@ -81,11 +82,12 @@ export default function WidgetLg() {
         {orders.map((order) => (
           <tr className="widgetLgTr" key={order._id}>
             <td className="widgetLgName">{order.address.fullname}</td>
+            {/* <td className="widgetLgId">{order._id}</td> */}
             <td className="widgetLgDate">{order.address.phone}</td>
             <td className="widgetLgDate">{order.address.address1}</td>
             <td className="widgetLgDate">{order.address.state}</td>
             <td className="widgetLgDate">{moment(new Date(order.createdAt)).format("YYYY-MM-DD")}</td>
-            <td className="widgetLgProduct">{order.products.map((item,i)=><div key={i} className="widgetLgitem"><h6>{item.title} </h6><h6>{item.colors} </h6><h6>{item.size} </h6><span>{item.qty} Qty</span></div>)}</td>
+            <td className="widgetLgProduct">{order.products.map((item,i)=><div key={i} className="widgetLgitem"><h6>{item._id} </h6><span>{item.qty} Qty</span></div>)}</td>
             <td className="widgetLgAmount">N{order.total}</td>
             <td className="widgetLgStatus"><Button type={order.status} /></td>
             <td className="widgetLgStatus">
@@ -95,7 +97,7 @@ export default function WidgetLg() {
               <form>
               <button type="submit" onClick={()=>handleStatusprocessing(order._id)} className="btn" >processing</button>
               <button type="submit" onClick={()=>handleStatuspacked(order._id)} className="btn2" >packed</button>
-              <button type="submit" onClick={()=>handleStatusdelivered(order._id)} className="btn3" >delivered</button>
+              <button type="submit" onClick={()=>handleStatusdelivered(order._id)} className="btn3" >dispatched</button>
               </form>
             </td>
           </tr>

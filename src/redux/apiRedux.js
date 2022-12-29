@@ -36,7 +36,7 @@ export const adminlogin = async (dispatch, user) => {
     const res = await publicRequest.post("/auth/adminlogin", user);
     dispatch(loginSuccess(res.data));
   } catch (err) {
-    dispatch(loginFailure());
+    dispatch(loginFailure(err));
   }
 };
 

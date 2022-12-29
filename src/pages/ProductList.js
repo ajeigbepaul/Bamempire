@@ -34,14 +34,14 @@ function ProductList() {
                   <option>yellow</option>
                   <option>green</option>
                 </select>
-                <select className='selectsize' name='size' value={filtersize} onChange={e=>setFiltersize(e.target.value)}>
+                {/* <select className='selectsize' name='size' value={filtersize} onChange={e=>setFiltersize(e.target.value)}>
                   <option selected>Size</option>
                   <option>XS</option>
                   <option>S</option>
                   <option>M</option>
                   <option>L</option>
                   <option>XL</option>
-                </select>
+                </select> */}
               </div>
             </div>
             <div className='filter2'>

@@ -25,6 +25,10 @@ function Productss() {
   const id = location.pathname.split("/")[2]
 
   const [product, setProduct] = useState({})
+  const [otherimages, setOtherimages] = useState([])
+  const [images, setImages] = useState([])
+
+
   const [qty, setQty]= useState(1)
 
   useEffect(()=>{
@@ -39,9 +43,33 @@ function Productss() {
    }
    getProduct()
   },[id])
+  useEffect(()=>{
+    const getOtherimages = async()=>{
+     try {
+       const res = await publicRequest.get(`/images`)
+       console.log(res.data)
+       setOtherimages(res.data)
+       
+     } catch (error) {
+       
+     }
+    }
+    getOtherimages()
+   },[id])
+
+   // FILTER OTHERIMAGES
+  useEffect(() => {
+      setImages(
+        otherimages.filter((image) => id === image?.productid)
+      );
+  }, [id,otherimages]);
+  console.log(images)
+
+  // HANDLE ADD TO CART
   const handleAddToCart = () =>{
    dispatch(addCart({...product,qty})) 
   }
+  // {otherimages.map(images=>)}
   return (
     <div className="productss__container">
       <Announcement />
@@ -49,6 +77,14 @@ function Productss() {
       <div className="productss__wrapper">
         <div className="productss__prodimg">
           <img src={product?.image?.url} alt="prod" />
+          {images?.map(image=>
+          <div className="productss__otherimages">
+          {/* {console.log(image.images)} */}
+           <h2>Other product images</h2>
+          {image?.images?.map(item=><img key={item._id} src={item?.url} alt="otherimages"/>)}
+          </div>)}
+         
+          
         </div>
         <div className="productss__infocontainer">
           <div className="productss__title">

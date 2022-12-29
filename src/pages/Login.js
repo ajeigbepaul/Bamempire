@@ -16,6 +16,7 @@ function Login() {
     e.preventDefault();
     login(dispatch, { username, password });
     navigate("/")
+    window.location.reload()
 
   };
   return (

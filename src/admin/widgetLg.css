@@ -6,7 +6,7 @@
 }
 
 .widgetLgTitle {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -17,6 +17,7 @@
 
 .widgetLgTh{
   text-align: left;
+  font-size: 14px;
 }
 
 .widgetLgUser{
@@ -32,6 +33,13 @@
   font-size: 14px;
 }
 
+.widgetLgId{
+  /* display: flex;
+  align-items: center; */
+  font-weight: 600;
+  font-size: 12px;
+}
+
 .widgetLgImg {
   width: 40px;
   height: 40px;
@@ -41,14 +49,15 @@
 }
 
 .widgetLgDate,.widgetLgAmount{
-  font-weight: 300;
-  font-size:14px;
+  font-weight: 600;
+  font-size:12px;
 }
 .btn{background-color: #d95087 !important;}
 .btn2{background-color: #3bb077 !important;}
 .btn3{background-color: #2a7ade !important;}
 .widgetLgStatus button{padding: 5px 12px; outline: none; border: none; background-color: plum; color: white; margin:2px; cursor: pointer;}
 .widgetLgitem{display: flex; justify-content: space-between;align-items: center;}
+.widgetLgitem h6{font-size: 10px !important;}
 .widgetLgProduct{
   width: 200px;
   font-weight: 300;

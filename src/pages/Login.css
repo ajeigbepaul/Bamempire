@@ -24,6 +24,7 @@
 .link{margin: 5px; cursor: pointer; text-decoration: underline; font-size: 14; color: aliceblue; transition: all ease 0.5s;}
 .link:hover{color:#d1e6fa}
 .disabled{color:grey;cursor:not-allowed}
+.error{color:red; padding: 3px 7px; font-size: 12px;}
 @media screen and (max-width:380px) {
     .log__formWrapper{
         width: 80%;}

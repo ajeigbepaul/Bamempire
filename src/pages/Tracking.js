@@ -28,6 +28,7 @@ const Tracking = () => {
         <tr className="widgetLgTr">
           {/* <th className="widgetLgTh">Customer</th> */}
           <th className="widgetLgTh">Products</th>
+          <th className="widgetLgTh">ProductsID</th>
           <th className="widgetLgTh">status</th>
         </tr>
         {orders?.map((order) => (
@@ -36,9 +37,7 @@ const Tracking = () => {
             <td className="widgetLgProduct">
               {order.products.map((item, i) => (
                 <div key={i} className="widgetLgitem">
-                  <h6>{item.title} </h6>
-                  <h6>{item.colors} </h6>
-                  <h6>{item.size} </h6>
+                  <h6>{item._id} </h6>
                   <span>{item.qty} Qty</span>
                 </div>
               ))}

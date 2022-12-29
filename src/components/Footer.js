@@ -17,10 +17,12 @@ function Footer() {
           <h2>BamEmpire</h2>
           <div className='footer__desc'>
             <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
             molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
             numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-             optio, eaque rerum! Provident similique accusantium nemo autem.
+             optio, eaque rerum! Provident similique accusantium nemo autem. */}
+             Bamempire is your Nos 1 stop shop for your wholesale products. We deal with 
+             all kinds of Kiddies items, mens and women items, accessories and kitchen utensils.
             </p>
           </div>
           <div className='footer__social'>
@@ -55,7 +57,8 @@ function Footer() {
         </div>
     </div>
     <div className='footer__bottom'>
-      <span>@copyright 2022 BAMEMPIRE <button className="footerbtn"><Link to="/adminlogin">admin</Link></button></span>
+    {/* <button className="footerbtn"><Link to="/adminlogin">admin</Link></button> */}
+      <span>@copyright 2022 BAMEMPIRE </span>
        <span>Made By Diaryofatechnovies</span> 
     </div>
     </>

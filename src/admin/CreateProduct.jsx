@@ -69,12 +69,13 @@ const CreateProduct = () => {
           onChange={handleProductImageUpload}
           required
         />
-        <Input placeholder="Title" type="text" onChange={(e) => setTitle(e.target.value)} value={title}/>
+        {/* <Input placeholder="Title" type="text" onChange={(e) => setTitle(e.target.value)} value={title}/> */}
         <Input placeholder="Description" type="text" onChange={(e) => setDescription(e.target.value)} value={description}/>
         <Input placeholder="Price" type="text" onChange={(e) => setPrice(e.target.value)} value={price}/>
         <Input placeholder="Colors" type="text" onChange={(e) => setColors(e.target.value)} value={colors}/>
-        <SelectInput onChange={(e) => setCategories(e.target.value)} value={categories}/>
+        {/* <Input placeholder="Sizes" type="text" onChange={(e) => setSize(e.target.value)} value={size}/> */}
         <SelectSize onChange={(e) => setSize(e.target.value)} value={size}/>
+        <SelectInput onChange={(e) => setCategories(e.target.value)} value={categories}/>
         <SelectStock onChange={(e) => setInStock(e.target.value)} value={instock}/>
         <PrimaryButton type="submit">
           Creat product
