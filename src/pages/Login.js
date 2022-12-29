@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../components/Input'
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
 // import Error from '../components/Error';
 import { login } from "../redux/apiRedux";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Login() {
   const navigate = useNavigate();
@@ -12,11 +13,24 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+  const { currentUser, isFetching, error } = useSelector((state) => state.user);
+
+   useEffect((error)=>{
+    if(error){
+      toast.error("wrong credentials")
+     }
+  },[error])
+
+  useEffect((currentUser)=>{
+    currentUser && navigate("/admin")
+  },[username,password,currentUser,navigate])
+
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
     navigate("/")
     window.location.reload()
+    // window.location.reload()
 
   };
   return (

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import {useSelector} from "react-redux"
 import "./Tracking.css";
+import Announcement from "../components/Announcement";
+import Navbar from "../components/Navbar";
 const Tracking = () => {
   const {order} = useSelector((state) => state.order);
   const userId = order?.userId
@@ -22,6 +24,9 @@ const Tracking = () => {
     getOrders();
   }, [userId]);
   return (
+    <>
+    <Announcement/>
+    <Navbar/>
     <div className="widgetLg">
       <h3 className="widgetLgTitle">TRACK YOUR ORDERS</h3>
       <table className="widgetLgTable">
@@ -49,6 +54,8 @@ const Tracking = () => {
         ))}
       </table>
     </div>
+    </>
+      
   );
 };
 
