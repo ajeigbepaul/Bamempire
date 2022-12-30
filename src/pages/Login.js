@@ -12,7 +12,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const { currentUser, isFetching, error } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
 
    useEffect((error)=>{
     if(error){
