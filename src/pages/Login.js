@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Input from '../components/Input'
 import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
-// import Error from '../components/Error';
 import { login } from "../redux/apiRedux";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -30,8 +29,6 @@ function Login() {
     login(dispatch, { username, password });
     navigate("/")
     window.location.reload()
-    // window.location.reload()
-
   };
   return (
     <div className='log__container'>
