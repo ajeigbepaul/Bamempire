@@ -12,14 +12,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const { error } = useSelector((state) => state.user);
-
-   useEffect((error)=>{
-    if(error){
-      toast.error("wrong credentials")
-     }
-  },[error])
-
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
