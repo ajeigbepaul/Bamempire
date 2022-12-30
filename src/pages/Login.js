@@ -3,7 +3,7 @@ import Input from '../components/Input'
 import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
 import { login } from "../redux/apiRedux";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Login() {
@@ -28,7 +28,7 @@ function Login() {
             <button className="log__btn" onClick={handleClick} >LOGIN</button>
             {/* {error && <Error>Something went wrong...</Error>} */}
             <a href="something" className='link'>DO YOU REMEMBER YOUR PASSWORD ?</a>
-            <a href="something" className='link'>CREATE A NEW ACCOUNT</a>
+            <Link to="/register" className='link'>CREATE A NEW ACCOUNT</Link>
             </form>
             
         </div>
