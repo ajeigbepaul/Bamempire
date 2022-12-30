@@ -4,19 +4,16 @@ import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
 import { login } from "../redux/apiRedux";
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
     navigate("/")
-    window.location.reload()
+    // window.location.reload()
   };
   return (
     <div className='log__container'>

@@ -32,7 +32,7 @@ const Tracking = () => {
       <table className="widgetLgTable">
         <tr className="widgetLgTr">
           {/* <th className="widgetLgTh">Customer</th> */}
-          <th className="widgetLgTh">Products</th>
+          {/* <th className="widgetLgTh">Products</th> */}
           <th className="widgetLgTh">ProductsID</th>
           <th className="widgetLgTh">status</th>
         </tr>

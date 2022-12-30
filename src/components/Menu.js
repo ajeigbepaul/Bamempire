@@ -30,7 +30,7 @@ function Menu() {
       {currentUser ? (
         <>
           <Link className="nav__reg">
-            <div className="nav__username" aria-disabled>{currentUser.username}</div>
+            <div className="nav__username" aria-disabled>{currentUser?.username}</div>
           </Link>
           <Link className="nav__reg">
             {" "}

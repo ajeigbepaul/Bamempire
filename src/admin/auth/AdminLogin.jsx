@@ -8,13 +8,8 @@ import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  // const [errormsg, setErrorMsg] = useState("");
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUser, isFetching, error } = useSelector((state) => state.user);
-
   const handleClick = (e) => {
      e.preventDefault();
      adminlogin(dispatch, { username, password });
