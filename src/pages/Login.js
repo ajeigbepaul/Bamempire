@@ -20,10 +20,6 @@ function Login() {
      }
   },[error])
 
-  useEffect((currentUser)=>{
-    currentUser && navigate("/admin")
-  },[username,password,currentUser,navigate])
-
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });

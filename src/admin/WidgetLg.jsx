@@ -13,7 +13,7 @@ export default function WidgetLg() {
     const getOrders = async () => {
       try {
         const res = await userRequest.get("orders");
-        console.log(res.data)
+        // console.log(res.data)
         setOrders(res.data);
       } catch {}
     };
@@ -31,35 +31,35 @@ export default function WidgetLg() {
   const handleStatusprocessing = async(id)=>{
     try {
      const res = await userRequest.put(`/orders/${id}`,{status:status.processing})
-     console.log(res.data)
+    //  console.log(res.data)
      setStatus(res.data)
      toast.success("Status updated!! Kindly refresh your browser.")
     } catch (error) {
       
     }
-    console.log(id)
+    // console.log(id)
   }
   const handleStatuspacked = async(id)=>{
     try {
      const res = await userRequest.put(`/orders/${id}`,{status:status.packed})
-     console.log(res.data)
+    //  console.log(res.data)
      setStatus(res.data)
      toast.success("Status updated!! Kindly refresh your browser.")
     } catch (error) {
       
     }
-    console.log(id)
+    // console.log(id)
   }
   const handleStatusdelivered = async(id)=>{
     try {
      const res = await userRequest.put(`/orders/${id}`,{status:status.delivered})
-     console.log(res.data)
+    //  console.log(res.data)
      setStatus(res.data)
      toast.success("Status updated!! Kindly refresh your browser.")
     } catch (error) {
       
     }
-    console.log(id)
+    // console.log(id)
   } 
   return (
     

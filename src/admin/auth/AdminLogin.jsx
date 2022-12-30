@@ -14,20 +14,33 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { currentUser, isFetching, error } = useSelector((state) => state.user);
 
-   useEffect((error)=>{
-    if(error){
-      toast.error("wrong credentials")
-     }
-  },[error])
+  //  useEffect((error)=>{
+  //   if(error){
+  //     toast.error("wrong credentials")
+  //    }
+  // },[error])
 
-  useEffect((currentUser)=>{
-    currentUser && navigate("/admin")
-  },[username,password,currentUser,navigate])
+  // useEffect(()=>{
+  //   if(error){
+  //     navigate("/adminlogin")
+  //   }
+  // },[error,navigate])
+  // useEffect(()=>{
+  //   if(currentUser){
+  //     navigate("/admin")
+  //   }
+  // },[error,navigate])
 
   const handleClick = (e) => {
      e.preventDefault();
      adminlogin(dispatch, { username, password });
      window.location.reload()
+     navigate("/admin")
+    //  if(currentUser){
+    //   navigate("/admin")
+    //   window.location.reload()
+    //  }
+    
   };
   return (
     <div className='log__container'>

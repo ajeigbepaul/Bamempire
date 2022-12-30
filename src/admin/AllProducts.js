@@ -13,7 +13,7 @@ export default function AllProducts() {
     const getProducts = async () => {
       try {
         const res = await userRequest.get("products");
-        console.log(res.data)
+        // console.log(res.data)
         setProducts(res.data);
       } catch {}
     };
@@ -31,12 +31,12 @@ export default function AllProducts() {
   const handleStockstatus = async(id)=>{
     try {
      const res = await userRequest.put(`/products/${id}`,{instock:"no"})
-     console.log(res.data)
+    //  console.log(res.data)
      toast.success("Status updated to not in stock!! Kindly refresh your browser.")
     } catch (error) {
       
     }
-    console.log(id)
+    // console.log(id)
   } 
   return (
     
