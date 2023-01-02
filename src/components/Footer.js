@@ -58,7 +58,7 @@ function Footer() {
     </div>
     <div className='footer__bottom'>
     {/* <button className="footerbtn"><Link to="/adminlogin">admin</Link></button> */}
-      <span>@copyright 2022 BAMEMPIRE </span>
+      <span>@copyright 2022  <Link to="/adminlogin" className='admin'>BAMEMPIRE</Link> </span>
        <span>Made By Diaryofatechnovies</span> 
     </div>
     </>
