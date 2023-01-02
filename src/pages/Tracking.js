@@ -5,9 +5,12 @@ import "./Tracking.css";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 const Tracking = () => {
-  const {order} = useSelector((state) => state?.order);
-  const userId = order?.userId
-  // console.log(order.userId)
+  const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+  const currentUser = user && JSON.parse(user).currentUser;
+  // const {order} = useSelector((state) => state?.order);
+  const userId = currentUser?._id
+  // const userId = order?.userId
+  console.log(userId)
 
   const [orders, setOrders] = useState([]);
   const Button = ({ type }) => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import FitlerColor from "../components/FilterColor";
 import CartQty from './CartQty';
 function CartProduct({product}) {
-  const {_id, title,image,size,colors,price} = product
+  const {_id,image,size,colors,price,instock} = product
   const [qty, setQty]= useState(1)
   return (
     <>
@@ -10,12 +10,13 @@ function CartProduct({product}) {
               <div className="cart__productdetails">
                 <img src={image?.url} alt="productimage" />
                 <div className="cart__details">
-                  <span className="productname">
+                  {/* <span className="productname">
                     <b>Product Name:</b> {title}
-                  </span>
+                  </span> */}
                   <span className="productid">
                     <b>ID:</b> {_id}
                   </span>
+                  {instock === "yes"?<span>instock</span>:<span>sold out</span> }
                   <FitlerColor color={colors} />
                   <span className="productsize">
                     <b>Product Size:</b> {size}

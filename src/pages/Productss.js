@@ -88,7 +88,9 @@ function Productss() {
         </div>
         <div className="productss__infocontainer">
           <div className="productss__title">
-            <h2>{product.title}</h2>
+          {product.instock === "yes"?<span>instock</span>:<span>sold out</span> }
+
+            {/* <h2>{product.title}</h2> */}
           </div>
           <div className="productss__desc">
             <p>

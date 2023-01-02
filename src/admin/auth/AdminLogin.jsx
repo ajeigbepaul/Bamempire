@@ -4,18 +4,30 @@ import {useDispatch, useSelector} from "react-redux"
 import "../../pages/Login.css"
 import { adminlogin } from "../../redux/apiRedux";
 import { useNavigate } from "react-router-dom";
+import { publicRequest, userRequest } from "../../requestMethods";
+import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleClick = (e) => {
+  const handleClick = async(e) => {
      e.preventDefault();
      adminlogin(dispatch, { username, password });
      navigate("/admin")
-     window.location.reload()
-    
+    //  window.location.reload()
+    // e.preventDefault();
+    // try {
+    //     const {data} = await publicRequest.post('/auth/adminlogin', { username, password })
+    //     if  (data){
+    //         toast.success('logged in')
+    //         navigate("/admin")
+    //     }
+    //     console.log(data);
+    // } catch (error) {
+    //     toast.error(error);
+    // }
     
   };
   return (

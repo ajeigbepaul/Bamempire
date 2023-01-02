@@ -8,6 +8,7 @@
 .productss__otherimages img{width: 30%; height: 80%; object-fit: cover; margin: 0px 5px; border-radius: 10px!important;cursor: pointer; transition: all .5s ease-in-out;}
 .productss__infocontainer{flex: 1; display: flex; flex-direction: column; padding: 0px 25px;}
 .productss__title{width: 100%; margin-bottom: 10px;}
+.productss__title span{background-color: plum; padding:5px; font-weight: 600; font-size:12px;}
 .productss__title h2{font-weight: 400;}
 .productss__desc{width: 100%; margin-bottom: 10px; }
 .productss__desc p{font-family:'Times New Roman', Times, serif; width: 80%;}
