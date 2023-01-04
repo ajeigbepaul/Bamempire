@@ -3,7 +3,7 @@
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     padding: 20px;
-    margin-right: 20px;
+    margin-right: 50px;
     flex-direction: column;
 }
 
@@ -43,13 +43,14 @@
     /* flex-direction: column; */
 }
 .widgetSmname{
-    width: 150px;
+    width: 200px;
     display: flex;
     justify-content: space-evenly;
+    font-size: 14px;
     /* flex-direction: column; */
 }
 .widgetSmemail{
-    width: 150px;
+    width: 250px;
     display: flex;
     justify-content: space-evenly;
     /* flex-direction: column; */
@@ -58,15 +59,18 @@
     width: 150px;
     display: flex;
     justify-content: space-evenly;
+    font-size:14px;
     /* flex-direction: column; */
 }
 
 .widgetSmUsername{
     font-weight: 600;
+    font-size:14px;
 }
 
 .widgetSmUserTitle{
     font-weight: 300;
+    font-size:14px;
 }
 
 .widgetSmButton{

@@ -38,7 +38,6 @@ const CreateProduct = () => {
   };
   const handleSubmit = async (e) => {
      addProduct({
-        title,
         description,
         price,
         colors,
