@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const AdminHeaders = styled.div`
   display: flex;
   justify-content: space-between;
+  width:850px;
+  margin-left:100px;
 `;
 
 export const PrimaryButton = styled.button`

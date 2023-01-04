@@ -1,6 +1,6 @@
 import axios from "axios";
-// const BASE_URL = "http://localhost:8000"
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = "http://localhost:8000"
+// const BASE_URL = process.env.REACT_APP_BASE_URL
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
 const currentUser = user && JSON.parse(user).currentUser;
 const TOKEN = currentUser?.accessToken;

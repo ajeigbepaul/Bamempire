@@ -101,6 +101,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   max-width: 300px;
   margin-top: 2rem;
+  margin-left:100px;
 
   select,
   input {
