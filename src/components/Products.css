@@ -6,7 +6,8 @@
     background-color: rgb(59, 37, 59);
 }
 .products__product{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) ;
     width: 100%;
     padding: 25px;
     padding-top: 50px;
@@ -18,4 +19,15 @@
     font-family:"Lato", sans-serif ;
     padding:25px 0px;
     color:aliceblue;
+}
+
+@media screen and (max-width:380px) {
+    .products__product{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr) ;
+        width: 100%;
+        padding: 25px;
+        padding-top: 50px;
+        flex-wrap: wrap;
+    }
 }

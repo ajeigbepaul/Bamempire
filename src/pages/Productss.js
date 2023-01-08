@@ -47,7 +47,7 @@ function Productss() {
     const getOtherimages = async()=>{
      try {
        const res = await publicRequest.get(`/images`)
-       console.log(res.data)
+      //  console.log(res.data)
        setOtherimages(res.data)
        
      } catch (error) {
@@ -95,6 +95,11 @@ function Productss() {
           <div className="productss__desc">
             <p>
               {product.description}
+            </p>
+          </div>
+          <div className="productss__desc">
+            <p>
+             (Minimum Order Quantity:{product.moq}) 
             </p>
           </div>
           <div className="productss__price">

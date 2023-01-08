@@ -44,6 +44,10 @@
     font-weight: 600;
     font-size:12px;
   }
+  .widgetLgDesc{
+    font-weight: 600;
+    font-size:10px;
+  }
   .btn{background-color: #d95087 !important;}
   .btn2{background-color: #3bb077 !important;}
   .btn3{background-color: #2a7ade !important;}

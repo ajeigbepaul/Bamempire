@@ -27,7 +27,8 @@ const [phone, SetPhone] = useState("")
 const [email, SetEmail] = useState("")
 
 
-const publicKey = "pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964"; // Replace with your public key
+// const publicKey = "pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964"; // Replace with your public key
+const publicKey = "pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19";
 const address = {
 fullname,address1,address2,state,city,phone,email
 }

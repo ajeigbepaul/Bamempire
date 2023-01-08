@@ -4,6 +4,7 @@ import userReducer from "./userRedux";
 import productReducer from "./productRedux";
 import payReducer from "./payRedux";
 import orderReducer from "./orderRedux";
+import authReducer from "./authRedux";
 // import imagesReducer from "./imagesRedux";
 
 
@@ -23,12 +24,15 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
+  // blacklist: ['user']
 };
-
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer, product: productReducer, pay: payReducer, order: orderReducer, });
-
+const userPersistConfig = {
+  key: 'user',
+  storage,
+  blacklist: ['error']
+}
+const rootReducer = combineReducers({user: persistReducer(userPersistConfig, userReducer), cart: cartReducer, product: productReducer, pay: payReducer, order: orderReducer });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>

@@ -48,6 +48,7 @@ export default function AllProducts() {
            <th className="widgetLgTh">S/N</th>
            <th className="widgetLgTh">ProductImg</th>
            <th className="widgetLgTh">ProductID</th>
+           <th className="widgetLgTh">Desc</th>
            <th className="widgetLgTh">createdAt</th>
            <th className="widgetLgTh">Action</th>
            <th className="widgetLgTh">Uploads</th>
@@ -58,6 +59,7 @@ export default function AllProducts() {
             <td className="widgetLgDate">{i++}</td>
             <td className="widgetLgImg"><img src={product.image.url} alt="productimages"/></td>
             <td className="widgetLgDate">{product._id}</td>
+            <td className="widgetLgDesc">{product.description}</td>
             <td className="widgetLgDate">{moment(new Date(product.createdAt)).format("YYYY-MM-DD")}</td>
             <td className="widgetLgStatus">
               <button onClick={() => handleDelete(product._id)}>Delete</button>

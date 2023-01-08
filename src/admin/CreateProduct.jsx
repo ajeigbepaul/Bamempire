@@ -13,12 +13,12 @@ import { toast } from "react-toastify";
 const CreateProduct = () => {
   const dispatch = useDispatch();
   const [productImg, setProductImg] = useState("");
-  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [colors, setColors] = useState("");
   const [categories, setCategories] = useState("");
   const [size, setSize] = useState("");
+  const [moq, setMoq] = useState("");
   const [instock, setInStock] = useState("");
   
   const handleProductImageUpload = (e) => {
@@ -44,6 +44,7 @@ const CreateProduct = () => {
         categories,
         size,
         instock,
+        moq,
         image:productImg,
       }, dispatch)
       setProductImg("");
@@ -53,7 +54,6 @@ const CreateProduct = () => {
       setPrice("")
       setSize("")
       setInStock("")
-      setTitle("")
       toast.success("product added successfully")
   };
 
@@ -72,7 +72,7 @@ const CreateProduct = () => {
         <Input placeholder="Description" type="text" onChange={(e) => setDescription(e.target.value)} value={description}/>
         <Input placeholder="Price" type="text" onChange={(e) => setPrice(e.target.value)} value={price}/>
         <Input placeholder="Colors" type="text" onChange={(e) => setColors(e.target.value)} value={colors}/>
-        {/* <Input placeholder="Sizes" type="text" onChange={(e) => setSize(e.target.value)} value={size}/> */}
+        <Input placeholder="MOQ(Minimum Order Quantity" type="text" onChange={(e) => setMoq(e.target.value)} value={moq}/>
         <SelectSize onChange={(e) => setSize(e.target.value)} value={size}/>
         <SelectInput onChange={(e) => setCategories(e.target.value)} value={categories}/>
         <SelectStock onChange={(e) => setInStock(e.target.value)} value={instock}/>
