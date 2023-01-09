@@ -6,6 +6,7 @@ import { adminlogin } from "../../redux/apiRedux";
 import { useNavigate } from "react-router-dom";
 import { publicRequest, userRequest } from "../../requestMethods";
 import { toast } from "react-toastify";
+import AdminInput from "../../components/AdminInput";
 // import { toast } from "react-toastify";
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -20,7 +21,7 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const handleClick = async(e) => {
      e.preventDefault();
-     adminlogin(dispatch, { userToLower, password });
+     adminlogin(dispatch, { username, password });
      navigate("/admin")
     //  window.location.reload()
     // e.preventDefault();
@@ -41,8 +42,8 @@ const AdminLogin = () => {
         <div className='log__formWrapper'>
             <div className='log__title'>SIGN IN</div>
             <form>
-            <Input placeholder="username" type="text" onChange={(e) => setUsername(e.target.value)} />
-            <Input placeholder="password" type={ispasswordshown ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} onClick={toggladmineye}/>
+            <AdminInput placeholder="username" type="text" onChange={(e) => setUsername(e.target.value)} />
+            <AdminInput placeholder="password" type={ispasswordshown ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} onClick={toggladmineye} visible={true}/>
             <button className="log__btn" onClick={handleClick} >LOGIN</button>
             {/* {errormsg && <p className="error" aria-live="assertive">{errormsg}</p>}  */}
             {/* <a href="something" className='link'>DO YOU REMEMBER YOUR PASSWORD ?</a>

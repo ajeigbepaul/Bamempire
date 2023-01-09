@@ -6,6 +6,7 @@ import {toast} from "react-toastify"
 import { Link } from "react-router-dom";
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
+  const [disable,setDisable] = useState(false)
   const Button = ({ type }) => {
     return <button className={"widgetLgButton " + type}>{type}</button>;
   };
@@ -19,6 +20,16 @@ export default function AllProducts() {
     };
     getProducts();
   }, []);
+  // useEffect(() => {
+  //   const getImg = async () => {
+  //     try {
+  //       const res = await userRequest.get(`/images/${}`);
+  //       // console.log(res.data)
+  //       setProducts(res.data);
+  //     } catch {}
+  //   };
+  //   getProducts();
+  // }, []);
   const handleDelete = async(id) => {
     alert("do you want to delete this order")
     try {

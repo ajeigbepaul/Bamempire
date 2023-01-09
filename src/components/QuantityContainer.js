@@ -3,12 +3,12 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import "./Quantity.css"
 
-function QuantityContainer({qty, setQty,product}) {
+function QuantityContainer({qty, setQty}) {
   const handleQuantity =(type)=>{
     if(type === "desc"){
-     qty > 1 && setQty(qty - 1)
+     qty > 5 && setQty(qty - 5)
     }else{
-     setQty(qty + 1)
+     setQty(qty + 5)
     }
    }
   return (

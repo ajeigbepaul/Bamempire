@@ -29,7 +29,7 @@ function Productss() {
   const [images, setImages] = useState([])
 
 
-  const [qty, setQty]= useState(1)
+  const [qty, setQty]= useState(5)
 
   useEffect(()=>{
    const getProduct = async()=>{

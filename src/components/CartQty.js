@@ -10,9 +10,9 @@ function CartQty({qty, setQty,product}) {
   const dispatch = useDispatch()
   const handleQuantity =(type)=>{
     if(type === "desc"){
-     qty > 1 && setQty(qty - 1)
+     qty > 5 && setQty(qty - 5)
     }else{
-     setQty(qty + 1)
+     setQty(qty + 5)
     }
    }
    function handleRemove(){
