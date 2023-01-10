@@ -9,9 +9,9 @@ import { toast } from "react-toastify";
 import AdminInput from "../../components/AdminInput";
 // import { toast } from "react-toastify";
 const AdminLogin = () => {
+  const {isFetching,error,currentUser} = useSelector(state=>state.user)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const userToLower = username.toLowerCase()
   // console.log(userToLower)
   const [ispasswordshown, setIsPasswordShown]= useState(false)
   const toggladmineye = ()=>{
@@ -19,10 +19,21 @@ const AdminLogin = () => {
   }
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(error){
+        // navigate("/adminlogin")
+        toast.error("wrong credentials")
+    }
+    if(currentUser){
+      navigate("/admin")
+      toast.success("logged in successfully")
+    }
+  },[error,navigate,currentUser])
   const handleClick = async(e) => {
      e.preventDefault();
      adminlogin(dispatch, { username, password });
-     navigate("/admin")
+    //  navigate("/admin")
+      
     //  window.location.reload()
     // e.preventDefault();
     // try {

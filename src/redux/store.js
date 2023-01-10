@@ -18,6 +18,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -29,8 +30,10 @@ const persistConfig = {
 const userPersistConfig = {
   key: 'user',
   storage,
-  blacklist: ['error']
+  whitelist: ['currentUser'],
+  blacklist:['error']
 }
+// {user: persistReducer(userPersistConfig, userReducer)
 const rootReducer = combineReducers({user: persistReducer(userPersistConfig, userReducer), cart: cartReducer, product: productReducer, pay: payReducer, order: orderReducer });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
