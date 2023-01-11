@@ -25,13 +25,13 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  // blacklist: ['user']
+  blacklist: ['error']
 };
 const userPersistConfig = {
   key: 'user',
   storage,
   whitelist: ['currentUser'],
-  blacklist:['error']
+  // blacklist:['error']
 }
 // {user: persistReducer(userPersistConfig, userReducer)
 const rootReducer = combineReducers({user: persistReducer(userPersistConfig, userReducer), cart: cartReducer, product: productReducer, pay: payReducer, order: orderReducer });

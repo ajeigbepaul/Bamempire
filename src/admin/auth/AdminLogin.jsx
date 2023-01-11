@@ -20,9 +20,8 @@ const AdminLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(()=>{
-    if(error){
-        // navigate("/adminlogin")
-        toast.error("wrong credentials")
+    if(!currentUser){
+        toast.error("please make sure you login correctly thanks!!!")
     }
     if(currentUser){
       navigate("/admin")
@@ -32,20 +31,7 @@ const AdminLogin = () => {
   const handleClick = async(e) => {
      e.preventDefault();
      adminlogin(dispatch, { username, password });
-    //  navigate("/admin")
-      
-    //  window.location.reload()
-    // e.preventDefault();
-    // try {
-    //     const {data} = await publicRequest.post('/auth/adminlogin', { username, password })
-    //     if  (data){
-    //         toast.success('logged in')
-    //         navigate("/admin")
-    //     }
-    //     console.log(data);
-    // } catch (error) {
-    //     toast.error(error);
-    // }
+    
     
   };
   return (

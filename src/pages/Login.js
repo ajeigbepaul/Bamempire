@@ -6,14 +6,20 @@ import { login } from "../redux/apiRedux";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 function Login() {
-  const {isFetching,error} = useSelector(state=>state.user)
+  const {isFetching,error,currentUser} = useSelector(state=>state.user)
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errormsg, setErrormsg] = useState("")
-  // convert to lowercase
-  const userToLower = username.toLocaleLowerCase()
-  // console.log(userToLower)
+  // const [errormsg, setErrormsg] = useState("")
+  useEffect(()=>{
+    if(!currentUser){
+        toast.error("please make sure you login correctly thanks!!!")
+    }
+    if(currentUser){
+      navigate("/")
+      toast.success("logged in successfully")
+    }
+  },[error,navigate,currentUser])
   const [ispasswordshown, setIsPasswordShown]= useState(false)
   const toggleye = ()=>{
     setIsPasswordShown(!ispasswordshown)
@@ -22,7 +28,7 @@ function Login() {
   const handleClick = (e) => {
       e.preventDefault();
       login(dispatch, { username, password });
-      navigate("/")
+      // navigate("/")
       // if(!error){
       //   navigate("/")
       // }
@@ -46,7 +52,7 @@ function Login() {
             </div>
             
             <button className="log__btn" onClick={handleClick} >LOGIN</button>
-            {errormsg && <div className="error">{errormsg}</div>}
+            {/* {errormsg && <div className="error">{errormsg}</div>} */}
             <a href="something" className='link'>DO YOU REMEMBER YOUR PASSWORD ?</a>
             <Link to="/register" className='link'>CREATE A NEW ACCOUNT</Link>
             </form>
