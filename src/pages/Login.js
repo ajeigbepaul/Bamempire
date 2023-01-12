@@ -13,7 +13,7 @@ function Login() {
   // const [errormsg, setErrormsg] = useState("")
   useEffect(()=>{
     if(!currentUser){
-        toast.error("please make sure you login correctly thanks!!!")
+        toast.error("please login correctly else it won't login thanks!!!")
     }
     if(currentUser){
       navigate("/")

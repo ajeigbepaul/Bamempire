@@ -3,12 +3,18 @@
     width: 100%;
     flex-direction: column;
     background-color: rgb(12, 12, 12);
+    overflow-x:none;
+    /* align-items:center; */
 }
 .categories__category{
     display: flex;
     width: 100%;
     padding: 25px;
     padding-top: 50px;
+    padding-left: 90px;
+    align-items:center;
+    /* margin-left:50px; */
+    overflow-x:none;
     /* align-items:center;
     justify-content: center; */
 }
