@@ -31,7 +31,7 @@ export default function AllProducts() {
   //   getProducts();
   // }, []);
   const handleDelete = async(id) => {
-    alert("do you want to delete this order")
+    alert("do you want to delete this product?")
     try {
       await userRequest.delete(`/products/${id}`)
     } catch (error) {
