@@ -3,7 +3,7 @@ import "./Announcement.css"
 
 function Announcement() {
   return (
-    <div className='announcement'><span className='announce'>We are your NO.1 shopping store for quality products</span></div>
+    <div className='announcement'><span className='announce'>Shop quality products</span><span className='sub__announce'>www.qualityproduct.com</span></div>
   )
 }
 
