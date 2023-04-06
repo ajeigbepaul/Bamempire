@@ -30,7 +30,7 @@
 }
 .account__dropdown{
     position: absolute;
-    top:17vh;
+    top:19vh;
     right: 4%;
     background-color: #fff;
     z-index: 9999;
