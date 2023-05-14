@@ -1,6 +1,5 @@
 .nav__container{
-    /* background-color: rgb(14, 14, 13); */
-    background-color: #981ca3;
+    background-color: black;
     width: 100%;
     height: 10vh;
     display: flex;

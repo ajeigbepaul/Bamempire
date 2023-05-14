@@ -6,15 +6,16 @@ import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import useAuth from "../hooks/useAuth";
-// import { useSelector, useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-// import { logout } from "../redux/userRedux";
-// import {clearCart} from "../redux/cartRedux"
-
 import "./Menu.css"
+import { clearBasket } from "../slice/basketSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectItems } from "../slice/basketSlice";
+
 function Menu() {
+const items = useSelector(selectItems);
 const [show,setShow] = useState(false)
 const logout = useLogout()
+const dispatch = useDispatch();
 const navigate = useNavigate()
 const {auth} = useAuth()
 // console.log(auth)
@@ -23,6 +24,7 @@ const handleShow = ()=>{
 }
 const handleLogout = async()=>{
   await logout();
+  dispatch(clearBasket());
   navigate('/')
   
 }
@@ -35,32 +37,11 @@ const handleLogout = async()=>{
             <div className="nav__reg">HOME</div>
           </Link>
         </div>
-        {/* {auth?.email ? (
-        <>
-          <Link className="nav__reg">
-            <div className="nav__username" aria-disabled>{auth?.email}</div>
-          </Link>
-          <Link className="nav__reg">
-            {" "}
-            <div className="nav__login" onClick={handleLogout}>LOGOUT</div>
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link to="/register" className="nav__reg">
-            <div className="nav__reg">REGISTER</div>
-          </Link>
-          <Link to="/login" className="nav__reg">
-            {" "}
-            <div className="nav__login">SIGN IN</div>
-          </Link>
-        </>
-      )} */}
-        {/*  */}
+
         <div className="menu__account">
           <FaUser className="account__icon" />
           {auth?.email ? (
-            <span className="account__span">{auth?.name}</span>
+            <span className="account__span">{auth?.email}</span>
           ) : (
             <span className="account__span">Account</span>
           )}
@@ -70,24 +51,31 @@ const handleLogout = async()=>{
 
         <div>
           <Link to="/cart">
-            <Badge
-              badgeContent="4"
-              // badgeContent={quantity}
-              color="warning"
-              className="badge__color"
-            >
-              <LocalMallOutlinedIcon />
-            </Badge>
+            {items.length ? (
+              <Badge
+                badgeContent={items.length}
+                color="warning"
+                className="badge__color"
+              >
+                <LocalMallOutlinedIcon />
+              </Badge>
+            ) : (
+              <Badge badgeContent="0" color="warning" className="badge__color">
+                <LocalMallOutlinedIcon />
+              </Badge>
+            )}
           </Link>
         </div>
       </div>
       {show && (
         <div className="account__dropdown">
           {auth?.email ? (
-            <button className="account__btn">Logout</button>
+            <button className="account__btn" onClick={handleLogout}>
+              Logout
+            </button>
           ) : (
             <Link to="/login" className="account__btn">
-              <button >Sign In</button>
+              <button>Sign In</button>
             </Link>
           )}
 

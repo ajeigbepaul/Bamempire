@@ -1,6 +1,6 @@
 import { axiosPrivate } from "../api/axios";
 import { useEffect } from "react";
-import useRefreshToken from "./useRefreshToken";
+import useRefreshToken from "./useRefresh";
 import useAuth from "./useAuth";
 
 function useAxiosPrivate() {
@@ -12,6 +12,7 @@ function useAxiosPrivate() {
       (config) => {
         if (!config.headers["Authorization"]) {
           config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
+          console.log(auth?.accessToken)
         }
         return config;
       },
@@ -20,12 +21,13 @@ function useAxiosPrivate() {
 
     const resIntercept = axiosPrivate.interceptors.response.use(
       (response) => response,
+      // if accessToken expires.
       async (error) => {
         const prevRequest = error?.config;
         if (error?.response?.status === 403 && !prevRequest?.sent) {
           prevRequest.sent = true;
           const newAccessToken = await refresh();
-          prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+          prevRequest.headers["authorization"] = `Bearer ${newAccessToken}`;
           return axiosPrivate(prevRequest);
         }
         return Promise.reject(error);

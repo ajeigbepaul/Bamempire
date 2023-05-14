@@ -1,15 +1,21 @@
-.announcement{
+.announcement {
     /* background-color: rgb(194, 180, 55, 0.8); */
-    background-color: white;
-    color:#981ca3;
-    height:50px;
+    background-color: #fed426;
+    color: #666;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.announce{font-size: 18px; margin-right: 15px;}
-.sub__announce{font-size: 14px; color: #981ca3;}
 
-@media screen and (max-width: 380px){
-    .announce{font-size: 12px; }
+}
+
+.announce {
+    width: 100%;
+    text-align: center;
+}
+
+@media screen and (max-width: 380px) {
+    .announce {
+        font-size: 12px;
+    }
 }

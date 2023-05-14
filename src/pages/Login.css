@@ -11,21 +11,26 @@
     padding: 15px;
 }
 .log__formWrapper{
-    width: 25%;
+    width: 30%;
     background-color: rgb(207, 89, 207);
     padding: 20px;
 }
 .log__title{font-size: 24px; font-weight: 500;}
 .log__formWrapper form{display: flex; flex-direction: column; width: 100%;}
 .agreement{font-size: 12px; margin: 15px 0px;}
-.log__btn{padding:10px 20px; margin-top: 10px; width: 40%; outline: none; border: none; background-color: plum; color: white; cursor: pointer; transition: all ease 0.5s;}
+.log__btn{padding:10px 20px; margin-top: 10px; width: 100%; outline: none; border: none; background-color: plum; color: white; cursor: pointer; transition: all ease 0.5s;}
 .log__btn:hover{background-color: rgb(219, 134, 219);}
 
 .link{margin: 5px; cursor: pointer; text-decoration: underline; font-size: 14; color: aliceblue; transition: all ease 0.5s;}
 .link:hover{color:#d1e6fa}
 .disabled{color:grey;cursor:not-allowed}
-.error{color:orange; padding: 3px 7px; font-size: 14px;}
-@media screen and (max-width:380px) {
+.error {
+    color: orange;
+    padding: 3px 7px;
+    font-size: 14px;
+    background-color: rgb(50, 49, 50);
+    margin-top: 2px;
+}@media screen and (max-width:380px) {
     .log__formWrapper{
         width: 80%;}
     

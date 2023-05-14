@@ -1,5 +1,6 @@
 import { loginFailure, loginStart, loginSuccess, registerStart, registerSuccess, registerFailure } from "./userRedux";
 import { publicRequest, userRequest } from "../requestMethods";
+import useAxiosPrivate from "../hooks/useAxios";
 import {
   getProductFailure,
   getProductStart,
@@ -53,6 +54,7 @@ export const register = async (dispatch, user) => {
 
 // CART
 export const addcart = async (dispatch, user) => {
+  // const axioPrivate = useAxiosPrivate();
   dispatch(addCart());
   try {
     const res = await publicRequest.post("/carts/addproduct", user);

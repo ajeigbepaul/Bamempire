@@ -2,8 +2,11 @@ import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import "./Quantity.css"
+import useAuth from "../hooks/useAuth";
 
-function QuantityContainer({qty, setQty}) {
+
+function QuantityContainer() {
+  const { qty, setQty } = useAuth();
   const handleQuantity =(type)=>{
     if(type === "desc"){
      qty > 5 && setQty(qty - 5)

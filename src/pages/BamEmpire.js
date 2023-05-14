@@ -17,9 +17,9 @@ function BamEmpire() {
     <Announcement/>
     <Navbar/>
     <Banner/>
-    <Categories/>
+    {/* <Categories/> */}
     <Products/>
-    <Newsletter/>
+    {/* <Newsletter/> */}
     <Footer/>
     </div>
     

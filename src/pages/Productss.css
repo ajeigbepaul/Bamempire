@@ -10,9 +10,9 @@
 .productss__title{width: 100%; margin-bottom: 10px;}
 .productss__title span{background-color: plum; padding:5px; font-weight: 600; font-size:12px;}
 .productss__title h2{font-weight: 400;}
-.productss__desc{width: 100%; margin-bottom: 10px; }
+.productss__desc{width: 100%; margin-bottom: 2px; }
 .productss__desc p{font-family:'Times New Roman', Times, serif; width: 80%;}
-.productss__price{width: 100%; font-weight: 400; font-size: 36px; padding: 25px 0px;}
+.productss__price{width: 100%; font-weight: 400; font-size: 36px; padding: 5px 0px;}
 .productfilter__container{width: 60%; display: flex; align-items: center; justify-content: space-between;}
 .productfilter{display: flex; align-items: center; justify-content: center;}
 .productfilter h2{font-size: 14px;}

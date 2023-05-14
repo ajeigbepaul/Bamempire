@@ -1,0 +1,34 @@
+.main__container {
+    width: 100%;
+}
+
+.create__product {
+    width: 100%;
+    display: flex;
+}
+
+.create__productSidenav {
+    flex: .15;
+}
+
+.create__productcontainer {
+    flex: .85;
+    height: 100vh;
+    display: flex;
+    /* background-color: red; */
+    background-image: url("../../public/images/bagandshoe.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.create__form {
+    width: 50%;
+    /* background-color: orange; */
+}
+
+.create__preview {
+    width: 25%;
+    /* background-color: green; */
+}

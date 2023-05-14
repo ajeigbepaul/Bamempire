@@ -4,6 +4,11 @@ import useAuth from "../hooks/useAuth";
 const RequiredAuth = ({allowedRoles}) => {
   const { auth } = useAuth();
   const location = useLocation();
+  // const r = Object.values(auth?.roles);
+
+  console.log(allowedRoles)
+  console.log(auth.roles)
+  // console.log(r)
   return (
    
     auth?.roles?.find((role) => allowedRoles?.includes(role)) ? (
@@ -13,6 +18,7 @@ const RequiredAuth = ({allowedRoles}) => {
     ) : (
       <Navigate to="/login" state={{ from: location }} replace />
     )
+    
   ) 
 };
 export default RequiredAuth;

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import Input from '../components/Input'
 import "./Register.css"
-// import { register } from "../redux/apiRedux";
-// import { useNavigate } from 'react-router-dom';
-// import {useDispatch} from "react-redux"
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
@@ -15,6 +12,7 @@ function Register() {
   const [error, setError] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
@@ -27,6 +25,7 @@ function Register() {
       const { data: res } = await axios.post("/users", {
         firstname,
         lastname,
+        username,
         email,
         password,
       });
@@ -47,7 +46,7 @@ function Register() {
     <div className="reg__container">
       <div className="reg__formWrapper">
         <div className="reg__title">Create An Account</div>
-        <form className='form_container'>
+        <form className="form_container">
           <Input
             placeholder="firstname"
             type="text"
@@ -61,6 +60,13 @@ function Register() {
             name="lastname"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
+          />
+          <Input
+            placeholder="Username"
+            type="text"
+            name="username"
+            value={lastname}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             placeholder="email"

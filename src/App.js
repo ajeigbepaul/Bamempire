@@ -28,6 +28,8 @@ import AllProducts from "./admin/AllProducts";
 import NotAllowed from "./components/NotAllowed";
 import RequiredAuth from "./components/RequiredAuth";
 import Missing from "./components/Missing";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import ForgetPassword from "./components/ForgetPassword";
 
 
 function App() {
@@ -37,10 +39,13 @@ function App() {
       <Routes>
         <Route exact path="/" element={<BamEmpire />} />
         <Route path="/login" exact element={<Login />} />
+        <Route path="/updatepassword" exact element={<ForgetPassword />} />
         <Route path="/register" exact element={<Register />} />
         <Route path="notallowed" exact element={<NotAllowed />} />
 
-        <Route element={<RequiredAuth allowedRoles={[1001]} />}>
+        <Route element={<ProtectedRoute allowedRoles={[1001]} />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/pay" element={<Paystack />} />
           {/* General user */}
           <Route path="/products/:category" element={<ProductList />} />
           <Route path="/product/:id" element={<Productss />} />
@@ -50,10 +55,10 @@ function App() {
           <Route path="/success" element={<Success />} />
           <Route path="/trackorder" element={<Tracking />} />
         </Route>
-        <Route element={<RequiredAuth allowedRoles={[2002]} />}>
-          <Route exact path="/" element={<Dashboard />} />
+        <Route element={<ProtectedRoute allowedRoles={[2001]} />}>
+          <Route exact path="/admindashboard" element={<Dashboard />} />
           <Route path="/createproducts" element={<CreateProduct />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/product" element={<Products />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/summary" element={<Summary />} />
           <Route path="/uploadimage" element={<CreateImages />} />

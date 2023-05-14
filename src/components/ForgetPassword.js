@@ -1,32 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import Input from "../components/Input";
-import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
-
-function Login() {
+import { toast } from 'react-hot-toast';
+function ForgetPassword() {
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const [ispasswordshown, setIsPasswordShown] = useState(false);
   const toggleye = () => {
     setIsPasswordShown(!ispasswordshown);
   };
   const handleClick = async (e) => {
-   
+     const refreshToastnotify = toast.loading("Loading...");
     e.preventDefault();
     try {
-      const res = await axios.post("/auth", { email, password });
-      const accessToken = res?.data?.accessToken;
-      const roles = res?.data?.roles;
-      const id = res?.data?._id;
-      setAuth({ id, email, roles, accessToken });
+      const res = await axios.put("/users/update-password", {
+        email,
+        newPassword,
+      });
+       toast.success("Password updated!!", { id: refreshToastnotify });
       navigate(from, { replace: true });
     } catch (error) {
       if (
@@ -38,11 +37,11 @@ function Login() {
       }
     }
   };
- 
+
   return (
     <div className="log__container">
       <div className="log__formWrapper">
-        <div className="log__title">SIGN IN</div>
+        <div className="log__title">UPDATE PASSWORD</div>
         <form>
           <Input
             placeholder="email"
@@ -54,26 +53,21 @@ function Login() {
           <div>
             <Input
               placeholder="password"
-              type={ispasswordshown ? "text" : "password"}
-              onChange={(e) => setPassword(e.target.value)}
-              visible={true}
+              type="password"
+              onChange={(e) => setNewPassword(e.target.value)}
+            //   visible={true}
               onClick={toggleye}
             />
           </div>
           {error && <div className="error">{error}</div>}
           <button className="log__btn" onClick={handleClick}>
-            LOGIN
+            UPDATE PASSWORD!
           </button>
-          <Link to="/updatepassword" className="link">
-            DO YOU REMEMBER YOUR PASSWORD ?
-          </Link>
-          <Link to="/register" className="link">
-            CREATE A NEW ACCOUNT
-          </Link>
         </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+
+export default ForgetPassword

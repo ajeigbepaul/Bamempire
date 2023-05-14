@@ -3,8 +3,14 @@ import "./FilterColor.css"
 
 function FilterColor({color}) {
   return (
-    <div className='colors' style={{ backgroundColor: `${color}`}}></div>
-  )
+    <>
+      {color == "as seen" ? (
+        <div className="colors" style={{ backgroundColor: `${color}` }}>{color}</div>
+      ) : (
+        <div className="colors" style={{ backgroundColor: `${color}` }}></div>
+      )}
+    </>
+  );
 }
 
 export default FilterColor
