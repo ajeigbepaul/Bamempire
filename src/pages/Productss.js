@@ -9,7 +9,7 @@ import QuantityContainer from "../components/QuantityContainer";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
-import { addCart } from "../redux/cartRedux";
+// import { addCart } from "../redux/cartRedux";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { addToBasket } from "../slice/basketSlice";
@@ -61,7 +61,7 @@ function Productss() {
         <div className="productss__prodimg">
           <img src={product?.image?.url} alt="prod" />
           {images?.map((image) => (
-            <div className="productss__otherimages">
+            <div className="productss__otherimages" key={image}>
               {/* {console.log(image.images)} */}
               <h2>Other product images</h2>
               {image?.images?.map((item) => (
@@ -111,7 +111,7 @@ function Productss() {
           </div>
         </div>
       </div>
-      <Newsletter />
+      {/* <Newsletter /> */}
       <Footer />
     </div>
   );

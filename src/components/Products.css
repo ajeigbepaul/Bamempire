@@ -23,13 +23,18 @@
     color:rgb(50, 50, 50);
 }
 
-@media screen and (max-width:380px) {
+@media screen and (max-width:480px) {
     .products__product{
         display: grid;
         grid-template-columns: repeat(2, 1fr) ;
         width: 100%;
-        padding: 25px 0px;
-        padding-top: 50px;
+        padding: 5px 0px;
+        /* padding-top: 50px; */
         flex-wrap: wrap;
+        /* margin:10px 0px; */
+    }
+    .products{
+        /* background-color: red; */
+        height: auto;
     }
 }

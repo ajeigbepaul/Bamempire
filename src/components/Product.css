@@ -83,15 +83,16 @@ opacity: 1;
     border-radius: 15px 15px 0 0;
 }
 
-@media screen and (max-width:380px) {
+@media screen and (max-width:480px) {
     .product{
-        
-        margin: 10px;
-        min-width: 160px;
+        min-width: 120px;
+        height: 150px;
         display: flex;
         align-items: flex-start;
+        margin: 25px 10px;
         
     }
+    .prod__price{font-size: 14px;}
     .product__img{
        width: 100%;
     }
@@ -102,6 +103,7 @@ opacity: 1;
         /* background-color: aliceblue; */
         /* background-color: rgb(194, 180, 55, 0.8); */
         width: 100%;
+        padding:3px 7px;
         /* height: 10%; */
     }
     .product__pristock{

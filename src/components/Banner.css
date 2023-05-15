@@ -68,6 +68,7 @@
 .hero__center{flex:0.8; height: 75vh; background-color: #981ca3; margin:10px 15px; border-radius: 10px;padding:0px!important}
 /* .hero__right{flex:0.2; background-color: white;margin: 10px 0px;
   border-radius: 10px;} */
-@media screen and (max-width: 380px){
-  .slider{display: none;}
+@media screen and (max-width: 480px){
+  .slider{display: flex; flex-direction: column-reverse;}
+  .sliderinfo{display: none;}
 }

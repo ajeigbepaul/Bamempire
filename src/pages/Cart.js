@@ -46,8 +46,8 @@ function Cart() {
         </div>
         <div className="cart__bottom">
           <div className="cart__info">
-            {items?.map((product) => (
-              <CartProduct key={product._id} product={product} />
+            {items?.map((product,i) => (
+              <CartProduct key={i} product={product} />
             ))}
           </div>
           <div className="cart__summary">

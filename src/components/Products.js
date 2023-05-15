@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Products.css";
 import Product from "./Product";
 import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
 
 
 function Products({ filtercolors, filtersize, sort, cat }) {
@@ -32,24 +33,25 @@ function Products({ filtercolors, filtersize, sort, cat }) {
         products.filter((item) => filtercolors === item?.colors)
       );
   }, [cat, filtercolors, products]);
- // FILTER PRODUCT SIZE
+  // FILTER PRODUCT SIZE
   useEffect(() => {
     cat &&
-      setFilteredProducts([...products],products.filter((item) => filtersize === item?.size));
+      setFilteredProducts(products.filter((item) => filtersize === item?.size));
+    if (filtersize == "All") {
+      setFilteredProducts(products);
+    }
   }, [cat, filtersize, products]);
   // SORT PRODUCT
   useEffect(() => {
     if (sort === "newest") {
-      setFilteredProducts([...products], products.sort((a, b) => a.createdAt - b.createdAt));
+      setFilteredProducts(products.sort((a, b) => a.createdAt - b.createdAt));
     } else if (sort === "asc") {
-      setFilteredProducts([...products], products.sort((a, b) => a.price - b.price)
-      );
+      setFilteredProducts(products.sort((a, b) => a.price - b.price));
     } else {
-      setFilteredProducts([...products], products.sort((a, b) => b.price - a.price)
-      );
+      setFilteredProducts(products.sort((a, b) => b.price - a.price));
     }
-  }, [cat,sort,products]);
- 
+  }, [cat, sort, products]);
+
   return (
     <div className="products">
       <h2>Popular Product</h2>

@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidenav.css";
-function Sidenav() {
+function MobileSideNav() {
   return (
-    <div className="sideNav">
+    <div className="mobilesideNav">
       <h3>Quick Links</h3>
 
       <NavLink
@@ -43,4 +43,4 @@ function Sidenav() {
   );
 }
 
-export default Sidenav;
+export default MobileSideNav;

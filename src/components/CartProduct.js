@@ -52,11 +52,6 @@ function CartProduct({product}) {
             colors={colors}
             product={product}
           />
-          {/* <div className="price">
-            {(price * product.qty)
-              .toFixed(2)
-              .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
-          </div> */}
           <div className="cartbutton">
             <div className="addbtn" onClick={handleAdd}>
               <FaPlus />

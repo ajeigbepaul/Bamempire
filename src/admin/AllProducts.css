@@ -3,7 +3,7 @@
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     padding: 20px;
-    margin-left: 50px;
+    margin-left: 10px;
   }
   
   .widgetLgTitle {
@@ -51,7 +51,9 @@
   .btn{background-color: #d95087 !important;}
   .btn2{background-color: #3bb077 !important;}
   .btn3{background-color: #2a7ade !important;}
-  .widgetLgStatus button{padding: 5px 12px; outline: none; border: none; background-color: plum; color: white; margin:2px; cursor: pointer;}
+  .instc{font-size: 12px; color: orange;}
+  .goback{padding:3px 7px; background-color: orange; color: white; cursor: pointer;}
+  .widgetLgStatus button{padding: 3px 7px; outline: none; border: none; background-color: plum; color: white; margin:2px; cursor: pointer; font-size: 12px;}
   .widgetLgitem{display: flex; justify-content: space-between;align-items: center;}
   .widgetLgProduct{
     width: 200px;

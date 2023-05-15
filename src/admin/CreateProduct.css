@@ -5,18 +5,22 @@
 .create__product {
     width: 100%;
     display: flex;
+    position: relative;
 }
+
+
 
 .create__productSidenav {
     flex: .15;
+    position: relative;
 }
 
 .create__productcontainer {
     flex: .85;
     height: 100vh;
     display: flex;
-    /* background-color: red; */
-    background-image: url("../../public/images/bagandshoe.jpg");
+   
+background-image: url("../../public/images/bagandshoe.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -31,4 +35,65 @@
 .create__preview {
     width: 25%;
     /* background-color: green; */
+}
+.styledform{
+display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-top: 2rem;
+    margin-left: 100px;
+}
+ 
+
+ .styledform select,
+ input {
+     padding: 4px;
+     min-height: 30px;
+     outline: none;
+     border-radius: 5px;
+     border: 1px solid rgb(182, 182, 182);
+     margin: 0.3rem 0;
+
+     &:focus {
+         border: 2px solid rgb(0, 208, 255);
+     }
+ }
+
+ .styledform select {
+     color: rgb(95, 95, 95);
+ }
+ .close {
+     display: none;
+     margin-top: 5px;
+     align-items: center;
+     background-color: #fed426;
+     border-radius: 10px;
+     padding:5px 7px;
+ }
+@media screen and (max-width:480px) {
+    .close{
+        display: flex;
+    }
+    .create__product {
+        display: flex;
+        flex-direction: column;
+        background-color: red !important;
+    }
+
+    .create__productcontainer {
+        display: flex;
+        flex-direction: column;
+    }
+    .create__form{
+        width: 100%;
+    }
+    .create__preview{
+        width: 100%;
+    }
+    .styledform{margin-left: 10px;}
+    .create__productSidenav{
+        position:absolute;
+        z-index: 999;
+        opacity: 0.9;
+    }
 }

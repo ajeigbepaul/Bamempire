@@ -11,10 +11,10 @@ function Product({ product }) {
    const dispatch = useDispatch();
    const { qty } = useAuth();
    const handleAddToCart = (e) => {
-     const refreshToastnotify = toast.loading("Loading...");
+     const addTo = toast.loading("Loading...");
      e.preventDefault();
      dispatch(addToBasket({ ...product, qty }));
-     toast.success("added to cart!!", { id: refreshToastnotify });
+     toast.success("added to cart!!", { id: addTo });
    };
   return (
     <div className="product">

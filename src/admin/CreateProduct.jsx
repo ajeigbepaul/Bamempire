@@ -1,8 +1,6 @@
 import { useState } from "react";
-// import { useDispatch} from "react-redux";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
-// import { addProduct } from "../redux/apiRedux";
 
 import Input from "../components/Input";
 import SelectInput from "../components/SelectInput";
@@ -13,19 +11,21 @@ import useAxiosPrivate from "../hooks/useAxios";
 import Navbar from "../components/Navbar";
 import Sidenav from "./Sidenav";
 import "./CreateProduct.css";
+import { FaTimes } from "react-icons/fa";
+import MobileSideNav from "./MobileSidenav";
 
 const CreateProduct = () => {
   const axiosPrivate = useAxiosPrivate();
   const [productImg, setProductImg] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [discprice, setDiscPrice] = useState("");
+  // const [discount, setDiscount] = useState("");
   const [colors, setColors] = useState("");
   const [categories, setCategories] = useState("");
   const [size, setSize] = useState("");
   const [moq, setMoq] = useState("");
   const [instock, setInStock] = useState("");
-
+  const [toggle, setToggle] = useState(false)
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
     TransformFileData(file);
@@ -45,7 +45,7 @@ const CreateProduct = () => {
     const response = await axiosPrivate.post("/products", {
       description,
       price,
-      discprice,
+      // discount,
       colors,
       categories,
       size,
@@ -57,17 +57,24 @@ const CreateProduct = () => {
     return result;
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const refreshToastnotify = toast.loading("Loading...");
-    createPdt();
-    toast.success("uploaded successfully", { id: refreshToastnotify });
-    setProductImg("");
-    setCategories("");
-    setColors("");
-    setDescription("");
-    setPrice("");
-    setSize("");
-    setInStock("");
+    try {
+      e.preventDefault();
+      const refreshToastnotify = toast.loading("Loading...");
+      createPdt();
+      toast.success("uploaded successfully", { id: refreshToastnotify });
+      setProductImg("");
+      setCategories("");
+      setColors("");
+      setDescription("");
+      setPrice("");
+      // setDiscount("");
+      setSize("");
+      setInStock("");
+      setMoq("");
+    } catch (error) {
+      toast.error(error)
+    }
+    
   };
 
   return (
@@ -76,12 +83,20 @@ const CreateProduct = () => {
       <div className="create__product">
         {/* Sidebar */}
         <div className="create__productSidenav">
+          <div className="close" onClick={() => setToggle((prev) => !prev)}>
+            <FaTimes /> <span>Menu</span>
+          </div>
           <Sidenav />
+          {toggle && <MobileSideNav />}
         </div>
         <div className="create__productcontainer">
           {/* Form */}
           <div className="create__form">
-            <StyledForm onSubmit={handleSubmit} encType="multipart/form-data">
+            <form
+              className="styledform"
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+            >
               <h3>Create a Product</h3>
               <input
                 id="imgUpload"
@@ -102,12 +117,12 @@ const CreateProduct = () => {
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
               />
-              <Input
+              {/* <Input
                 placeholder="discPrice"
                 type="text"
-                onChange={(e) => setDiscPrice(e.target.value)}
-                value={discprice}
-              />
+                onChange={(e) => setDiscount(e.target.value)}
+                value={discount}
+              /> */}
               <Input
                 placeholder="Colors"
                 type="text"
@@ -133,7 +148,7 @@ const CreateProduct = () => {
                 value={instock}
               />
               <PrimaryButton type="submit">Creat product</PrimaryButton>
-            </StyledForm>
+            </form>
           </div>
           <div className="create__preview">
             <ImagePreview>
@@ -154,32 +169,6 @@ const CreateProduct = () => {
 };
 
 export default CreateProduct;
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin-top: 2rem;
-  margin-left: 100px;
-
-  select,
-  input {
-    padding: 4px;
-    min-height: 30px;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid rgb(182, 182, 182);
-    margin: 0.3rem 0;
-
-    &:focus {
-      border: 2px solid rgb(0, 208, 255);
-    }
-  }
-
-  select {
-    color: rgb(95, 95, 95);
-  }
-`;
-
 const ImagePreview = styled.div`
   margin-top: 50px;
   padding: 2rem;

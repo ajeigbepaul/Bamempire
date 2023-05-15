@@ -18,7 +18,7 @@ import Products from "./admin/Products"
 import Summary from "./admin/Summary"
 import CreateProduct from "./admin/CreateProduct"
 import Orders from "./admin/Oders"
-// import WidgetLg from "./admin/WidgetLg"
+import WidgetLg from "./admin/WidgetLg"
 // import WidgetSm from "./admin/WidgetSm"
 
 // import AdminLogin from "./admin/auth/AdminLogin"
@@ -26,10 +26,12 @@ import Orders from "./admin/Oders"
 import CreateImages from "./admin/CreateImages";
 import AllProducts from "./admin/AllProducts";
 import NotAllowed from "./components/NotAllowed";
-import RequiredAuth from "./components/RequiredAuth";
+// import RequiredAuth from "./components/RequiredAuth";
 import Missing from "./components/Missing";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import ForgetPassword from "./components/ForgetPassword";
+// import AllUsers from "./admin/AllUsers";
+import WidgetSm from "./admin/WidgetSm";
 
 
 function App() {
@@ -59,8 +61,8 @@ function App() {
           <Route exact path="/admindashboard" element={<Dashboard />} />
           <Route path="/createproducts" element={<CreateProduct />} />
           <Route path="/product" element={<Products />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/summary" element={<Summary />} />
+          <Route path="/orders" element={<WidgetLg />} />
+          <Route path="/allusers" element={<WidgetSm />} />
           <Route path="/uploadimage" element={<CreateImages />} />
           <Route path="/allproducts" element={<AllProducts />} />
         </Route>

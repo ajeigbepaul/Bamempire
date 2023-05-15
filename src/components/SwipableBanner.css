@@ -103,7 +103,11 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 .sliderinfo button:hover {
   transform: translateY(6px);
 }
-
+@media screen and (max-width:480px) {
+  .sliderinfo{
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
   body {
     font-size: inherit;

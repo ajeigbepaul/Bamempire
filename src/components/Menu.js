@@ -22,6 +22,7 @@ const {auth} = useAuth()
 const handleShow = ()=>{
   setShow(!show)
 }
+const email = auth?.email
 const handleLogout = async()=>{
   await logout();
   dispatch(clearBasket());
@@ -41,7 +42,9 @@ const handleLogout = async()=>{
         <div className="menu__account">
           <FaUser className="account__icon" />
           {auth?.email ? (
-            <span className="account__span">{auth?.email}</span>
+            <span className="account__span">
+              {email.substring(0, 5)}...{email.slice(-3)}
+            </span>
           ) : (
             <span className="account__span">Account</span>
           )}
@@ -84,6 +87,23 @@ const handleLogout = async()=>{
             <RiStore2Line className="order__icon" />
             <span>Orders</span>
           </div>
+          {/* <div className="col-sm-12 col-md-2 account__dropdown">
+            {auth?.email ? (
+              <button className="account__btn" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <Link to="/login" className="account__btn">
+                <button>Sign In</button>
+              </Link>
+            )}
+
+            <hr />
+            <div className="account__order">
+              <RiStore2Line className="order__icon" />
+              <span>Orders</span>
+            </div>
+          </div> */}
         </div>
       )}
     </>

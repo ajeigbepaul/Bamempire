@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.6.0",
+    "react-paginate": "^8.1.4",
     "bootstrap": "^5.2.3",
     "react-password-checklist": "^1.4.3",
     "react-paystack": "^4.0.1",

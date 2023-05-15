@@ -15,18 +15,19 @@ function CartQty({qty, setQty,product}) {
      setQty(qty + 5)
     }
    }
-   function handleRemove(){
-     dispatch(removeCart(product))
-   }
+  //  function handleRemove(){
+  //    dispatch(removeCart(product))
+  //  }
   return (
     <div className="amountContainer">
-              <RemoveIcon className="sub" onClick={()=>handleQuantity("desc")}/>
-              <div className="amountQ">{product.qty}</div>
-              <AddIcon className="add" onClick={()=>handleQuantity("asc")}/>
-              <DeleteIcon className='delete' onClick={handleRemove}/>
-             
-            </div>
-  )
+      <div className="amountContainer">
+        <div className="dash" />
+        <div className="amountQ">{product.qty}</div>
+        <div className="dash" />
+      </div>
+      {/* <DeleteIcon className='delete' onClick={handleRemove}/> */}
+    </div>
+  );
 }
 
 export default CartQty
