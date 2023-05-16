@@ -30,7 +30,7 @@
     font-size: 14px;
     background-color: rgb(50, 49, 50);
     margin-top: 2px;
-}@media screen and (max-width:380px) {
+}@media screen and (max-width:576px) {
     .log__formWrapper{
         width: 80%;}
     

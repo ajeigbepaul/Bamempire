@@ -4,13 +4,12 @@ import {useSelector} from "react-redux"
 import "./Tracking.css";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
+import useAxiosPrivate from "../hooks/useAxios";
+import useAuth from "../hooks/useAuth";
 const Tracking = () => {
-  const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
-  const currentUser = user && JSON.parse(user).currentUser;
-  // const {order} = useSelector((state) => state?.order);
-  const userId = currentUser?._id
-  // const userId = order?.userId
-  console.log(userId)
+  const axiosPrivate = useAxiosPrivate()
+  const {auth} = useAuth()
+  const userId = auth?._id
 
   const [orders, setOrders] = useState([]);
   const Button = ({ type }) => {
@@ -19,7 +18,7 @@ const Tracking = () => {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await userRequest.get(`orders/${userId}`);
+        const res = await axiosPrivate.get(`orders/${userId}`);
         console.log(res.data);
         setOrders(res.data);
       } catch {}

@@ -212,7 +212,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width:576px) {
 
     .cart__topbutton1,
     .cart__topbutton2 {
