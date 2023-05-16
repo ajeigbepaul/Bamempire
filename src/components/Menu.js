@@ -84,8 +84,10 @@ const handleLogout = async()=>{
 
           <hr />
           <div className="account__order">
-            <RiStore2Line className="order__icon" />
-            <span>Orders</span>
+            <Link to="/trackorder">
+              <RiStore2Line className="order__icon" />
+              <span>Track Orders</span>
+            </Link>
           </div>
           {/* <div className="col-sm-12 col-md-2 account__dropdown">
             {auth?.email ? (
