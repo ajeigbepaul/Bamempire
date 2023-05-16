@@ -3,7 +3,7 @@ import "./Products.css";
 import Product from "./Product";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 
 function Products({ filtercolors, filtersize, sort, cat }) {
   const [products, setProducts] = useState([]);
@@ -13,8 +13,8 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:8000/products?category=${cat}`
-            : `http://localhost:8000/products`
+            ? `${process.env.REACT_APP_BASE_URL}/products?category=${cat}`
+            : `${process.env.REACT_APP_BASE_URL}/products`
         );
         setProducts(res.data);
       } catch (error) {}
@@ -49,7 +49,17 @@ function Products({ filtercolors, filtersize, sort, cat }) {
 
   return (
     <div className="products">
-      <h2>Popular Product</h2>
+      <motion.h2
+        initial={{
+          opacity: 0,
+          y: -400,
+        }}
+        transition={{ duration: 1.5 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        // animate={{}}
+      >
+        All Products
+      </motion.h2>
       <div className="products__product">
         {cat
           ? filteredproducts?.map((item) => (
