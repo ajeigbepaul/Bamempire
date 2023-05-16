@@ -3,16 +3,14 @@ import Announcement from "../components/Announcement";
 import FilterColor from "../components/FilterColor";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
 import "./Productss.css";
 import QuantityContainer from "../components/QuantityContainer";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
-// import { addCart } from "../redux/cartRedux";
 import useAuth from "../hooks/useAuth";
-import { toast } from "react-toastify";
 import { addToBasket } from "../slice/basketSlice";
+import { toast } from "react-hot-toast";
 function Productss() {
   const { qty } = useAuth(); 
   const dispatch = useDispatch();

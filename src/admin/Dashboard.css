@@ -11,7 +11,7 @@ background-color: orange;
 
 .Content {
   width: 85%;
-  background-color:rgb(255, 246, 255);;
+  background-color:white;
 }
 .content__inner{
   width: 100%;
@@ -82,7 +82,7 @@ background-color: orange;
      display: flex;
      flex-direction: column;
      width: 100%;
-     background-color: rgb(255, 246, 255);
+     background-color: white;
    }
 
    .content__inner {

@@ -19,10 +19,10 @@
 .filter__color{display: flex; align-items: center;}
 .selectprodsize{padding: 5px 10px; margin: 0px 5px;}
 .productaddContainer{display: flex; align-items: center; margin-top: 10px; width: 60%; justify-content: space-between;}
-.addToCart{border: none; background-color: plum;padding: 10px 10px; color: white; transition: all ease 0.5s; cursor: pointer;}
+.addToCart{border: none; background-color: #eabe0e;padding: 10px 10px; color: white; transition: all ease 0.5s; cursor: pointer;}
 .addToCart:hover{background-color: rgb(236, 188, 236);}
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
     .productss__wrapper{
         flex-direction: column;
         padding:10px 0px;
