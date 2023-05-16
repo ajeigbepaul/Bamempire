@@ -37,7 +37,7 @@ function useAxiosPrivate() {
       axiosPrivate.interceptors.request.eject(reqIntercept);
       axiosPrivate.interceptors.response.eject(resIntercept);
     };
-  }, [auth, refresh]);
+  }, [auth, refreshtoken]);
 
   return axiosPrivate;
 }
