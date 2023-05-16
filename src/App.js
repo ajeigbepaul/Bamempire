@@ -63,7 +63,8 @@ function App() {
           <Route path="/product" element={<Products />} />
           <Route path="/orders" element={<WidgetLg />} />
           <Route path="/allusers" element={<WidgetSm />} />
-          <Route path="/uploadimage" element={<CreateImages />} />
+          {/* <Route path="/uploadimage" element={<CreateImages />} /> */}
+          <Route path="images/:id" element={<CreateImages />} />
           <Route path="/allproducts" element={<AllProducts />} />
         </Route>
 

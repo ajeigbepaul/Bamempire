@@ -2,3 +2,13 @@
 .label label{padding-bottom: 15px;}
 .label span{font-weight: 600; color: orangered;font-size: 14px;}
 .upload{padding: 5px 12px; margin-top: 5px; cursor: pointer;}
+.add__image{
+    width: 100%;
+    /* background-color: orange; */
+}
+  .goback {
+      padding: 3px 7px;
+      /* background-color: orange; */
+      color: white;
+      cursor: pointer;
+  }

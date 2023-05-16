@@ -11,8 +11,11 @@ import { useDispatch } from "react-redux";
 import useAuth from "../hooks/useAuth";
 import { addToBasket } from "../slice/basketSlice";
 import { toast } from "react-hot-toast";
+import useAxiosPrivate from "../hooks/useAxios";
+import axios from "../api/axios";
 function Productss() {
   const { qty } = useAuth(); 
+  const axiosPrivate = useAxiosPrivate()
   const dispatch = useDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -29,7 +32,7 @@ function Productss() {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get(`/products/${id}`);
+        const res = await axiosPrivate.get(`/products/${id}`);
         setProduct(res.data);
       } catch (error) {}
     };
@@ -38,7 +41,7 @@ function Productss() {
   useEffect(() => {
     const getOtherimages = async () => {
       try {
-        const res = await publicRequest.get(`/images`);
+        const res = await axiosPrivate.get(`/images`);
         //  console.log(res.data)
         setOtherimages(res.data);
       } catch (error) {}

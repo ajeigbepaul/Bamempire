@@ -11,11 +11,6 @@ function Products({ filtercolors, filtersize, sort, cat }) {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        // const res = await axios.get(
-        //   cat
-        //     ? `https://bamempirebackend-production.up.railway.app/products?category=${cat}`
-        //     : "https://bamempirebackend-production.up.railway.app/products"
-        // );
         const res = await axios.get(
           cat
             ? `http://localhost:8000/products?category=${cat}`

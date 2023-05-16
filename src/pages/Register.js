@@ -62,12 +62,20 @@ function Register() {
             onChange={(e) => setLastname(e.target.value)}
           />
           <Input
+            placeholder="username"
+            type="text"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
+          {/* <Input
             placeholder="Username"
             type="text"
             name="username"
-            value={lastname}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
-          />
+          /> */}
           <Input
             placeholder="email"
             type="email"

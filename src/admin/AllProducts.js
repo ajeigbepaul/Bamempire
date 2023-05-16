@@ -176,7 +176,7 @@ export default function AllProducts() {
                         </button>
                       </td>
                       <td className="widgetLgStatus">
-                        <Link to={`/admin/images/${product._id}`}>
+                        <Link to={`/images/${product._id}`}>
                           <button
                             type="submit"
                             onClick={() => console.log("")}
