@@ -52,7 +52,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       <motion.h2
         initial={{
           opacity: 0,
-          y: -400,
+          y: -200,
         }}
         transition={{ duration: 1.5 }}
         whileInView={{ opacity: 1, y: 0 }}
