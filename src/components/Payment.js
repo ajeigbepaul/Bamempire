@@ -64,6 +64,7 @@ function Payment() {
     products: items,
     total: total,
     address: addressdata,
+    orderNumber:'testing',
     status: config.reference.status,
   };
   // TO PAYMENT DB
