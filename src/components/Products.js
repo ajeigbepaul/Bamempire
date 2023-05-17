@@ -67,7 +67,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
               <Product key={item.id} product={item} />
             ))
           : products
-              .slice(0, 15)
+              .slice(0, 36)
               ?.map((item) => <Product key={item.id} product={item} />)}
       </div>
     </div>
