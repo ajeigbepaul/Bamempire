@@ -18,7 +18,7 @@ const Tracking = () => {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await axiosPrivate.get(`orders/${userId}`);
+        const res = await axiosPrivate.get(`ordermes/${userId}`);
         console.log(res.data);
         setOrders(res.data);
       } catch {}
