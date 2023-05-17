@@ -90,7 +90,7 @@ display: flex;
     .create__preview{
         width: 100%;
     }
-    .styledform{margin-left: 10px;}
+    .styledform{margin:0px auto;}
     .create__productSidenav{
         position:absolute;
         z-index: 999;
