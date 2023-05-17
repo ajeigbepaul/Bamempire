@@ -21,6 +21,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
     };
     getProduct();
   }, [cat]);
+  console.log(products)
   // FILTER PRODUCTS COLORS
   useEffect(() => {
     cat &&

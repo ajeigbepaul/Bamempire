@@ -25,6 +25,7 @@ const Tracking = () => {
     };
     getOrders();
   }, [userId]);
+  console.log(orders)
   return (
     <>
     <Announcement/>
