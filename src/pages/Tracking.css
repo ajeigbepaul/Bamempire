@@ -1,49 +1,14 @@
 .widgetLg {
-    flex: 2;
+    width: 90%;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    padding: 20px;
+    padding: 20px 0px;
+    margin:0px auto;
   }
-  
-  .widgetLgTitle {
-    font-size: 16px;
-    font-weight: 600;
+  .prod__items{
+    border: 1px solid orange;
   }
-  
-  .widgetLgTable{
-    width: 100%;
-    border-spacing: 5px;
-  }
-  
-  .widgetLgTh{
-    text-align: left;
-  }
-  
-  .widgetLgUser{
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 14px;
-  }
-  .widgetLgName{
-    /* display: flex;
-    align-items: center; */
-    font-weight: 600;
-    font-size: 14px;
-  }
-  
-  .widgetLgImg {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .widgetLgDate,.widgetLgAmount{
-    font-weight: 300;
-    font-size:14px;
-  }
+  .track__status{color:white ;}
   .btn{background-color: #d95087 !important;}
   .btn2{background-color: #3bb077 !important;}
   .btn3{background-color: #2a7ade !important;}
@@ -84,7 +49,7 @@
 
   @media screen and (max-width:576px) {
     .widgetLg {
-      width: 95%;
+      width: 90%;
       padding: 0;
     }
     

@@ -22,7 +22,7 @@ function Payment() {
   // const total = useSelector(selectTotal)
   const [fullname, SetFullname] = useState("");
   const [address1, SetAddress1] = useState("");
-  const [address2, SetAddress2] = useState("");
+  // const [address2, SetAddress2] = useState("");
   const [state, SetState] = useState("");
   const [city, SetCity] = useState("");
   const [phone, SetPhone] = useState("");
@@ -34,7 +34,7 @@ function Payment() {
   const address = {
     fullname,
     address1,
-    address2,
+    // address2,
     state,
     city,
     phone,
@@ -51,20 +51,27 @@ function Payment() {
   const addressdata = {
     fullname,
     address1,
-    address2,
+    // address2,
     state,
     city,
     phone,
     email,
   };
   //
+  // Generate a random 7-digit hexadecimal number
+  const randomHex = Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, "0");
+  const pref = "BAM";
+  const sufix = "ORD"
+  const newProductId = pref + randomHex + sufix;
   // const products = {}
   const orderdata = {
     userId: auth?.id,
     products: items,
     total: total,
     address: addressdata,
-    orderNumber:'testing',
+    orderNumber: newProductId,
     status: config.reference.status,
   };
   // TO PAYMENT DB
@@ -134,12 +141,12 @@ function Payment() {
               value={address1}
               onChange={(e) => SetAddress1(e.target.value)}
             />
-            <Input
+            {/* <Input
               placeholder="Address 2"
               type="text"
               value={address2}
               onChange={(e) => SetAddress2(e.target.value)}
-            />
+            /> */}
             <Input
               placeholder="City"
               type="text"

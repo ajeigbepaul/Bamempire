@@ -43,15 +43,15 @@ function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/updatepassword" exact element={<ForgetPassword />} />
         <Route path="/register" exact element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:id" element={<Productss />} />
         <Route path="notallowed" exact element={<NotAllowed />} />
-
         <Route element={<ProtectedRoute allowedRoles={[1001]} />}>
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pay" element={<Paystack />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
+          {/* <Route path="/pay" element={<Paystack />} /> */}
           {/* General user */}
-          <Route path="/products/:category" element={<ProductList />} />
-          <Route path="/product/:id" element={<Productss />} />
-          <Route path="/cart" element={<Cart />} />
+
           <Route path="/pay" element={<Paystack />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />

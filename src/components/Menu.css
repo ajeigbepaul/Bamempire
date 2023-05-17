@@ -75,7 +75,9 @@
 .account__btn button:hover{
     font-size: 16px;
 }
-
+.account__order a{
+    color: #e4bc1c!important;
+}
 @media screen and (max-width:480px) {
     .account__dropdown{
         width: 50%;

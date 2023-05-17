@@ -5,6 +5,7 @@ import "./Tracking.css";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import useAxiosPrivate from "../hooks/useAxios";
+import moment from "moment";
 import useAuth from "../hooks/useAuth";
 const Tracking = () => {
   const axiosPrivate = useAxiosPrivate()
@@ -28,37 +29,64 @@ const Tracking = () => {
   console.log(orders)
   return (
     <>
-    <Announcement/>
-    <Navbar/>
-    <div className="widgetLg">
-      <h3 className="widgetLgTitle">TRACK YOUR ORDERS</h3>
-      <table className="widgetLgTable">
-        <tr className="widgetLgTr">
-          {/* <th className="widgetLgTh">Customer</th> */}
-          {/* <th className="widgetLgTh">Products</th> */}
-          <th className="widgetLgTh">ProductsID</th>
-          <th className="widgetLgTh">status</th>
-        </tr>
-        {orders?.map((order) => (
-          <tr className="widgetLgTr" key={order._id}>
-            {/* <td className="widgetLgName">{order.address.fullname}</td> */}
-            <td className="widgetLgProduct">
-              {order.products.map((item, i) => (
-                <div key={i} className="widgetLgitem">
-                  <h6>{item._id} </h6>
-                  <span>{item.qty} Qty</span>
-                </div>
-              ))}
-            </td>
-            <td className="widgetLgStatus">
-              <Button type={order.status} />
-            </td>
-          </tr>
-        ))}
-      </table>
-    </div>
+      <Announcement />
+      <Navbar />
+      <div className="widgetLg">
+        <h3 className="widgetLgTitle">TRACK YOUR ORDERS</h3>
+        <div className="card-body">
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>OrderId</th>
+                  <th>Description/QTY</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.length > 0 ? (
+                  orders?.map((order, i) => {
+                    return (
+                      <tr key={order._id}>
+                        <td>{i + 1}</td>
+                        <td>{order.orderNumber}</td>
+                        <td className="prod__items">
+                          {order.products.map((item, i) => (
+                            <div key={i} className="widgetLgitem">
+                              <span>{item.description} </span>
+                              <span>{item.qty} Qty</span>
+                            </div>
+                          ))}
+                        </td>
+                        <td>
+                          <button className="btn btn-sm track__status">
+                            {order.status}
+                          </button>
+                        </td>
+                        <td>
+                          {moment(new Date(order.createdAt)).format(
+                            "YYYY-MM-DD"
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={5}>No data found!</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+          {/* <!-- table-responsive //end --> */}
+        </div>
+        {/* <!-- card-body end// --> */}
+        
+      </div>
     </>
-      
   );
 };
 
