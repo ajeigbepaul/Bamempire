@@ -7,12 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import ReactPaginate from "react-paginate";
+import { FaCheck, FaTimes } from "react-icons/fa";
 export default function AllProducts() {
   const axiosPrivate = useAxiosPrivate();
   const { setTotalProducts } = useAuth();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState("yes");
+  const [status, setStatus] = useState(true);
   const [PerItem, setPerItem] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -64,13 +65,16 @@ export default function AllProducts() {
       const refreshToastnotify = toast.loading("Loading...");
       const res = await axiosPrivate.put(`/products/${id}`, { instock: "no" });
       //  console.log(res.data)
-      setStatus(status == "No");
+      setStatus(!status);
       toast.success("Status updated to not in stock!!", {
         id: refreshToastnotify,
       });
     } catch (error) {}
     // console.log(id)
   };
+  useEffect(()=>{
+  // handleStockstatus()
+  },[])
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">ALL Products</h3>
@@ -194,11 +198,12 @@ export default function AllProducts() {
                         >
                           inStock?
                           <span className="instc">
-                            {(status && product.instock) == "yes"
+                            { product.instock == "yes"
                               ? "yes"
-                              : (status && product.instock) == "no"
+                              :product.instock == "no"
                               ? "no"
-                              : "No status"}
+                              : "yes"}
+                            {/* {status == "No" ? <FaTimes /> : <FaCheck />} */}
                           </span>
                         </button>
                       </td>

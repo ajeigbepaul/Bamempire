@@ -10,6 +10,7 @@ import "./Menu.css"
 import { clearBasket } from "../slice/basketSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItems } from "../slice/basketSlice";
+import { toast } from "react-hot-toast";
 
 function Menu() {
 const items = useSelector(selectItems);
@@ -26,6 +27,7 @@ const email = auth?.email
 const handleLogout = async()=>{
   await logout();
   dispatch(clearBasket());
+  toast.success("You have Logged out");
   navigate('/')
   
 }

@@ -1,6 +1,7 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-// import { ToastContainer } from "react-toastify";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import jwt_decode from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 import Paystack from "./components/Paystack";
 import Cart from "./pages/Cart";
@@ -12,29 +13,44 @@ import BamEmpire from "./pages/BamEmpire";
 import ProductList from "./pages/ProductList";
 import Payment from "./components/Payment";
 import Success from "./components/Success";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import Dashboard from "./admin/Dashboard"
 import Products from "./admin/Products"
-import Summary from "./admin/Summary"
 import CreateProduct from "./admin/CreateProduct"
-import Orders from "./admin/Oders"
 import WidgetLg from "./admin/WidgetLg"
-// import WidgetSm from "./admin/WidgetSm"
-
-// import AdminLogin from "./admin/auth/AdminLogin"
-// import NotFound from "./admin/NotFound";
 import CreateImages from "./admin/CreateImages";
 import AllProducts from "./admin/AllProducts";
 import NotAllowed from "./components/NotAllowed";
-// import RequiredAuth from "./components/RequiredAuth";
 import Missing from "./components/Missing";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import ForgetPassword from "./components/ForgetPassword";
-// import AllUsers from "./admin/AllUsers";
 import WidgetSm from "./admin/WidgetSm";
+import useAuth from "./hooks/useAuth";
 
 
 function App() {
+   const navigate = useNavigate();
+   const { auth,setAuth } = useAuth();
+   const token = auth?.accessToken;
+
+   const isTokenExpired = (token) => {
+     try {
+       const decodedToken = jwt_decode(token);
+       const currentTime = Math.floor(Date.now() / 1000); // Convert milliseconds to seconds
+       return decodedToken.exp < currentTime;
+     } catch (error) {
+       return true; // Invalid token
+     }
+   };
+
+   useEffect(() => {
+     // Check if token has expired
+     if (isTokenExpired(token)) {
+       setAuth({});
+      //  toast.success('Your session ended')
+       navigate("/");
+     }
+   }, [token]);
   return (
     <>
       <Toaster />
@@ -48,10 +64,6 @@ function App() {
         <Route path="/product/:id" element={<Productss />} />
         <Route path="notallowed" exact element={<NotAllowed />} />
         <Route element={<ProtectedRoute allowedRoles={[1001]} />}>
-          {/* <Route path="/cart" element={<Cart />} /> */}
-          {/* <Route path="/pay" element={<Paystack />} /> */}
-          {/* General user */}
-
           <Route path="/pay" element={<Paystack />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
