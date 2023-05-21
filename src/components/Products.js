@@ -13,8 +13,8 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       try {
         const res = await axios.get(
           cat
-            ? `${process.env.REACT_APP_LOCAL_URL}/products?category=${cat}`
-            : `${process.env.REACT_APP_LOCAL_URL}/products`
+            ? `${process.env.REACT_APP_BASE_URL}/products?category=${cat}`
+            : `${process.env.REACT_APP_BASE_URL}/products`
         );
         setProducts(res.data);
       } catch (error) {}
