@@ -6,6 +6,7 @@ import moment from "moment";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import { FaCheck } from "react-icons/fa";
 
 export default function WidgetLg() {
   const axiosPrivate = useAxiosPrivate();
@@ -16,6 +17,10 @@ export default function WidgetLg() {
     packed: "packed",
     delivered: "delivered",
   });
+  const [updatedStatus, setUpdatedStatus] = useState({});
+  const [updatedPacked, setUpdatedPacked] = useState({});
+  const [updatedDelivered, setUpdatedDelivered] = useState({});
+  // const [disableButton, setDisableButton] = useState(false);
   const [PerItem, setPerItem] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -27,55 +32,133 @@ export default function WidgetLg() {
   const currentItem = orders.slice(offset, offset + Number(PerItem));
   const pageCount = Math.ceil(orders.length / Number(PerItem));
   //End of Pagination
+
+  const fetchOrders = async () => {
+    const response = await axiosPrivate.get("ordermes");
+    return response.data;
+  };
+
   useEffect(() => {
-    const getOrders = async () => {
-      try {
-        const res = await axiosPrivate.get("ordermes");
-        setOrders(res.data);
-      } catch {}
+    const fetchInitialOrders = async () => {
+      const initialOrders = await fetchOrders();
+      setOrders(initialOrders);
     };
-    getOrders();
+
+    fetchInitialOrders();
+
+    // Cleanup: Unsubscribe from any subscriptions or clear any resources
+    return () => {
+      // ...
+    };
   }, [axiosPrivate]);
   const handleDelete = async (id) => {
     alert("do you want to delete this order");
     try {
+      const refreshToastnotify = toast.loading("Loading...");
       await axiosPrivate.delete(`/ordermes/${id}`);
-      // Update the UI by removing the deleted item from the state
-      setOrders(orders.filter((order) => order.id !== id));
-    } catch (error) {}
-    toast.success("Order done and deleted!! Kindly refresh your browser.");
+      toast.success("deleted successfully.", {
+        id: refreshToastnotify,
+      });
+      // Fetch the updated products after the deletion is done
+      const updatedOrders = await fetchOrders();
+      setOrders(updatedOrders);
+    } catch (error) {
+      toast.error("something went wrong!");
+    }
+  };
+  
+ useEffect(() => {
+   // Retrieve the updated status from localStorage
+   const storedStatus = localStorage.getItem("updatedStatus");
+   const storedPackedS = localStorage.getItem("updatedPackedStatus");
+   const delivered = localStorage.getItem("updatedDeliveredStatus");
+   if (storedStatus) {
+     setUpdatedStatus(JSON.parse(storedStatus));
+   }
+   if (storedPackedS) {
+     setUpdatedPacked(JSON.parse(storedPackedS));
+   }
+    if (delivered) {
+      setUpdatedPacked(JSON.parse(delivered));
+    }
+   
+ }, []);
+  const handleStatusProcessing = async (id) => {
+    try {
+      // ... your existing code ...
+      const res = await axiosPrivate.put(`/ordermes/${id}`, {
+        status: "processing",
+      });
+      setStatus(res.data);
+      setUpdatedStatus((prevStatus) => ({
+        ...prevStatus,
+        [id]: "Processing Done",
+      }));
+      toast.success("Status updated!!");
+      console.log(id);
+      // setDisableButton(true);
+      // Persist the updated status in localStorage
+      // Persist the updated status in localStorage
+      localStorage.setItem(
+        "updatedStatus",
+        JSON.stringify({
+          ...updatedStatus,
+          [id]: "Processing Done",
+        })
+      );
+    } catch (error) {
+      console.error("Failed to update status:", error);
+    }
   };
 
-  const handleStatusprocessing = async (id) => {
+  // Similar changes for handleStatusPacked and handleStatusDelivered
+
+  const handleStatusPacked = async (id) => {
     try {
       const res = await axiosPrivate.put(`/ordermes/${id}`, {
-        status: status.processing,
+        status: "packed",
       });
+
       setStatus(res.data);
-      toast.success("Status updated!! Kindly refresh your browser.");
-    } catch (error) {}
+      setUpdatedPacked((prevStatus) => ({ ...prevStatus, [id]: "Pack Done" }));
+      toast.success("Status updated!!");
+      console.log(updatedPacked)
+      console.log(id);
+      // setDisableButton(true);
+      // Persist the updated status in localStorage
+      localStorage.setItem(
+        "updatedPackedStatus",
+        JSON.stringify({
+          ...updatedPacked,
+          [id]: "Pack Done",
+        })
+      );
+    } catch (error) {
+      console.error("Failed to update status:", error);
+    }
   };
-  const handleStatuspacked = async (id) => {
+
+  const handleStatusDelivered = async (id) => {
     try {
       const res = await axiosPrivate.put(`/ordermes/${id}`, {
-        status: status.packed,
+        status: "delivered",
       });
-      //  console.log(res.data)
+
       setStatus(res.data);
-      toast.success("Status updated!! Kindly refresh your browser.");
-    } catch (error) {}
-    // console.log(id)
-  };
-  const handleStatusdelivered = async (id) => {
-    try {
-      const res = await axiosPrivate.put(`/ordermes/${id}`, {
-        status: status.delivered,
-      });
-      //  console.log(res.data)
-      setStatus(res.data);
-      toast.success("Status updated!! Kindly refresh your browser.");
-    } catch (error) {}
-    // console.log(id)
+      setUpdatedDelivered((prevStatus) => ({ ...prevStatus, [id]: "Delivery Done" }));
+      toast.success("Status updated!!");
+      // Persist the updated status in localStorage
+      console.log(id)
+      localStorage.setItem(
+        "updatedDeliveredStatus",
+        JSON.stringify({
+          ...updatedDelivered,
+          [id]: "Delivery Done",
+        })
+      );
+    } catch (error) {
+      console.error("Failed to update status:", error);
+    }
   };
   return (
     <>
@@ -132,22 +215,25 @@ export default function WidgetLg() {
                             Delete
                           </button>
                           <button
-                            onClick={() => handleStatusprocessing(item._id)}
-                            className="btn btn-sm rounded font-sm btn2 mx-1"
+                            onClick={() => handleStatusProcessing(item._id)}
+                            className={`btn btn-sm rounded font-sm btn2 mx-1`}
+                            // disabled={disableButton}
                           >
-                            Processing
+                            {" "}
+                            {/* Processing */}
+                            {updatedStatus[item._id] || "Processing"}
                           </button>
                           <button
-                            onClick={() => handleStatuspacked(item._id)}
+                            onClick={() => handleStatusPacked(item._id)}
                             className="btn btn-sm rounded font-sm btn3 mx-1"
                           >
-                            packed
+                            {updatedPacked[item._id] || "Packed"}
                           </button>
                           <button
-                            onClick={() => handleStatusdelivered(item._id)}
+                            onClick={() => handleStatusDelivered(item._id)}
                             className="btn btn-sm rounded font-sm mx-1 bg-warning"
                           >
-                            Delivered
+                            {updatedDelivered[item._id] || "Delivered"}
                           </button>
                         </td>
                       </tr>

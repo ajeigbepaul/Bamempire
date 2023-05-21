@@ -47,10 +47,10 @@ function App() {
      // Check if token has expired
      if (isTokenExpired(token)) {
        setAuth({});
-      //  toast.success('Your session ended')
-       navigate("/");
+       //  toast.success('Your session ended')
+       navigate("/login");
      }
-   }, [token]);
+   }, [token, setAuth, navigate]);
   return (
     <>
       <Toaster />

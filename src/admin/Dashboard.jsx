@@ -12,8 +12,8 @@ import MobileSideNav from "./MobileSidenav";
 const Dashboard = () => {
   const {totalProducts,totalUsers} = useAuth()
   const [toggle, setToggle] = useState(false);
-  console.log(totalProducts)
-  console.log(totalUsers)
+  // console.log(totalProducts)
+  // console.log(totalUsers)
   useEffect(()=>{})
   return (
     <>

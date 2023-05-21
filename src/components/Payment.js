@@ -12,6 +12,7 @@ import { addOrder } from "../slice/orderSlice";
 import { addPay } from "../slice/paySlice";
 import useAxiosPrivate from "../hooks/useAxios";
 import "./Payment.css";
+import { toast } from "react-hot-toast";
 function Payment() {
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();
@@ -85,9 +86,12 @@ function Payment() {
     try {
       const response = await axiosPrivate.post("/payments", paydata);
       const result = response.data;
-      result && dispatch(addPay(paydata));
+      result
+        ? dispatch(addPay(paydata))
+        : toast.error("try again something went wrong");
     } catch (error) {
       console.log(error);
+      toast.error("something went wrong");
     }
   };
 
@@ -95,9 +99,10 @@ function Payment() {
     try {
       const response = await axiosPrivate.post("/ordermes", orderdata);
       const result = response.data;
-      result && dispatch(addOrder(orderdata));
+      result ? dispatch(addOrder(orderdata)) : toast.error('try again something went wrong');
     } catch (error) {
       console.log(error);
+      toast.error('try again network issue')
     }
   };
 

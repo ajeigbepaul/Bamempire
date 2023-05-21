@@ -13,7 +13,7 @@ export default function AllProducts() {
   const { setTotalProducts } = useAuth();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState(true);
+ const [updatedStatus, setUpdatedStatus] = useState([]);
   const [PerItem, setPerItem] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -24,28 +24,25 @@ export default function AllProducts() {
   const offset = currentPage * Number(PerItem);
   const currentItem = products.slice(offset, offset + Number(PerItem));
   const pageCount = Math.ceil(products.length / Number(PerItem));
-  //End of Pagination
+  const fetchProducts = async () => {
+    const response = await axiosPrivate.get("products");
+    return response.data;
+  };
+
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await axiosPrivate.get("products");
-        // console.log(res.data)
-        setProducts(res.data);
-      } catch {}
+    const fetchInitialProducts = async () => {
+      const initialProducts = await fetchProducts();
+      setProducts(initialProducts);
     };
-    getProducts();
-  }, [axiosPrivate]);
+
+    fetchInitialProducts();
+
+    // Cleanup: Unsubscribe from any subscriptions or clear any resources
+    return () => {
+      // ...
+    };
+  }, []);
   setTotalProducts(products?.length);
-  // useEffect(() => {
-  //   const getImg = async () => {
-  //     try {
-  //       const res = await userRequest.get(`/images/${}`);
-  //       // console.log(res.data)
-  //       setProducts(res.data);
-  //     } catch {}
-  //   };
-  //   getProducts();
-  // }, []);
   const handleDelete = async (id) => {
     alert("do you want to delete this product?");
     try {
@@ -54,27 +51,73 @@ export default function AllProducts() {
       toast.success("deleted successfully.", {
         id: refreshToastnotify,
       });
-      // Update the UI by removing the deleted item from the state
-      setProducts(products.filter((product) => product.id !== id));
+      // Fetch the updated products after the deletion is done
+      const updatedProducts = await fetchProducts();
+      setProducts(updatedProducts);
     } catch (error) {
       toast.error("something went wrong!");
     }
   };
-  const handleStockstatus = async (id) => {
+
+  // const handleStockstatus = async (id) => {
+  //   try {
+  //     const refreshToastnotify = toast.loading("Loading...");
+  //     const res = await axiosPrivate.put(`/products/${id}`, { instock: "no" });
+  //      console.log(res.data)
+  //     setStatus(res.data.instock);
+  //     toast.success("Status updated to not in stock!!", {
+  //       id: refreshToastnotify,
+  //     });
+  //     const updatedS = await fetchProducts()
+  //     console.log(updatedS)
+  //   } catch (error) {}
+  // };
+  
+  // const handleStockStatus = async (id) => {
+  //   try {
+  //     const refreshToastnotify = toast.loading("Loading...");
+  //     await axiosPrivate.put(`/products/${id}`, { instock: "no" });
+  //     setProducts((prevProducts) =>
+  //       prevProducts.map((product) => {
+  //         if (product.id === id) {
+  //           return { ...product, instock: "no" };
+  //         }
+  //         return product;
+  //       })
+  //     );
+
+  //     toast.success("Status updated to not in stock!", {
+  //       id: refreshToastnotify,
+  //     });
+  //   } catch (error) {
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
+  const handleStockStatus = async (id) => {
     try {
       const refreshToastnotify = toast.loading("Loading...");
-      const res = await axiosPrivate.put(`/products/${id}`, { instock: "no" });
-      //  console.log(res.data)
-      setStatus(!status);
-      toast.success("Status updated to not in stock!!", {
+
+      // Update the stock status of the product on the server
+      await axiosPrivate.put(`/products/${id}`, { instock: "no" });
+
+      // Update the stock status in the local state immediately
+      setProducts((prevProducts) =>
+        prevProducts.map((product) => {
+          if (product.id === id) {
+            return { ...product, instock: "no" };
+          }
+          return product;
+        })
+      );
+      toast.success("Status updated to not in stock!", {
         id: refreshToastnotify,
       });
-    } catch (error) {}
-    // console.log(id)
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
   };
-  useEffect(()=>{
-  // handleStockstatus()
-  },[])
+ 
+
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">ALL Products</h3>
@@ -84,64 +127,10 @@ export default function AllProducts() {
       </span>
 
       <h3 className="widgetLgTotalqty">Stock Quantity:{products.length}</h3>
-      {/* <table className="widgetLgTable">
-        <tr className="widgetLgTr">
-          <th className="widgetLgTh">S/N</th>
-          <th className="widgetLgTh">ProductImg</th>
-          <th className="widgetLgTh">ProductID</th>
-          <th className="widgetLgTh">Desc</th>
-          <th className="widgetLgTh">createdAt</th>
-          <th className="widgetLgTh">Action</th>
-          <th className="widgetLgTh">Uploads</th>
-          <th className="widgetLgTh">inStock</th>
-        </tr>
-        {products.map((product, i) => (
-          <tr className="widgetLgTr" key={product._id}>
-            <td className="widgetLgDate">{i + 1}</td>
-            <td className="widgetLgImg">
-              <img src={product?.image?.url} alt="productimages" />
-            </td>
-            <td className="widgetLgDate">{product._id}</td>
-            <td className="widgetLgDesc">{product.description}</td>
-            <td className="widgetLgDate">
-              {moment(new Date(product.createdAt)).format("YYYY-MM-DD")}
-            </td>
-            <td className="widgetLgStatus">
-              <button onClick={() => handleDelete(product._id)} className="btn">
-                Delete
-              </button>
-            </td>
-            <td className="widgetLgStatus">
-              <Link to={`/admin/images/${product._id}`}>
-                <button
-                  type="submit"
-                  onClick={() => console.log("")}
-                  className="btn2"
-                >
-                  more images
-                </button>
-              </Link>
-            </td>
-            <td className="widgetLgStatus">
-              <button
-                type="submit"
-                onClick={() => handleStockstatus(product._id)}
-                className="btn3"
-              >
-                inStock?
-                <span className="instc">
-                  {(status && product.instock) == "yes"
-                    ? "yes"
-                    : (status && product.instock) == "no" ? 'no' : 'No status'}
-                </span>
-              </button>
-            </td>
-          </tr>
-        ))}
-      </table> */}
+      
       <div className="card-body">
         <div className="table-responsive">
-          <table className="table table-hover">
+          <table className="table">
             <thead>
               <tr>
                 <th>S/N</th>
@@ -193,17 +182,14 @@ export default function AllProducts() {
                       <td className="widgetLgStatus">
                         <button
                           type="submit"
-                          onClick={() => handleStockstatus(product._id)}
+                          onClick={() => handleStockStatus(product._id)}
                           className="btn3"
                         >
                           inStock?
                           <span className="instc">
-                            { product.instock == "yes"
-                              ? "yes"
-                              :product.instock == "no"
-                              ? "no"
-                              : "yes"}
-                            {/* {status == "No" ? <FaTimes /> : <FaCheck />} */}
+                            {updatedStatus.includes(product.id)
+                              ? "No"
+                              : product.instock}
                           </span>
                         </button>
                       </td>
