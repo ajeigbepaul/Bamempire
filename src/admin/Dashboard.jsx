@@ -9,12 +9,35 @@ import useAuth from "../hooks/useAuth";
 import { FaTimes, FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import MobileSideNav from "./MobileSidenav";
+import useAxiosPrivate from "../hooks/useAxios";
 const Dashboard = () => {
+  const axiosPrivate = useAxiosPrivate()
   const {totalProducts,totalUsers} = useAuth()
   const [toggle, setToggle] = useState(false);
+  const [products, setProducts] = useState([])
+  const [users, setUsers]=useState([])
   // console.log(totalProducts)
   // console.log(totalUsers)
-  useEffect(()=>{})
+  const fetchProducts = async()=>{
+    try {
+      const response = await axiosPrivate.get("products");
+      // return response.data;
+      setProducts(response.data);
+    } catch (error) {
+      toast.error(error)
+    }
+    
+  }
+  const fetchUsers = async () => {try {
+    const res = await axiosPrivate.get("users/?new=true");
+    // console.log(res.data)
+    setUsers(res.data);
+  } catch (error) {toast.error(error);}};
+  useEffect(()=>{
+    fetchProducts();
+    fetchUsers()
+  },[])
+ 
   return (
     <>
       <Navbar />
@@ -35,14 +58,14 @@ const Dashboard = () => {
               <FaUser size={60} />
               <div className="content__info mx-3">
                 <span className="totuser">Total Users</span>
-                <h2>{totalUsers}</h2>
+                <h2>{users?.length}</h2>
               </div>
             </div>
             <div className="content__prod">
               <FaUser size={60} />
               <div className="content__info mx-3">
                 <span className="totuser">Total Products</span>
-                <h2>{totalProducts}</h2>
+                <h2>{products?.length}</h2>
               </div>
             </div>
           </div>

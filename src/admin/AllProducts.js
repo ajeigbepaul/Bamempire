@@ -58,41 +58,6 @@ export default function AllProducts() {
       toast.error("something went wrong!");
     }
   };
-
-  // const handleStockstatus = async (id) => {
-  //   try {
-  //     const refreshToastnotify = toast.loading("Loading...");
-  //     const res = await axiosPrivate.put(`/products/${id}`, { instock: "no" });
-  //      console.log(res.data)
-  //     setStatus(res.data.instock);
-  //     toast.success("Status updated to not in stock!!", {
-  //       id: refreshToastnotify,
-  //     });
-  //     const updatedS = await fetchProducts()
-  //     console.log(updatedS)
-  //   } catch (error) {}
-  // };
-  
-  // const handleStockStatus = async (id) => {
-  //   try {
-  //     const refreshToastnotify = toast.loading("Loading...");
-  //     await axiosPrivate.put(`/products/${id}`, { instock: "no" });
-  //     setProducts((prevProducts) =>
-  //       prevProducts.map((product) => {
-  //         if (product.id === id) {
-  //           return { ...product, instock: "no" };
-  //         }
-  //         return product;
-  //       })
-  //     );
-
-  //     toast.success("Status updated to not in stock!", {
-  //       id: refreshToastnotify,
-  //     });
-  //   } catch (error) {
-  //     toast.error("Something went wrong!");
-  //   }
-  // };
   const handleStockStatus = async (id) => {
     try {
       const refreshToastnotify = toast.loading("Loading...");
@@ -141,7 +106,6 @@ export default function AllProducts() {
                 <th>Action</th>
                 <th>Uploads</th>
                 <th>inStock</th>
-                {/* <th className="text-end">Action</th> */}
               </tr>
             </thead>
             <tbody>
