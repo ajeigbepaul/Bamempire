@@ -1,24 +1,19 @@
-import styled from "styled-components";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
-
 import "./Dashboard.css";
 import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import Sidenav from "./Sidenav";
-import useAuth from "../hooks/useAuth";
-import { FaTimes, FaUser } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { FaTimes, FaUser, FaBars } from "react-icons/fa";
+import { useEffect, useState, useCallback } from "react";
 import MobileSideNav from "./MobileSidenav";
 import useAxiosPrivate from "../hooks/useAxios";
 const Dashboard = () => {
   const axiosPrivate = useAxiosPrivate()
-  const {totalProducts,totalUsers} = useAuth()
   const [toggle, setToggle] = useState(false);
   const [products, setProducts] = useState([])
   const [users, setUsers]=useState([])
   // console.log(totalProducts)
   // console.log(totalUsers)
-  const fetchProducts = async()=>{
+  const fetchProducts = useCallback(async()=>{
     try {
       const response = await axiosPrivate.get("products");
       // return response.data;
@@ -27,16 +22,17 @@ const Dashboard = () => {
       toast.error(error)
     }
     
-  }
-  const fetchUsers = async () => {try {
+  },[axiosPrivate])     
+  const fetchUsers = useCallback(async () => {
+    try {
     const res = await axiosPrivate.get("users/?new=true");
     // console.log(res.data)
     setUsers(res.data);
-  } catch (error) {toast.error(error);}};
+  } catch (error) {toast.error(error);}},[axiosPrivate]);
   useEffect(()=>{
     fetchProducts();
     fetchUsers()
-  },[])
+  },[fetchUsers,fetchProducts])
  
   return (
     <>
@@ -45,7 +41,15 @@ const Dashboard = () => {
       <div className="Dashboard">
         <div className="dashboard__sidenav">
           <div className="close" onClick={() => setToggle((prev) => !prev)}>
-            <FaTimes /> <span>Menu</span>
+            {toggle ? (
+              <div>
+                <FaTimes /> <span>Close</span>
+              </div>
+            ) : (
+              <div>
+                <FaBars /> <span>Menu</span>
+              </div>
+            )}
           </div>
           <Sidenav />
           {toggle && <MobileSideNav />}

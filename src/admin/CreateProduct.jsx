@@ -14,6 +14,7 @@ import "./CreateProduct.css";
 import { FaTimes } from "react-icons/fa";
 import MobileSideNav from "./MobileSidenav";
 
+
 const CreateProduct = () => {
   const axiosPrivate = useAxiosPrivate();
   const [productImg, setProductImg] = useState("");
@@ -53,6 +54,7 @@ const CreateProduct = () => {
       moq,
       image: productImg,
     });
+    
     const result = response.data;
     return result;
   };

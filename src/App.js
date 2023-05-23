@@ -26,31 +26,31 @@ import ProtectedRoute from "./components/ProtectedRoutes";
 import ForgetPassword from "./components/ForgetPassword";
 import WidgetSm from "./admin/WidgetSm";
 import useAuth from "./hooks/useAuth";
+import LogoutOnTokenExpiration from "./components/LogoutTokenExpiration";
 
 
 function App() {
-   const navigate = useNavigate();
-   const { auth,setAuth } = useAuth();
-   const token = auth?.accessToken;
+  LogoutOnTokenExpiration()
+  //  const navigate = useNavigate();
+  //  const { auth,setAuth } = useAuth();
+  //  const token = auth?.accessToken;
 
-   const isTokenExpired = (token) => {
-     try {
-       const decodedToken = jwt_decode(token);
-       const currentTime = Math.floor(Date.now() / 1000); // Convert milliseconds to seconds
-       return decodedToken.exp < currentTime;
-     } catch (error) {
-       return true; // Invalid token
-     }
-   };
+  //  const isTokenExpired = (token) => {
+  //    try {
+  //      const decodedToken = jwt_decode(token);
+  //      const currentTime = Math.floor(Date.now() / 1000); // Convert milliseconds to seconds
+  //      return decodedToken.exp < currentTime;
+  //    } catch (error) {
+  //      return true; 
+  //    }
+  //  };
 
-   useEffect(() => {
-     // Check if token has expired
-     if (isTokenExpired(token)) {
-       setAuth({});
-       //  toast.success('Your session ended')
-       navigate("/login");
-     }
-   }, [token, setAuth, navigate]);
+  //  useEffect(() => {
+  //    if (isTokenExpired(token)) {
+  //      setAuth({});
+  //      navigate("/");
+  //    }
+  //  }, [token, useAuth, navigate]);
   return (
     <>
       <Toaster />

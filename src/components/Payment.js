@@ -64,7 +64,7 @@ function Payment() {
     .toString(16)
     .padStart(6, "0");
   const pref = "BAM";
-  const sufix = "ORD"
+  const sufix = "ORD";
   const newProductId = pref + randomHex + sufix;
   // const products = {}
   const orderdata = {
@@ -99,18 +99,34 @@ function Payment() {
     try {
       const response = await axiosPrivate.post("/ordermes", orderdata);
       const result = response.data;
-      result ? dispatch(addOrder(orderdata)) : toast.error('try again something went wrong');
+      result
+        ? dispatch(addOrder(orderdata))
+        : toast.error("try again something went wrong");
     } catch (error) {
       console.log(error);
-      toast.error('try again network issue')
+      toast.error("try again network issue");
     }
   };
-
+  const postSales = async () => {
+    try {
+      const response = await axiosPrivate.post("/sales", orderdata);
+      const result = response.data;
+      return result;
+    } catch (error) {
+      toast.error("could not post sales try again");
+    }
+  };
   const handlePaystackSuccessAction = (reference) => {
-    PostPay();
-    PostOrder();
-    dispatch(clearBasket());
-    navigate("/success");
+    try {
+      PostPay();
+      PostOrder();
+      postSales();
+      dispatch(clearBasket());
+      navigate("/success");
+    } catch (error) {
+      toast.error('something went wrong try again')
+    }
+    
   };
   // you can call this function anything
   const handlePaystackCloseAction = () => {

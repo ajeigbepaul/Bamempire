@@ -65,7 +65,7 @@ function Login() {
             LOGIN
           </button>
           <Link to="/updatepassword" className="link">
-            DO YOU REMEMBER YOUR PASSWORD ?
+            FORGOTTEN PASSWORD ? click here!!
           </Link>
           <Link to="/register" className="link">
             CREATE A NEW ACCOUNT

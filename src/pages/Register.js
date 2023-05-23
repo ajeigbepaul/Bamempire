@@ -19,7 +19,7 @@ function Register() {
 
   const navigate = useNavigate();
   const handleReg = async (e) => {
-    const refreshToastnotify = toast.loading("Loading...");
+    // const refreshToastnotify = toast.loading("Loading...");
     e.preventDefault();
     try {
       const { data: res } = await axios.post("/users", {
@@ -30,7 +30,7 @@ function Register() {
         password,
       });
       console.log(res);
-       toast.success("Registered!!", { id: refreshToastnotify });
+       toast.success("Registered!!");
       navigate("/login");
     } catch (error) {
       if (

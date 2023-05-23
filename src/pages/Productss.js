@@ -6,15 +6,13 @@ import Navbar from "../components/Navbar";
 import "./Productss.css";
 import QuantityContainer from "../components/QuantityContainer";
 import { useLocation } from "react-router-dom";
-import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
 import useAuth from "../hooks/useAuth";
 import { addToBasket } from "../slice/basketSlice";
 import { toast } from "react-hot-toast";
 import useAxiosPrivate from "../hooks/useAxios";
-import axios from "../api/axios";
 function Productss() {
-  const { qty } = useAuth(); 
+  const { qty,setQty } = useAuth(); 
   const axiosPrivate = useAxiosPrivate()
   const dispatch = useDispatch();
   const location = useLocation();
@@ -29,15 +27,17 @@ function Productss() {
     dispatch(addToBasket({ ...product, qty }));
     toast.success("added to cart!!", { id: add });
   };
+  // setQty(product?.moq)
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await axiosPrivate.get(`/products/${id}`);
         setProduct(res.data);
+        // setQty(res.data.moq);
       } catch (error) {}
     };
     getProduct();
-  }, [id]);
+  }, [id,axiosPrivate]);
   useEffect(() => {
     const getOtherimages = async () => {
       try {
@@ -47,7 +47,7 @@ function Productss() {
       } catch (error) {}
     };
     getOtherimages();
-  }, [id]);
+  }, [id,axiosPrivate]);
 
   // FILTER OTHERIMAGES
   useEffect(() => {
@@ -61,15 +61,18 @@ function Productss() {
       <div className="productss__wrapper">
         <div className="productss__prodimg">
           <img src={product?.image?.url} alt="prod" />
-          {images?.map((image) => (
-            <div className="productss__otherimages" key={image}>
-              {/* {console.log(image.images)} */}
-              <h2>Other product images</h2>
-              {image?.images?.map((item) => (
-                <img key={item._id} src={item?.url} alt="otherimages" />
-              ))}
+          
+           {
+            images?.map(image=>
+            <div className="productss__otherimages">
+              <h2>Additional images</h2>
+              {image?.images?.map(item=>
+              <img key={item._id} src={item.url} alt="altimages"/>)}
             </div>
-          ))}
+            
+           )
+           }
+         
         </div>
         <div className="productss__infocontainer">
           <div className="productss__title">

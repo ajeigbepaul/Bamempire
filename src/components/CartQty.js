@@ -1,9 +1,5 @@
 import React from 'react'
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import DeleteIcon from '@mui/icons-material/Delete';
 import "./CartQty.css"
-import {removeCart} from "../redux/cartRedux"
 import { useDispatch } from 'react-redux';
 
 function CartQty({qty, setQty,product}) {

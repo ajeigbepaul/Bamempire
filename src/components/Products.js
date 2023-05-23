@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Products.css";
 import Product from "./Product";
 import axios from "axios";
-import { FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 function Products({ filtercolors, filtersize, sort, cat }) {
@@ -33,7 +32,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
   useEffect(() => {
     cat &&
       setFilteredProducts(products.filter((item) => filtersize === item?.size));
-    if (filtersize == "All") {
+    if (filtersize === "All") {
       setFilteredProducts(products);
     }
   }, [cat, filtersize, products]);

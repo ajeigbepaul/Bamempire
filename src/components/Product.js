@@ -16,6 +16,7 @@ function Product({ product }) {
      dispatch(addToBasket({ ...product, qty }));
      toast.success("added to cart!!", { id: addTo });
    };
+   
   return (
     <div className="product">
       <div className="product__circle"></div>
@@ -44,18 +45,6 @@ function Product({ product }) {
           </div>
         </div>
       </div>
-      {/* <div className="product__inf">
-        Hello there
-      </div> */}
-
-      {/* <div className="product__info">
-      // <div className="product__icon">
-      // <Link to={`/product/${product._id}`}><div className="product__iconcontainer"><SearchIcon/></div>
-      //   <div className="product__iconcontainer"><ShoppingBagOutlinedIcon/></div>
-      // </Link>
-      // <div className="product__iconcontainer">{product.instock === "yes"?<span>instock</span>:<span>sold out</span> }</div>
-      // </div>
-      </div>  */}
     </div>
   );
 }
