@@ -30,8 +30,9 @@ function Payment() {
   const [email, SetEmail] = useState("");
 
   // pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19
+  // pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964
   // const publicKey = "pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964"; // Replace with your public key
-  const publicKey = "pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964";
+  const publicKey = "pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19";
   const address = {
     fullname,
     address1,
@@ -124,9 +125,8 @@ function Payment() {
       dispatch(clearBasket());
       navigate("/success");
     } catch (error) {
-      toast.error('something went wrong try again')
+      toast.error("something went wrong try again");
     }
-    
   };
   // you can call this function anything
   const handlePaystackCloseAction = () => {

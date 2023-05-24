@@ -20,6 +20,7 @@ const CreateProduct = () => {
   const [productImg, setProductImg] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [availableqty, setAvailableQty] = useState("");
   // const [discount, setDiscount] = useState("");
   const [colors, setColors] = useState("");
   const [categories, setCategories] = useState("");
@@ -46,6 +47,7 @@ const CreateProduct = () => {
     const response = await axiosPrivate.post("/products", {
       description,
       price,
+      availableqty,
       // discount,
       colors,
       categories,
@@ -69,6 +71,7 @@ const CreateProduct = () => {
       setColors("");
       setDescription("");
       setPrice("");
+      setAvailableQty("");
       // setDiscount("");
       setSize("");
       setInStock("");
@@ -119,12 +122,12 @@ const CreateProduct = () => {
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
               />
-              {/* <Input
-                placeholder="discPrice"
+              <Input
+                placeholder="AvailableQty"
                 type="text"
-                onChange={(e) => setDiscount(e.target.value)}
-                value={discount}
-              /> */}
+                onChange={(e) => setAvailableQty(e.target.value)}
+                value={availableqty}
+              />
               <Input
                 placeholder="Colors"
                 type="text"
