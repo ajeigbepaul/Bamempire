@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASEURL = process.env.REACT_APP_LOCAL_URL;
+const BASEURL = process.env.REACT_APP_BASE_URL;
 export default axios.create({
   baseURL: BASEURL,
 });
