@@ -57,7 +57,7 @@
 }
 
 
-@media screen and (max-width: 380px){
+@media screen and (max-width: 576px){
     .footer__center{display: block;}
     .footer{flex-direction: column; height: auto;}
   }

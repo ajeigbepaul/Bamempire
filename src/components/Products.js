@@ -20,7 +20,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
     };
     getProduct();
   }, [cat]);
-  console.log(products)
+  // console.log(products)
   // FILTER PRODUCTS COLORS
   useEffect(() => {
     cat &&
@@ -63,11 +63,11 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       <div className="products__product">
         {cat
           ? filteredproducts?.map((item) => (
-              <Product key={item.id} product={item} />
+              <Product key={item._id} product={item} />
             ))
           : products
               .slice(0, 36)
-              ?.map((item) => <Product key={item.id} product={item} />)}
+              ?.map((item) => <Product key={item._id} product={item} />)}
       </div>
     </div>
   );

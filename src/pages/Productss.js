@@ -12,8 +12,8 @@ import { addToBasket } from "../slice/basketSlice";
 import { toast } from "react-hot-toast";
 import useAxiosPrivate from "../hooks/useAxios";
 function Productss() {
-  const { qty,setQty } = useAuth(); 
-  const axiosPrivate = useAxiosPrivate()
+  const { qty, setQty } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -21,13 +21,20 @@ function Productss() {
   const [otherimages, setOtherimages] = useState([]);
   const [images, setImages] = useState([]);
   // HANDLES ADD TO CART BASKET.
-  const handleAddToCart = (e) => {
+  const handleAddToCart = () => {
     const add = toast.loading("Loading...");
-    e.preventDefault();
-    dispatch(addToBasket({ ...product, qty }));
-    toast.success("added to cart!!", { id: add });
+    if (product && qty >= product.moq) {
+      dispatch(addToBasket({ ...product, qty }));
+      toast.success("added to cart!!", { id: add });
+
+      // return false;
+    } else {
+      toast.error("quantity is below MOQ");
+      toast.dismiss(add);
+    }
   };
-  // setQty(product?.moq)
+  console.log(qty);
+  console.log(product?.moq);
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -37,7 +44,7 @@ function Productss() {
       } catch (error) {}
     };
     getProduct();
-  }, [id,axiosPrivate]);
+  }, [id, axiosPrivate]);
   useEffect(() => {
     const getOtherimages = async () => {
       try {
@@ -47,7 +54,7 @@ function Productss() {
       } catch (error) {}
     };
     getOtherimages();
-  }, [id,axiosPrivate]);
+  }, [id, axiosPrivate]);
 
   // FILTER OTHERIMAGES
   useEffect(() => {
@@ -61,18 +68,15 @@ function Productss() {
       <div className="productss__wrapper">
         <div className="productss__prodimg">
           <img src={product?.image?.url} alt="prod" />
-          
-           {
-            images?.map(image=>
+
+          {images?.map((image) => (
             <div className="productss__otherimages">
               <h2>Additional images</h2>
-              {image?.images?.map(item=>
-              <img key={item._id} src={item.url} alt="altimages"/>)}
+              {image?.images?.map((item) => (
+                <img key={item._id} src={item.url} alt="altimages" />
+              ))}
             </div>
-            
-           )
-           }
-         
+          ))}
         </div>
         <div className="productss__infocontainer">
           <div className="productss__title">
@@ -81,8 +85,15 @@ function Productss() {
             ) : (
               <span>sold out</span>
             )}
-
-            {/* <h2>{product.title}</h2> */}
+          </div>
+          <div className="productss__desc">
+            <p>
+              MOQ: {product.moq}
+              <span style={{ color: "red" }}>*</span>{" "}
+              <span style={{ color: "red", fontSize: "14px" }}>
+                (You cannot buy less than this MOQ)
+              </span>
+            </p>
           </div>
           <div className="productss__desc">
             <p>{product.description}</p>

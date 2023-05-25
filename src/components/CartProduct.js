@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import FitlerColor from "../components/FilterColor";
 import CartQty from './CartQty';
 import { useDispatch } from "react-redux";
@@ -6,8 +6,10 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 import { addToBasket, removeFromBasket } from "../slice/basketSlice";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+// import QuantityContainer from './QuantityContainer';
 function CartProduct({product}) {
-  const {_id,image,size,colors,price,instock} = product
+  // console.log(product)
+  const {_id,image,size,colors,price,instock,moq} = product
   const { qty, setQty } = useAuth();
   const dispatch = useDispatch();
    function handleRemove() {
@@ -32,8 +34,39 @@ function CartProduct({product}) {
             <span className="productid">
               <b>ID:</b> {_id}
             </span>
-            {instock === "yes" ? <span>instock</span> : <span>sold out</span>}
+            {instock === "yes" ? (
+              <span
+                style={{
+                  backgroundColor: "plum",
+                  padding: "5px",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  width: "50px",
+                }}
+              >
+                instock
+              </span>
+            ) : (
+              <span
+                style={{
+                  backgroundColor: "plum",
+                  padding: "5px",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  width: "50px",
+                }}
+              >
+                sold out
+              </span>
+            )}
             <FitlerColor color={colors} />
+            <p>
+              MOQ: {moq}
+              <span style={{ color: "red" }}>*</span>{" "}
+              <span style={{ color: "red", fontSize: "12px" }}>
+                (You cannot buy less than this MOQ. click on update if a change is made)
+              </span>
+            </p>
             <span className="price">
               {/* Price:{" "} */}₦{" "}
               {(price * product.qty)
@@ -52,6 +85,7 @@ function CartProduct({product}) {
             colors={colors}
             product={product}
           />
+          {/* <QuantityContainer /> */}
           <div className="cartbutton">
             <div className="addbtn" onClick={handleAdd}>
               <FaPlus />

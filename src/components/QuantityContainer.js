@@ -10,10 +10,10 @@ function QuantityContainer() {
  const handleQuantity = (type) => {
   if (type === "desc") {
     if (qty >= 1) {
-      setQty((prevQty) => prevQty - 5);
+      setQty((prevQty) => prevQty - 1);
     }
   } else {
-    setQty((prevQty) => prevQty + 5);
+    setQty((prevQty) => prevQty + 1);
   }
  };
   return (

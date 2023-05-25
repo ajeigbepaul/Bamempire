@@ -38,10 +38,13 @@ function Product({ product }) {
             )}
           </div>
           <div className="product__iconcontainer">
+            
+
             <ShoppingBagOutlinedIcon
               className="shopicon"
               onClick={handleAddToCart}
             />
+          
           </div>
         </div>
       </div>

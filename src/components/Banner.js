@@ -11,7 +11,7 @@ function Banner() {
       <div className="hero__left">
         <span className="hero__catTitle"> CATEGORY</span>
         {CategoryData.map((cat) => (
-          <Link to={`/products/${cat.cat}`}>
+          <Link to={`/products/${cat.cat}`} key={cat.id}>
             <div className="hero__category">
               <div className="hero__icon">{cat.Icon}</div>
               <span className="hero__title">{cat.title}</span>

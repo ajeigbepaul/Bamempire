@@ -78,7 +78,7 @@
 .account__order a{
     color: #e4bc1c!important;
 }
-@media screen and (max-width:480px) {
+@media screen and (max-width:576px) {
     .account__dropdown{
         width: 50%;
         top: 39%;

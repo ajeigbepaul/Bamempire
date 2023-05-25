@@ -20,6 +20,11 @@ function Payment() {
   const navigate = useNavigate();
   const items = useSelector(selectItems);
   const total = useSelector(selectTot);
+  // chose the div to show based on the option choosen
+  const [selectedOption, setSelectedOption] = useState("option1");
+   const handleChange = (e) => {
+     setSelectedOption(e.target.value);
+   };
   // const total = useSelector(selectTotal)
   const [fullname, SetFullname] = useState("");
   const [address1, SetAddress1] = useState("");
@@ -53,7 +58,6 @@ function Payment() {
   const addressdata = {
     fullname,
     address1,
-    // address2,
     state,
     city,
     phone,
@@ -148,51 +152,94 @@ function Payment() {
       <Navbar />
       <div className="payment__container">
         <div className="billing__formWrapper">
-          <div className="billing__title">Delivery Address</div>
-          <form>
-            <Input
-              placeholder="Fullname"
-              type="text"
-              value={fullname}
-              onChange={(e) => SetFullname(e.target.value)}
-            />
-            <Input
-              placeholder="Residential Address"
-              type="text"
-              value={address1}
-              onChange={(e) => SetAddress1(e.target.value)}
-            />
-            {/* <Input
-              placeholder="Address 2"
-              type="text"
-              value={address2}
-              onChange={(e) => SetAddress2(e.target.value)}
-            /> */}
-            <Input
-              placeholder="City"
-              type="text"
-              value={state}
-              onChange={(e) => SetState(e.target.value)}
-            />
-            <Input
-              placeholder="State"
-              type="text"
-              value={city}
-              onChange={(e) => SetCity(e.target.value)}
-            />
-            <Input
-              placeholder="Phone number"
-              type="text"
-              value={phone}
-              onChange={(e) => SetPhone(e.target.value)}
-            />
-            <Input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => SetEmail(e.target.value)}
-            />
-          </form>
+          <span>Choose your delivery option</span>
+          <div className="billing__options">
+            {" "}
+            <label className="billing__label">
+              <input
+                type="radio"
+                name="radioOption"
+                value="option1"
+                checked={selectedOption === "option1"}
+                onChange={handleChange}
+              />
+              Delivery
+            </label>
+            <label className="billing__label">
+              <input
+                type="radio"
+                name="radioOption"
+                value="option2"
+                checked={selectedOption === "option2"}
+                onChange={handleChange}
+              />
+              Pick-Up
+            </label>
+          </div>
+          {selectedOption === "option1" && (
+            <div className="billing__address">
+              <div className="billing__title">Delivery Address</div>
+              <form>
+                <Input
+                  placeholder="Fullname"
+                  type="text"
+                  value={fullname}
+                  onChange={(e) => SetFullname(e.target.value)}
+                />
+                <Input
+                  placeholder="Residential Address"
+                  type="text"
+                  value={address1}
+                  onChange={(e) => SetAddress1(e.target.value)}
+                />
+                <Input
+                  placeholder="City"
+                  type="text"
+                  value={state}
+                  onChange={(e) => SetState(e.target.value)}
+                />
+                <Input
+                  placeholder="State"
+                  type="text"
+                  value={city}
+                  onChange={(e) => SetCity(e.target.value)}
+                />
+                <Input
+                  placeholder="Phone number"
+                  type="text"
+                  value={phone}
+                  onChange={(e) => SetPhone(e.target.value)}
+                />
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => SetEmail(e.target.value)}
+                />
+              </form>
+            </div>
+          )}
+          {selectedOption === "option2" && (
+            <div className="billing__address">
+              <div className="billing__title">Pick-UP Address</div>
+              <div className="pickup">
+                <p className="pickup">
+                  {" "}
+                  Address: Plot 188 Iganmode Road Tollgate Ota
+                </p>
+                <p>Tel: 08028580080, 08164941121</p>
+              </div>
+              <form>
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => SetEmail(e.target.value)}
+                />
+              </form>
+            </div>
+          )}
+
           <div className="pay__container">
             <div className="pay__image">
               <img src="/images/visa-mastercard.png" alt="cardimg" />

@@ -4,7 +4,7 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
-  const [qty, setQty] = useState(5);
+  const [qty, setQty] = useState(1);
   const [totalProducts, setTotalProducts] = useState("")
   const [totalUsers, setTotalUsers] = useState("");
 
