@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./CartQty.css"
 import useAuth from "../hooks/useAuth";
 import AddIcon from "@mui/icons-material/Add";
@@ -9,11 +9,8 @@ import { useDispatch } from "react-redux";
 import { GrUpdate } from "react-icons/gr";
 
 function CartQty({product}) {
-  //  console.log(product);
-  //  console.log(product?._id)
-  //  const productId = product?._id;
-  // console.log('hello there');
-  const {qty,setQty} = useAuth()
+  // const {qty,setQty} = useAuth()
+  const [qty, setQty] = useState(product.qty);
    const dispatch = useDispatch();
    const handleUpdateCart = () => {
      try {
@@ -41,9 +38,6 @@ function CartQty({product}) {
    }
   };
  
-  // const handleUpdate = (type)=>{
-  //   handleQuantity(type)
-  // }
   return (
     <div className="amountContainer">
       <div className="amountContainer">
