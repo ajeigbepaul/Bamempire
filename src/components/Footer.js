@@ -6,10 +6,23 @@ import {linka,linkb} from "../utils/footerlinks"
 import MailIcon from '@mui/icons-material/Mail';
 import PhoneIcon from '@mui/icons-material/Phone';
 import HomeIcon from '@mui/icons-material/Home';
+import {RiWhatsappFill} from 'react-icons/ri'
 import {Link} from "react-router-dom"
 import "./Footer.css"
 
 function Footer() {
+  const openWhatsApp = ()=> {
+    // Replace the phone number and message with your own
+    const phoneNumber = "+2348164941121";
+    const message = "Hello, I would like to chat with you.";
+
+    // Construct the WhatsApp URL
+    const url =
+      "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+
+    // Open WhatsApp in a new tab
+    window.open(url);
+  }
   return (
     <>
       <div className="footer">
@@ -83,6 +96,10 @@ function Footer() {
         </div>
       </div>
       <div className="footer__bottom">
+        {/* <span style={{fontSize:'9px', fontWeight:'bold', color:'black'}}>Call Center</span> */}
+        <div className="whatsapp" onClick={openWhatsApp}>
+          <RiWhatsappFill size={30} className='whatsapp__icon' />
+        </div>
         {/* <button className="footerbtn"><Link to="/adminlogin">admin</Link></button> */}
         <span>
           @copyright 2022{" "}

@@ -27,7 +27,27 @@
 
 .footer__bottom{
      color: #981ca3;
-     width: 100%; padding: 15px; text-align: center; display: flex; flex-direction: column;
+     width: 100%; padding: 15px; text-align: center; display: flex; flex-direction: column; position: relative;
+}
+.whatsapp{
+    position:fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: greenyellow;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    z-index: 999;
+    padding-top:10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 9px 0px rgba(0,0,0,0.3);
+}
+.whatsapp__icon{
+    color:white;
+    transition: all ease 0.3s;
+}
+.whatsapp__icon:hover{
+    color:black;
 }
 .footer__bottom a{
     color:#981ca3;
