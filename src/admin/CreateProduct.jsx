@@ -13,6 +13,7 @@ import Sidenav from "./Sidenav";
 import "./CreateProduct.css";
 import { FaTimes } from "react-icons/fa";
 import MobileSideNav from "./MobileSidenav";
+import ColorInput from "../components/ColorInput";
 
 
 const CreateProduct = () => {
@@ -22,12 +23,28 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("");
   const [availableqty, setAvailableQty] = useState("");
   // const [discount, setDiscount] = useState("");
-  const [colors, setColors] = useState("");
+  const [colors, setColors] = useState([]);
+  const [newColor, setNewColor] = useState("");
   const [categories, setCategories] = useState("");
   const [size, setSize] = useState("");
   const [moq, setMoq] = useState("");
   const [instock, setInStock] = useState("");
   const [toggle, setToggle] = useState(false)
+
+
+  const handleAddColor = () => {
+    if (newColor.trim() !== "") {
+      setColors([...colors, newColor]);
+      setNewColor("");
+    }
+  };
+
+  const handleRemoveColor = (index) => {
+    const updatedColors = [...colors];
+    updatedColors.splice(index, 1);
+    setColors(updatedColors);
+  };
+
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
     TransformFileData(file);
@@ -68,7 +85,8 @@ const CreateProduct = () => {
       toast.success("uploaded successfully", { id: refreshToastnotify });
       setProductImg("");
       setCategories("");
-      setColors("");
+      setColors([]);
+      setNewColor("");
       setDescription("");
       setPrice("");
       setAvailableQty("");
@@ -128,11 +146,14 @@ const CreateProduct = () => {
                 onChange={(e) => setAvailableQty(e.target.value)}
                 value={availableqty}
               />
-              <Input
+              <ColorInput
                 placeholder="Colors"
                 type="text"
-                onChange={(e) => setColors(e.target.value)}
-                value={colors}
+                onChange={(e) => setNewColor(e.target.value)}
+                value={newColor}
+                colors={colors}
+                handleAddColor={handleAddColor}
+                handleRemoveColor={handleRemoveColor}
               />
               <Input
                 placeholder="MOQ(Minimum Order Quantity"

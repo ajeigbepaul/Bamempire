@@ -1,11 +1,13 @@
 .main__container {
     width: 100%;
+    height: auto;
 }
 
 .create__product {
     width: 100%;
     display: flex;
     position: relative;
+    height: auto;
 }
 
 
@@ -13,11 +15,12 @@
 .create__productSidenav {
     flex: .15;
     position: relative;
+    height: auto;
 }
 
 .create__productcontainer {
     flex: .85;
-    height: 100vh;
+    height: auto;
     display: flex;
    
 background-image: url("../../public/images/bagandshoe.jpg");

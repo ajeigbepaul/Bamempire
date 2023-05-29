@@ -1,27 +1,34 @@
-import React from 'react'
-import FitlerColor from "../components/FilterColor";
-import CartQty from './CartQty';
+import React, { useState } from "react";
+import CartQty from "./CartQty";
 import { useDispatch } from "react-redux";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { addToBasket, removeFromBasket } from "../slice/basketSlice";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import FilterColor from "./FilterColor";
+import FilterSingleColor from "./FilterSingleColor";
 // import QuantityContainer from './QuantityContainer';
-function CartProduct({product}) {
+function CartProduct({ product }) {
   // console.log(product)
-  const {_id,image,size,colors,price,instock,moq} = product
+  const { _id, image, size, colors, price, instock, moq, selectedColor } = product;
   const { qty, setQty } = useAuth();
   const dispatch = useDispatch();
-   function handleRemove() {
-     const refreshToastnotify = toast.loading("Loading...");
-     dispatch(removeFromBasket({ _id }));
-     toast.success("removed from cart!!", { id: refreshToastnotify });
-   }
-   function handleAdd() {
-     const refreshToastnotify = toast.loading("Loading...");
-     dispatch(addToBasket({ ...product, qty }));
-     toast.success("added to cart!!", { id: refreshToastnotify });
-   }
+  function handleRemove() {
+    const refreshToastnotify = toast.loading("Loading...");
+    dispatch(removeFromBasket({ _id }));
+    toast.success("removed from cart!!", { id: refreshToastnotify });
+  }
+  function handleAdd() {
+    const refreshToastnotify = toast.loading("Loading...");
+    dispatch(addToBasket({ ...product, qty}));
+    toast.success("added to cart!!", { id: refreshToastnotify });
+  }
+  // const [selectedColor, setSelectedColor] = useState("");
+
+  // const handleColorClick = (color) => {
+  //   setSelectedColor(color);
+  // };
+  console.log(colors)
   return (
     <>
       <div className="cart__product">
@@ -59,12 +66,22 @@ function CartProduct({product}) {
                 sold out
               </span>
             )}
-            <FitlerColor color={colors} />
+            <div className="cartfilter">
+              <span>Color</span>
+              <div className="cart__color">
+                {selectedColor ? (
+                  <FilterColor color={selectedColor} />
+                ) : (
+                  <FilterSingleColor color={colors} />
+                )}
+              </div>
+            </div>
             <p>
               MOQ: {moq}
               <span style={{ color: "red" }}>*</span>{" "}
               <span style={{ color: "red", fontSize: "12px" }}>
-                (You cannot buy less than this MOQ. click on update if a change is made)
+                (You cannot buy less than this MOQ. click on update if a change
+                is made)
               </span>
             </p>
             <span className="price">
@@ -103,4 +120,4 @@ function CartProduct({product}) {
   );
 }
 
-export default CartProduct
+export default CartProduct;

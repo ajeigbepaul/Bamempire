@@ -7,16 +7,17 @@ import { useDispatch } from "react-redux";
 import { addToBasket } from "../slice/basketSlice";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-hot-toast";
+import { BsHandIndexThumb } from "react-icons/bs";
 function Product({ product }) {
-   const dispatch = useDispatch();
-   const { qty } = useAuth();
-   const handleAddToCart = (e) => {
-     const addTo = toast.loading("Loading...");
-     e.preventDefault();
-     dispatch(addToBasket({ ...product, qty }));
-     toast.success("added to cart!!", { id: addTo });
-   };
-   
+  const dispatch = useDispatch();
+  const { qty } = useAuth();
+  const handleAddToCart = (e) => {
+    const addTo = toast.loading("Loading...");
+    e.preventDefault();
+    dispatch(addToBasket({ ...product, qty }));
+    toast.success("added to cart!!", { id: addTo });
+  };
+  console.log(product);
   return (
     <div className="product">
       <div className="product__circle"></div>
@@ -38,13 +39,32 @@ function Product({ product }) {
             )}
           </div>
           <div className="product__iconcontainer">
-            
+            {Array.isArray(product?.colors) && product?.colors.length === 1 ? (
+              <ShoppingBagOutlinedIcon
+                className="shopicon"
+                onClick={handleAddToCart}
+              />
+            ) : Array.isArray(product?.colors) && product?.colors.length > 0 ? (
+              <Link to={`/product/${product._id}`}>
+                <BsHandIndexThumb className="shopicon" />
+              </Link>
+            ) : (
+              ""
+            )}
 
-            <ShoppingBagOutlinedIcon
+            {/* {product?.colors.length != 0 ? (
+              <BsHandIndexThumb />
+            ) : (
+              <ShoppingBagOutlinedIcon
+                className="shopicon"
+                onClick={handleAddToCart}
+              />
+            )} */}
+
+            {/* <ShoppingBagOutlinedIcon
               className="shopicon"
               onClick={handleAddToCart}
-            />
-          
+            /> */}
           </div>
         </div>
       </div>

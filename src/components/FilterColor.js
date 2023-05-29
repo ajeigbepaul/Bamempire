@@ -1,15 +1,18 @@
 import React from 'react'
 import "./FilterColor.css"
+import { FaCheck } from 'react-icons/fa';
 
-function FilterColor({color}) {
+function FilterColor({ color, onClick, selected }) {
   return (
-    <>
-      {color == "as seen" ? (
-        <div className="colors" style={{ backgroundColor: `${color}` }}>{color}</div>
-      ) : (
-        <div className="colors" style={{ backgroundColor: `${color}` }}></div>
-      )}
-    </>
+    <div className='c'>
+      <div
+        className="colors"
+        style={{ backgroundColor: color }}
+        onClick={onClick}
+      >
+        {selected ? <FaCheck color="white" /> : ""}
+      </div>
+    </div>
   );
 }
 

@@ -1,1 +1,2 @@
-.colors{width: 20px; height: 20px; border-radius: 50%; margin: 0 3px; cursor: pointer;}
+.colors{width: 30px; height: 30px; border-radius: 7px; margin: 0 3px; cursor: pointer; display: flex; align-items: center; justify-content: center;}
+.c{display: flex; flex-direction: column;}

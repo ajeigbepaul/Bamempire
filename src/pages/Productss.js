@@ -24,7 +24,7 @@ function Productss() {
   const handleAddToCart = () => {
     const add = toast.loading("Loading...");
     if (product && qty >= product.moq) {
-      dispatch(addToBasket({ ...product, qty }));
+      dispatch(addToBasket({ ...product, qty, selectedColor }));
       toast.success("added to cart!!", { id: add });
 
       // return false;
@@ -33,8 +33,6 @@ function Productss() {
       toast.dismiss(add);
     }
   };
-  console.log(qty);
-  console.log(product?.moq);
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -60,7 +58,12 @@ function Productss() {
   useEffect(() => {
     setImages(otherimages.filter((image) => id === image?.productid));
   }, [id, otherimages]);
-  console.log(images);
+ 
+  const [selectedColor, setSelectedColor] = useState("");
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+  };
   return (
     <div className="productss__container">
       <Announcement />
@@ -110,9 +113,18 @@ function Productss() {
             <div className="productfilter">
               <span>Colors</span>
               <div className="filter__color">
-                <FilterColor color={product.colors} />
+                {product?.colors?.map((color, index) => (
+                  <FilterColor
+                    key={index}
+                    color={color}
+                    onClick={() => handleColorClick(color)}
+                    selected={selectedColor === color}
+                  />
+                ))}
               </div>
+              <p className="color__sel">Selected Color: {selectedColor}</p>
             </div>
+
             <div className="productfilter">
               <span>Size</span>
               <div className="selectprodsize">{product.size}</div>

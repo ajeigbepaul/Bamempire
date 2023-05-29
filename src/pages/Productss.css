@@ -14,9 +14,11 @@
 .productss__desc p{font-family:'Times New Roman', Times, serif; width: 80%;}
 .productss__price{width: 100%; font-weight: 400; font-size: 36px; padding: 5px 0px;}
 .productfilter__container{width: 60%; display: flex; align-items: center; justify-content: space-between;}
-.productfilter{display: flex; align-items: center; justify-content: center;}
+.productfilter{display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column;}
 .productfilter h2{font-size: 14px;}
 .filter__color{display: flex; align-items: center;}
+
+
 .selectprodsize{padding: 5px 10px; margin: 0px 5px;}
 .productaddContainer{display: flex; align-items: center; margin-top: 10px; width: 60%; justify-content: space-between;}
 .addToCart{border: none; background-color: #eabe0e;padding: 10px 10px; color: white; transition: all ease 0.5s; cursor: pointer;}

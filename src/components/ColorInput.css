@@ -1,0 +1,26 @@
+.inputcolorcontainer {
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.inputcolorcontainer input {
+    flex: 1;
+    min-width: 100%;
+    padding: 10px 10px;
+    margin: 20px 10px 0px 0px;
+    border: none;
+}
+.color__li{margin:5px; display: flex; align-items: center;}
+.color__listadd{display: flex; align-items: center; justify-content: flex-start; margin-top:5px;}
+.list__color{display: flex; background-color: white; color: orange; margin-top: 15px; margin-left:5px;padding:0px}
+
+@media screen and (max-width:480px) {
+    .eye {
+
+        right: 10%;
+        top: 50%;
+        color: grey;
+    }
+}
