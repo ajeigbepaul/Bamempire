@@ -3,6 +3,7 @@ import Announcement from "./Announcement";
 import Footer from "./Footer";
 import Input from "./Input";
 import Navbar from "./Navbar";
+import PaymentModal from "./PaymentModal"
 import { PaystackButton } from "react-paystack";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,10 +35,23 @@ function Payment() {
   const [phone, SetPhone] = useState("");
   const [email, SetEmail] = useState("");
 
+  // MODAL
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("");
+  function action() {
+     setShow(false);
+    navigate("/payment", { replace: true });
+  }
+  const handleClose = () => {
+    setShow(false);
+    // PLEASE KINDLY CHECK THIS FOR ME. NEED TO REDIRECT BACK TO WHERE IT IS NOW BEFOR THE MODAL
+    navigate("/payment");
+  };
+  
   // pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19
   // pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964
   // const publicKey = "pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964"; // Replace with your public key
-  const publicKey = "pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19";
+  // const publicKey = "pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19";
   const address = {
     fullname,
     address1,
@@ -47,13 +61,14 @@ function Payment() {
     phone,
     email,
   };
+  const reference = new Date().getTime().toString();
   // To PAYSTACK
-  const config = {
-    reference: new Date().getTime().toString(),
-    email: address.email,
-    amount: total * 100,
-    publicKey: publicKey,
-  };
+  // const config = {
+  //   reference: new Date().getTime().toString(),
+  //   email: address.email,
+  //   amount: total * 100,
+  //   publicKey: publicKey,
+  // };
   // TO ORDER DB
   const addressdata = {
     fullname,
@@ -78,14 +93,14 @@ function Payment() {
     total: total,
     address: addressdata,
     orderNumber: newProductId,
-    status: config.reference.status,
+    // status: config.reference.status,
   };
   // TO PAYMENT DB
   const paydata = {
     fullname,
     email,
     amount: total,
-    reference: config.reference,
+    reference: reference,
   };
   const PostPay = async () => {
     try {
@@ -121,30 +136,51 @@ function Payment() {
       toast.error("could not post sales try again");
     }
   };
-  const handlePaystackSuccessAction = (reference) => {
+  const handleFinished = ()=>{
+     dispatch(clearBasket());
+     navigate('/success')
+  }
+  // const handlePayment = () =>{
+  //   try {
+      
+  //   } catch (error) {
+      
+  //   }
+  // }
+  function handleShow() {
+    setShow(true);
     try {
       PostPay();
       PostOrder();
       postSales();
-      dispatch(clearBasket());
-      navigate("/success");
     } catch (error) {
       toast.error("something went wrong try again");
     }
-  };
+  }
+  // const handlePaystackSuccessAction = (reference) => {
+  //   try {
+  //     PostPay();
+  //     PostOrder();
+  //     postSales();
+  //     dispatch(clearBasket());
+  //     navigate("/success");
+  //   } catch (error) {
+  //     toast.error("something went wrong try again");
+  //   }
+  // };
   // you can call this function anything
-  const handlePaystackCloseAction = () => {
-    console.log("closed");
-  };
+  // const handlePaystackCloseAction = () => {
+  //   console.log("closed");
+  // };
 
-  const componentProps = {
-    ...config,
-    text: "Proceed to Pay",
-    onSuccess: (reference) => {
-      handlePaystackSuccessAction(reference);
-    },
-    onClose: handlePaystackCloseAction,
-  };
+  // const componentProps = {
+  //   ...config,
+  //   text: "Proceed to Pay",
+  //   onSuccess: (reference) => {
+  //     handlePaystackSuccessAction(reference);
+  //   },
+  //   onClose: handlePaystackCloseAction,
+  // };
 
   return (
     <div className="payment">
@@ -231,6 +267,12 @@ function Payment() {
               </div>
               <form>
                 <Input
+                  placeholder="Fullname"
+                  type="text"
+                  value={fullname}
+                  onChange={(e) => SetFullname(e.target.value)}
+                />
+                <Input
                   placeholder="Email"
                   type="email"
                   value={email}
@@ -244,11 +286,29 @@ function Payment() {
             <div className="pay__image">
               <img src="/images/visa-mastercard.png" alt="cardimg" />
             </div>
-            <PaystackButton className="pay__title" {...componentProps} />
-            {/* <button className='pay__title'>Proceed to Pay</button> */}
+            {/* <PaystackButton className="pay__title" {...componentProps} /> */}
+            <div>
+              <button className="pay__title" onClick={handleShow}>
+                Make Transfer
+              </button>
+              <button
+                className="pay__title"
+                onClick={handleFinished}
+              >
+                finished
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <PaymentModal
+        show={show}
+        handleClose={handleClose}
+        // setShow={setShow}
+        title="Account Details"
+        action={action}
+        actionTitle="Done"
+      />
       <Footer />
     </div>
   );

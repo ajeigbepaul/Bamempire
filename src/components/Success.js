@@ -13,7 +13,7 @@ const Success = () => {
  }
   return (
     <div className="success">
-      <h2>Your Order is being processed...</h2>
+      <h2>We would confirm your payment and process your order</h2>
       <p>Thanks you for Patronizing us</p>
       <span>You will be contacted within 24hrs</span>
       <button onClick={logout}>back Home</button>

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { userRequest } from "../requestMethods";
-import {useSelector} from "react-redux"
 import "./Tracking.css";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -13,14 +11,13 @@ const Tracking = () => {
   const userId = auth?.id
 
   const [orders, setOrders] = useState([]);
-  const Button = ({ type }) => {
-    return <button className={"widgetLgButton " + type}>{type}</button>;
-  };
+  // const Button = ({ type }) => {
+  //   return <button className={"widgetLgButton " + type}>{type}</button>;
+  // };
   useEffect(() => {
     const getOrders = async () => {
       try {
         const res = await axiosPrivate.get(`ordermes/${userId}`);
-        console.log(res.data);
         setOrders(res.data);
       } catch {}
     };

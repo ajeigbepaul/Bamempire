@@ -17,7 +17,7 @@ function Product({ product }) {
     dispatch(addToBasket({ ...product, qty }));
     toast.success("added to cart!!", { id: addTo });
   };
-  console.log(product);
+  // console.log(product);
   return (
     <div className="product">
       <div className="product__circle"></div>
