@@ -44,6 +44,7 @@ function Product({ product }) {
                 className="shopicon"
                 onClick={handleAddToCart}
               />
+              // <span>{product?.colors}</span>
             ) : Array.isArray(product?.colors) && product?.colors.length > 0 ? (
               <Link to={`/product/${product._id}`}>
                 <BsHandIndexThumb className="shopicon" />

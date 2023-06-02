@@ -3,12 +3,20 @@ import "./Products.css";
 import Product from "./Product";
 import axios from "axios";
 import { motion } from "framer-motion";
+import MoonLoader from "react-spinners/MoonLoader";
 
 function Products({ filtercolors, filtersize, sort, cat }) {
   const [products, setProducts] = useState([]);
   const [filteredproducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    // borderColor: "red",
+  };
   useEffect(() => {
     const getProduct = async () => {
+      setLoading(true)
       try {
         const res = await axios.get(
           cat
@@ -16,6 +24,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
             : `${process.env.REACT_APP_BASE_URL}/products`
         );
         setProducts(res.data);
+        setLoading(false)
       } catch (error) {}
     };
     getProduct();
@@ -60,6 +69,14 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       >
         All Products
       </motion.h2>
+      <MoonLoader
+        loading={loading}
+        size={50}
+        color="#eed961"
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        cssOverride={override}
+      />
       <div className="products__product">
         {cat
           ? filteredproducts?.map((item) => (

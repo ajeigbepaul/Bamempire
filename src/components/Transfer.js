@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {BiArrowBack} from 'react-icons/bi'
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
+import MoonLoader from "react-spinners/MoonLoader";
+
 function Transfer() {
      const axiosPrivate = useAxiosPrivate();
       const { auth } = useAuth();
@@ -16,10 +18,18 @@ function Transfer() {
       const [order, setOrder] = useState([]);
       const total = useSelector(selectTot);
       const dispatch = useDispatch()
+      const [loading, setLoading] = useState(false);
+      const override = {
+        display: "block",
+        margin: "0 auto",
+        // borderColor: "red",
+      };
        const fetchOrderNumber = useCallback(async () => {
+        setLoading(true);
          try {
            const response = await axiosPrivate.get(`ordermes/${userId}`);
            setOrder(response.data);
+            setLoading(false);
          } catch (error) {
            console.log(error);
          }
@@ -41,7 +51,17 @@ function Transfer() {
       <div className="payment__instruction">
         <div className="payment__details">
           <h2>Payment information</h2>
-          <div onClick={() => navigate(-1)} style={{ cursor: "pointer", backgroundColor:'transparent', margin:'5px 0px', width:'60px', borderRadius:'10px', border:'2px solid grey'}}>
+          <div
+            onClick={() => navigate(-1)}
+            style={{
+              cursor: "pointer",
+              backgroundColor: "transparent",
+              margin: "5px 0px",
+              width: "60px",
+              borderRadius: "10px",
+              border: "2px solid grey",
+            }}
+          >
             <BiArrowBack />
             Back
           </div>
@@ -69,7 +89,18 @@ function Transfer() {
           <h2 className="order__h">
             Amount : ₦ {total?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
           </h2>
-          <h2 className="order__h">ORDER-ID : {latestOrderNumber} </h2>
+          <h2 className="order__h">
+            ORDER-ID :{" "}
+            <MoonLoader
+              loading={loading}
+              size={15}
+              color="#eed961"
+              aria-label="Loading Spinner"
+              data-testid="loader"
+              cssOverride={override}
+            />
+            {latestOrderNumber}{" "}
+          </h2>
           <h2 className="pay__h">Please follow this instructions</h2>
           <span className="d">1. Copy the account number</span>
           <span className="d">2. User the ORDER-ID as payment naration</span>

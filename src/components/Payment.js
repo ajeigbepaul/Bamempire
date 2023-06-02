@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Input from "./Input";
 import Navbar from "./Navbar";
 import PaymentModal from "./PaymentModal"
+import {FcDisclaimer} from 'react-icons/fc'
 import { PaystackButton } from "react-paystack";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -230,6 +231,25 @@ function Payment() {
           {selectedOption === "option1" && (
             <div className="billing__address">
               <div className="billing__title">Delivery Address</div>
+              <div className="pickup">
+                <p className="pickup">
+                  {" "}
+                  Address: Plot 188 Iganmode road Opposite AUD Senior Sec.
+                  school. Tollgate Road, Sango Ota
+                </p>
+                <p>Tel: 08028580080, 08164941121</p>
+
+                <span style={{ color: "white" }}>
+                  Delivery Duration‼️
+                  <FcDisclaimer />
+                  <br></br> Please kindly note delivery within Lagos is
+                  48-72hours
+                </span>
+                <br></br>
+                <span style={{ color: "white" }}>
+                  Interstate is 3-5 working days
+                </span>
+              </div>
               <form>
                 <Input
                   placeholder="Fullname"
@@ -280,9 +300,16 @@ function Payment() {
                   school. Tollgate Road, Sango Ota
                 </p>
                 <p>Tel: 08028580080, 08164941121</p>
-                <span style={{color:'white'}}>
-                  Delivery Duration‼️ Please kindly note delivery within Lagos
-                  is 48-72hours Interstate is 3-5 working days
+
+                <span style={{ color: "white" }}>
+                  Delivery Duration‼️
+                  <FcDisclaimer />
+                  <br></br> Please kindly note delivery within Lagos is
+                  48-72hours
+                </span>
+                <br></br>
+                <span style={{ color: "white" }}>
+                  Interstate is 3-5 working days
                 </span>
               </div>
               <form>
