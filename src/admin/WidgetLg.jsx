@@ -62,8 +62,10 @@ export default function WidgetLg() {
       // Fetch the updated products after the deletion is done
       const updatedOrders = await fetchOrders();
       setOrders(updatedOrders);
+      toast.dismiss(refreshToastnotify);
     } catch (error) {
       toast.error("something went wrong!");
+      
     }
   };
   

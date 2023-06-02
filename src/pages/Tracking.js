@@ -22,7 +22,7 @@ const Tracking = () => {
       } catch {}
     };
     getOrders();
-  }, [userId]);
+  }, [userId, axiosPrivate]);
   console.log(orders)
   return (
     <>

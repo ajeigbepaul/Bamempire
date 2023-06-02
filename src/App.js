@@ -27,6 +27,7 @@ import ForgetPassword from "./components/ForgetPassword";
 import WidgetSm from "./admin/WidgetSm";
 import useAuth from "./hooks/useAuth";
 import LogoutOnTokenExpiration from "./components/LogoutTokenExpiration";
+import Transfer from "./components/Transfer";
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
         <Route path="notallowed" exact element={<NotAllowed />} />
         <Route element={<ProtectedRoute allowedRoles={[1001]} />}>
           <Route path="/pay" element={<Paystack />} />
+          <Route path="/transfer" element={<Transfer/>}/>
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
           <Route path="/trackorder" element={<Tracking />} />

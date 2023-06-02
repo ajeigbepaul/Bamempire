@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Announcement from "./Announcement";
 import Footer from "./Footer";
 import Input from "./Input";
@@ -40,7 +40,8 @@ function Payment() {
   const [title, setTitle] = useState("");
   function action() {
      setShow(false);
-    navigate("/payment", { replace: true });
+     dispatch(clearBasket());
+     navigate("/success", { replace: true });
   }
   const handleClose = () => {
     setShow(false);
@@ -78,21 +79,40 @@ function Payment() {
     phone,
     email,
   };
-  //
+  //GENERATE RANGOM HEX NUMEBER EG 001
+  // const [hexNumber, setHexNumber] = useState("");
+
+  // useEffect(() => {
+  //   const generateRandomHex = () => {
+  //     let counter = 1;
+  //     return function () {
+  //       const hex = counter.toString(16).padStart(3, "0");
+  //       counter++;
+  //       return hex;
+  //     };
+  //   };
+
+  //   const getRandomHex = generateRandomHex();
+
+  //  if (show) {
+  //    setHexNumber(getRandomHex());
+  //  }
+  // }, [show]);
   // Generate a random 7-digit hexadecimal number
   const randomHex = Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, "0");
-  const pref = "BAM";
-  const sufix = "ORD";
+  const pref = "bam";
+  const sufix = "ord";
   const newProductId = pref + randomHex + sufix;
+  // console.log(newProductId)
   // const products = {}
   const orderdata = {
     userId: auth?.id,
     products: items,
     total: total,
     address: addressdata,
-    orderNumber: newProductId,
+    // orderNumber: newProductId,
     // status: config.reference.status,
   };
   // TO PAYMENT DB
@@ -136,23 +156,18 @@ function Payment() {
       toast.error("could not post sales try again");
     }
   };
-  const handleFinished = ()=>{
-     dispatch(clearBasket());
-     navigate('/success')
-  }
-  // const handlePayment = () =>{
-  //   try {
-      
-  //   } catch (error) {
-      
-  //   }
+  // const handleFinished = ()=>{
+  //    dispatch(clearBasket());
+  //    navigate('/success')
   // }
-  function handleShow() {
-    setShow(true);
+  const handleShow=()=> {
+    // setShow(true);
     try {
       PostPay();
       PostOrder();
       postSales();
+      navigate('/transfer')
+
     } catch (error) {
       toast.error("something went wrong try again");
     }
@@ -261,9 +276,14 @@ function Payment() {
               <div className="pickup">
                 <p className="pickup">
                   {" "}
-                  Address: Plot 188 Iganmode Road Tollgate Ota
+                  Address: Plot 188 Iganmode road Opposite AUD Senior Sec.
+                  school. Tollgate Road, Sango Ota
                 </p>
                 <p>Tel: 08028580080, 08164941121</p>
+                <span style={{color:'white'}}>
+                  Delivery Duration‼️ Please kindly note delivery within Lagos
+                  is 48-72hours Interstate is 3-5 working days
+                </span>
               </div>
               <form>
                 <Input
@@ -291,12 +311,9 @@ function Payment() {
               <button className="pay__title" onClick={handleShow}>
                 Make Transfer
               </button>
-              <button
-                className="pay__title"
-                onClick={handleFinished}
-              >
+              {/* <button className="pay__title" onClick={()=>navigate('/transfer')}>
                 finished
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -307,7 +324,7 @@ function Payment() {
         // setShow={setShow}
         title="Account Details"
         action={action}
-        actionTitle="Done"
+        actionTitle="Pay"
       />
       <Footer />
     </div>
