@@ -309,7 +309,7 @@ function Payment() {
             {/* <PaystackButton className="pay__title" {...componentProps} /> */}
             <div>
               <button className="pay__title" onClick={handleShow}>
-                Make Transfer
+                Proceed to Pay
               </button>
               {/* <button className="pay__title" onClick={()=>navigate('/transfer')}>
                 finished
