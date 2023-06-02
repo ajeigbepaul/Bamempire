@@ -4,9 +4,7 @@ import "./Announcement.css"
 function Announcement() {
   return (
     <div className="announcement">
-      <span className="announce">
-        Super Deal Free Shipping over an order above #25,000
-      </span>
+      <span className="announce">Free gift in all orders above #15,000</span>
     </div>
   );
 }
