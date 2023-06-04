@@ -179,6 +179,7 @@ export default function WidgetLg() {
                 <tr>
                   <th>S/N</th>
                   <th>OrderId</th>
+                  <th>Name</th>
                   <th>Items</th>
                   <th>Total</th>
                   <th>Status</th>
@@ -189,12 +190,14 @@ export default function WidgetLg() {
                 </tr>
               </thead>
               <tbody>
+                {console.log(orders)}
                 {currentItem.length > 0 ? (
                   currentItem?.map((item, i) => {
                     return (
                       <tr key={item._id}>
                         <td>{i + 1 + currentPage * PerItem}</td>
                         <td>{item.orderNumber}</td>
+                        <td>{item?.address?.fullname}</td>
                         <td className="items">
                           {item.products.map((order, i) => (
                             <div key={i} className="widgetLgitem">
