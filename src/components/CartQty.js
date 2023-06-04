@@ -10,7 +10,10 @@ import { GrUpdate } from "react-icons/gr";
 
 function CartQty({product}) {
   // const {qty,setQty} = useAuth()
-  const [qty, setQty] = useState(product.qty);
+  console.log(product)
+ 
+   const [qty, setQty] = useState(product.qty);
+    console.log(qty);
    const dispatch = useDispatch();
    const handleUpdateCart = () => {
      try {

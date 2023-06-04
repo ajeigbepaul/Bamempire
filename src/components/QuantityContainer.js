@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import "./Quantity.css"
 import useAuth from "../hooks/useAuth";
 
 
-function QuantityContainer() {
-  const { qty, setQty } = useAuth();
+function QuantityContainer({product,setQty,qty}) {
+  console.log(product)
+  // const { qty, setQty } = useAuth();
+  // const [qty, setQty] = useState(1);
  const handleQuantity = (type) => {
   if (type === "desc") {
     if (qty >= 1) {

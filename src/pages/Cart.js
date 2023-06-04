@@ -27,7 +27,7 @@ function Cart() {
        const quantity = parseInt(item?.qty);
 
       // Check if moq is equal to quantity
-      if (moq !== quantity) {
+      if (quantity < moq) {
         return false;
       }
     }

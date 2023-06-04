@@ -12,7 +12,8 @@ import { addToBasket } from "../slice/basketSlice";
 import { toast } from "react-hot-toast";
 import useAxiosPrivate from "../hooks/useAxios";
 function Productss() {
-  const { qty, setQty } = useAuth();
+  // const { qty, setQty } = useAuth();
+   const [qty, setQty] = useState(1);
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -131,7 +132,7 @@ function Productss() {
             </div>
           </div>
           <div className="productaddContainer">
-            <QuantityContainer />
+            <QuantityContainer product={product} setQty={setQty} qty={qty}/>
             <div className="addToCart" onClick={handleAddToCart}>
               ADD TO CART
             </div>
