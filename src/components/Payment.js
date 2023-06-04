@@ -3,8 +3,8 @@ import Announcement from "./Announcement";
 import Footer from "./Footer";
 import Input from "./Input";
 import Navbar from "./Navbar";
-import PaymentModal from "./PaymentModal"
-import {FcDisclaimer} from 'react-icons/fc'
+import PaymentModal from "./PaymentModal";
+import { FcDisclaimer } from "react-icons/fc";
 import { PaystackButton } from "react-paystack";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +24,9 @@ function Payment() {
   const total = useSelector(selectTot);
   // chose the div to show based on the option choosen
   const [selectedOption, setSelectedOption] = useState("option1");
-   const handleChange = (e) => {
-     setSelectedOption(e.target.value);
-   };
+  const handleChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
   // const total = useSelector(selectTotal)
   const [fullname, SetFullname] = useState("");
   const [address1, SetAddress1] = useState("");
@@ -35,21 +35,22 @@ function Payment() {
   const [city, SetCity] = useState("");
   const [phone, SetPhone] = useState("");
   const [email, SetEmail] = useState("");
+  const [customize, setCustomize] = useState("");
 
   // MODAL
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   function action() {
-     setShow(false);
-     dispatch(clearBasket());
-     navigate("/success", { replace: true });
+    setShow(false);
+    dispatch(clearBasket());
+    navigate("/success", { replace: true });
   }
   const handleClose = () => {
     setShow(false);
     // PLEASE KINDLY CHECK THIS FOR ME. NEED TO REDIRECT BACK TO WHERE IT IS NOW BEFOR THE MODAL
     navigate("/payment");
   };
-  
+
   // pk_live_5e1f2acad42dd3d6f2dd66bd7da82bc76370ef19
   // pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964
   // const publicKey = "pk_test_bf02b912b6e3eacfbeb152117db46ef994d94964"; // Replace with your public key
@@ -113,6 +114,7 @@ function Payment() {
     products: items,
     total: total,
     address: addressdata,
+    customize: customize,
     // orderNumber: newProductId,
     // status: config.reference.status,
   };
@@ -161,18 +163,17 @@ function Payment() {
   //    dispatch(clearBasket());
   //    navigate('/success')
   // }
-  const handleShow=()=> {
+  const handleShow = () => {
     // setShow(true);
     try {
       PostPay();
       PostOrder();
       postSales();
-      navigate('/transfer')
-
+      navigate("/transfer");
     } catch (error) {
       toast.error("something went wrong try again");
     }
-  }
+  };
   // const handlePaystackSuccessAction = (reference) => {
   //   try {
   //     PostPay();
@@ -287,6 +288,13 @@ function Payment() {
                   value={email}
                   onChange={(e) => SetEmail(e.target.value)}
                 />
+                <textarea
+                  rows={5}
+                  cols={53}
+                  placeholder="Tell us if there is anything else you want with this order"
+                  className="more"
+                  onChange={(e) => setCustomize(e.target.value)}
+                />
               </form>
             </div>
           )}
@@ -324,6 +332,13 @@ function Payment() {
                   type="email"
                   value={email}
                   onChange={(e) => SetEmail(e.target.value)}
+                />
+                <textarea
+                  rows={5}
+                  cols={53}
+                  placeholder="Tell us if there is anything else you want with this order"
+                  className="more"
+                  onChange={(e) => setCustomize(e.target.value)}
                 />
               </form>
             </div>

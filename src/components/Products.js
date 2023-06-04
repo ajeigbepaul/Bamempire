@@ -19,6 +19,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
       setLoading(true)
       try {
         const res = await axios.get(
+          
           cat
             ? `${process.env.REACT_APP_BASE_URL}/products?category=${cat}`
             : `${process.env.REACT_APP_BASE_URL}/products`
@@ -46,16 +47,33 @@ function Products({ filtercolors, filtersize, sort, cat }) {
     }
   }, [cat, filtersize, products]);
   // SORT PRODUCT
+  // useEffect(() => {
+  //   if (sort === "newest") {
+  //     setFilteredProducts(
+  //       products.sort(
+  //         (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+  //       )
+  //     );
+  //   } else if (sort === "asc") {
+  //     setFilteredProducts(products.sort((a, b) => a.price - b.price));
+  //   } else {
+  //     setFilteredProducts(products.sort((a, b) => b.price - a.price));
+  //   }
+  // }, [cat, sort, products]);
   useEffect(() => {
     if (sort === "newest") {
-      setFilteredProducts(products.sort((a, b) => a.createdAt - b.createdAt));
+      setFilteredProducts(
+        products.sort(
+          (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+        )
+      );
     } else if (sort === "asc") {
       setFilteredProducts(products.sort((a, b) => a.price - b.price));
-    } else {
+    } else if (sort === "desc") {
       setFilteredProducts(products.sort((a, b) => b.price - a.price));
     }
   }, [cat, sort, products]);
-
+  // console.log(products)
   return (
     <div className="products">
       <motion.h2
@@ -83,7 +101,7 @@ function Products({ filtercolors, filtersize, sort, cat }) {
               <Product key={item._id} product={item} />
             ))
           : products
-              .slice(0, 36)
+              .slice(0, 72)
               ?.map((item) => <Product key={item._id} product={item} />)}
       </div>
     </div>

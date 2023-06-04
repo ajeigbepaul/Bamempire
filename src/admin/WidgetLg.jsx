@@ -52,20 +52,23 @@ export default function WidgetLg() {
     };
   }, [axiosPrivate]);
   const handleDelete = async (id) => {
-    alert("do you want to delete this order");
-    try {
-      const refreshToastnotify = toast.loading("Loading...");
-      await axiosPrivate.delete(`/ordermes/${id}`);
-      toast.success("deleted successfully.", {
-        id: refreshToastnotify,
-      });
-      // Fetch the updated products after the deletion is done
-      const updatedOrders = await fetchOrders();
-      setOrders(updatedOrders);
-      toast.dismiss(refreshToastnotify);
-    } catch (error) {
-      toast.error("something went wrong!");
-      
+    const check = prompt("do you want to delete this order? YES or NO");
+    if(check){
+
+      try {
+        const refreshToastnotify = toast.loading("Loading...");
+        await axiosPrivate.delete(`/ordermes/${id}`);
+        toast.success("deleted successfully.", {
+          id: refreshToastnotify,
+        });
+        // Fetch the updated products after the deletion is done
+        const updatedOrders = await fetchOrders();
+        setOrders(updatedOrders);
+        toast.dismiss(refreshToastnotify);
+      } catch (error) {
+        toast.error("something went wrong!");
+        
+      }
     }
   };
   
@@ -171,7 +174,7 @@ export default function WidgetLg() {
         </span>
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th>S/N</th>
@@ -192,10 +195,10 @@ export default function WidgetLg() {
                       <tr key={item._id}>
                         <td>{i + 1 + currentPage * PerItem}</td>
                         <td>{item.orderNumber}</td>
-                        <td>
+                        <td className="items">
                           {item.products.map((order, i) => (
                             <div key={i} className="widgetLgitem">
-                              <h6>{order.description} </h6>
+                              <span>{order.description} </span>
                               <span>{order.qty} Qty</span>
                             </div>
                           ))}

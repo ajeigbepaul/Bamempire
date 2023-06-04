@@ -61,6 +61,7 @@
 .widgetLgStatus button{padding: 5px 12px; outline: none; border: none; background-color: plum; color: white; margin:2px; cursor: pointer;}
 .widgetLgitem{display: flex; justify-content: space-between;align-items: center;}
 .widgetLgitem h6{font-size: 12px !important;}
+.items{width: 200px;}
 .widgetLgProduct{
   width: 200px;
   font-weight: 300;
