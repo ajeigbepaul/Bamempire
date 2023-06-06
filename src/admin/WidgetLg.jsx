@@ -4,7 +4,7 @@ import useAxiosPrivate from "../hooks/useAxios";
 import "./widgetLg.css";
 import moment from "moment";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { FaCheck } from "react-icons/fa";
 
@@ -174,7 +174,7 @@ export default function WidgetLg() {
         </span>
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th>S/N</th>
@@ -216,6 +216,11 @@ export default function WidgetLg() {
                           )}
                         </td>
                         <td className="text-end btnwhite">
+                          <Link to={`/order/${item?._id}`}
+                            className="btn btn-sm rounded font-sm btn6 mx-1"
+                          >
+                            View
+                          </Link>
                           <button
                             onClick={() => handleDelete(item._id)}
                             className="btn btn-sm rounded font-sm btn5 mx-1"

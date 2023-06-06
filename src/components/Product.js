@@ -52,20 +52,6 @@ function Product({ product }) {
             ) : (
               ""
             )}
-
-            {/* {product?.colors.length != 0 ? (
-              <BsHandIndexThumb />
-            ) : (
-              <ShoppingBagOutlinedIcon
-                className="shopicon"
-                onClick={handleAddToCart}
-              />
-            )} */}
-
-            {/* <ShoppingBagOutlinedIcon
-              className="shopicon"
-              onClick={handleAddToCart}
-            /> */}
           </div>
         </div>
       </div>

@@ -11,9 +11,6 @@ const Tracking = () => {
   const userId = auth?.id
 
   const [orders, setOrders] = useState([]);
-  // const Button = ({ type }) => {
-  //   return <button className={"widgetLgButton " + type}>{type}</button>;
-  // };
   useEffect(() => {
     const getOrders = async () => {
       try {

@@ -28,6 +28,7 @@ import WidgetSm from "./admin/WidgetSm";
 import useAuth from "./hooks/useAuth";
 import LogoutOnTokenExpiration from "./components/LogoutTokenExpiration";
 import Transfer from "./components/Transfer";
+import OrderDetails from "./admin/OrderDetails";
 
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
         <Route path="notallowed" exact element={<NotAllowed />} />
         <Route element={<ProtectedRoute allowedRoles={[1001]} />}>
           <Route path="/pay" element={<Paystack />} />
-          <Route path="/transfer" element={<Transfer/>}/>
+          <Route path="/transfer" element={<Transfer />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
           <Route path="/trackorder" element={<Tracking />} />
@@ -76,6 +77,7 @@ function App() {
           <Route path="/createproducts" element={<CreateProduct />} />
           <Route path="/product" element={<Products />} />
           <Route path="/orders" element={<WidgetLg />} />
+          <Route path="/order/:id" element={<OrderDetails />} />
           <Route path="/allusers" element={<WidgetSm />} />
           {/* <Route path="/uploadimage" element={<CreateImages />} /> */}
           <Route path="images/:id" element={<CreateImages />} />
