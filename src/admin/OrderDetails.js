@@ -18,7 +18,7 @@ function OrderDetails() {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await axiosPrivate.get(`ordermes/${id}`);
+        const res = await axiosPrivate.get(`ordermes/order/${id}`);
         setOrder(res.data);
       } catch {}
     };
