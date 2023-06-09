@@ -80,27 +80,7 @@ function Payment() {
     city,
     phone,
     email,
-  };
-  //GENERATE RANGOM HEX NUMEBER EG 001
-  // const [hexNumber, setHexNumber] = useState("");
-
-  // useEffect(() => {
-  //   const generateRandomHex = () => {
-  //     let counter = 1;
-  //     return function () {
-  //       const hex = counter.toString(16).padStart(3, "0");
-  //       counter++;
-  //       return hex;
-  //     };
-  //   };
-
-  //   const getRandomHex = generateRandomHex();
-
-  //  if (show) {
-  //    setHexNumber(getRandomHex());
-  //  }
-  // }, [show]);
-  // Generate a random 7-digit hexadecimal number
+  }
   const randomHex = Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, "0");
@@ -240,15 +220,15 @@ function Payment() {
                 </p>
                 <p>Tel: 08028580080, 08164941121</p>
 
-                <span style={{ color: "white" }}>
-                  Delivery Duration‼️
+                <span style={{ color: "white", fontWeight: "500" }}>
+                  DELIVERY DURATION‼️
                   <FcDisclaimer />
-                  <br></br> Please kindly note delivery within Lagos is
-                  48-72hours
+                  <br></br> PLEASE KINDLY NOTE THAT DELIVERY WITHING LAGOS IS
+                  48-72HOURS
                 </span>
                 <br></br>
                 <span style={{ color: "white" }}>
-                  Interstate is 3-5 working days
+                  INTERSTATE IS 3-5 WORKING DAYS
                 </span>
               </div>
               <form>
@@ -309,15 +289,15 @@ function Payment() {
                 </p>
                 <p>Tel: 08028580080, 08164941121</p>
 
-                <span style={{ color: "white" }}>
-                  Delivery Duration‼️
+                <span style={{ color: "white", fontWeight: "500" }}>
+                  DELIVERY DURATION‼️
                   <FcDisclaimer />
-                  <br></br> Please kindly note delivery within Lagos is
-                  48-72hours
+                  <br></br> PLEASE KINDLY NOTE THAT DELIVERY WITHING LAGOS IS
+                  48-72HOURS
                 </span>
                 <br></br>
                 <span style={{ color: "white" }}>
-                  Interstate is 3-5 working days
+                  INTERSTATE IS 3-5 WORKING DAYS
                 </span>
               </div>
               <form>

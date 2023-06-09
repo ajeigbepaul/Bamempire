@@ -24,27 +24,44 @@ function Transfer() {
         margin: "0 auto",
         // borderColor: "red",
       };
-       const fetchOrderNumber = useCallback(async () => {
-        setLoading(true);
-         try {
-           const response = await axiosPrivate.get(`ordermes/${userId}`);
-           setOrder(response.data);
-            setLoading(false);
-         } catch (error) {
-           console.log(error);
-         }
-       }, [userId, axiosPrivate]);
+
        useEffect(() => {
-         fetchOrderNumber();
-       }, [userId, fetchOrderNumber]);
+         const fetchOrders = async () => {
+          setLoading(true);
+           try {
+             const response = await axiosPrivate.get(`/ordermes/user/${userId}`);
+             setOrder(response.data);
+             setLoading(false);
+           } catch (error) {
+             console.log(error);
+           }
+         };
+
+         fetchOrders();
+       }, [userId]);
+      //  const fetchOrderNumber = useCallback(async () => {
+      //   setLoading(true);
+      //    try {
+      //      const response = await axiosPrivate.get(`ordermes/user/${Id}`);
+      //      console.log(response)
+      //      setOrder(response.data);
+            
+      //    } catch (error) {
+      //      console.log(error);
+      //    }
+      //  }, [Id, axiosPrivate]);
+      //  useEffect(() => {
+      //    fetchOrderNumber();
+      //  }, [Id, fetchOrderNumber]);
 
        const handlePay = ()=>{
          dispatch(clearBasket());
          navigate("/success", { replace: true });
        }
-    console.log(order)
+      console.log(order)
       const latestOrderNumber = order?.map((orderItem) => orderItem?.orderNumber)[0];
-     const navigate = useNavigate()
+      console.log(latestOrderNumber)
+      const navigate = useNavigate()
   return (
     <div>
       <Navbar />
@@ -90,16 +107,7 @@ function Transfer() {
             Amount : ₦ {total?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
           </h2>
           <h2 className="order__h">
-            ORDER-ID :{" "}
-            <MoonLoader
-              loading={loading}
-              size={15}
-              color="#eed961"
-              aria-label="Loading Spinner"
-              data-testid="loader"
-              cssOverride={override}
-            />
-            {latestOrderNumber}{" "}
+            ORDER-ID :{latestOrderNumber}
           </h2>
           <h2 className="pay__h">Please follow this instructions</h2>
           <span className="d">1. Copy the account number</span>
