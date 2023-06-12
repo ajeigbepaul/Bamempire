@@ -34,6 +34,7 @@ background-image: url("../../public/images/bagandshoe.jpg");
     width: 50%;
     /* background-color: orange; */
 }
+.curp{cursor: pointer;}
 
 .create__preview {
     width: 25%;

@@ -14,7 +14,7 @@ import "./CreateProduct.css";
 import { FaTimes } from "react-icons/fa";
 import MobileSideNav from "./MobileSidenav";
 import ColorInput from "../components/ColorInput";
-
+import SizeInput from "../components/SizeInput";
 
 const CreateProduct = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -29,14 +29,42 @@ const CreateProduct = () => {
   const [size, setSize] = useState("");
   const [moq, setMoq] = useState("");
   const [instock, setInStock] = useState("");
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
+  const [newSize, setNewSize] = useState("");
+  const [selectedSizes, setSelectedSizes] = useState([]);
 
+  // const handleOptionChange = (event) => {
+  //   const optionValue = event.target.value;
+  //   if (event.target.checked) {
+  //     setSelectedSizes((prevSelectedOptions) => [
+  //       ...prevSelectedOptions,
+  //       optionValue,
+  //     ]);
+  //   } else {
+  //     setSelectedSizes((prevSelectedOptions) =>
+  //       prevSelectedOptions.filter((option) => option !== optionValue)
+  //     );
+  //   }
+  // };
 
   const handleAddColor = () => {
     if (newColor.trim() !== "") {
       setColors([...colors, newColor]);
       setNewColor("");
     }
+  };
+
+  const handleAddSize = () => {
+    if (newSize.trim() !== "") {
+      setSelectedSizes([...selectedSizes, newSize]);
+      setNewSize("");
+    }
+  };
+
+  const handleRemoveSize = (index) => {
+    const updatedSizes = [...selectedSizes];
+    updatedSizes.splice(index, 1);
+    setSelectedSizes(updatedSizes);
   };
 
   const handleRemoveColor = (index) => {
@@ -69,11 +97,12 @@ const CreateProduct = () => {
       colors,
       categories,
       size,
+      selectedSizes,
       instock,
       moq,
       image: productImg,
     });
-    
+
     const result = response.data;
     return result;
   };
@@ -92,12 +121,12 @@ const CreateProduct = () => {
       setAvailableQty("");
       // setDiscount("");
       setSize("");
+      setSelectedSizes([]);
       setInStock("");
       setMoq("");
     } catch (error) {
-      toast.error(error)
+      toast.error(error);
     }
-    
   };
 
   return (
@@ -161,10 +190,7 @@ const CreateProduct = () => {
                 onChange={(e) => setMoq(e.target.value)}
                 value={moq}
               />
-              <SelectSize
-                onChange={(e) => setSize(e.target.value)}
-                value={size}
-              />
+              {/* <SelectSize onChange={handleSelectChange} value={selectedSizes} selectedSizes={selectedSizes} /> */}
               <SelectInput
                 onChange={(e) => setCategories(e.target.value)}
                 value={categories}
@@ -173,6 +199,132 @@ const CreateProduct = () => {
                 onChange={(e) => setInStock(e.target.value)}
                 value={instock}
               />
+              <SizeInput
+                placeholder="Sizes"
+                type="text"
+                onChange={(e) => setNewSize(e.target.value)}
+                value={newSize}
+                selectedSizes={selectedSizes}
+                handleAddSize={handleAddSize}
+                handleRemoveSize={handleRemoveSize}
+              />
+              {/* <div className="bg-white">Size Chart</div>
+              <div className="col-md-12 col-sm-12 d-flex bg-success flex-wrap">
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="S"
+                    checked={selectedSizes.includes("S")}
+                    onChange={handleOptionChange}
+                  />
+                  S
+                </label>
+
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="M"
+                    checked={selectedSizes.includes("M")}
+                    onChange={handleOptionChange}
+                  />
+                  M
+                </label>
+
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="L"
+                    checked={selectedSizes.includes("L")}
+                    onChange={handleOptionChange}
+                  />
+                  L
+                </label>
+
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="XL"
+                    checked={selectedSizes.includes("XL")}
+                    onChange={handleOptionChange}
+                  />
+                  XL
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="XXL"
+                    checked={selectedSizes.includes("XXL")}
+                    onChange={handleOptionChange}
+                  />
+                  XXL
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="25-30"
+                    checked={selectedSizes.includes("25-30")}
+                    onChange={handleOptionChange}
+                  />
+                  25-30
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="31-36"
+                    checked={selectedSizes.includes("31-36")}
+                    onChange={handleOptionChange}
+                  />
+                  31-36
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="35-41"
+                    checked={selectedSizes.includes("35-41")}
+                    onChange={handleOptionChange}
+                  />
+                  35-41
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="37-42"
+                    checked={selectedSizes.includes("37-42")}
+                    onChange={handleOptionChange}
+                  />
+                  37-42
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="39-44"
+                    checked={selectedSizes.includes("39-44")}
+                    onChange={handleOptionChange}
+                  />
+                  39-44
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="40-47"
+                    checked={selectedSizes.includes("40-47")}
+                    onChange={handleOptionChange}
+                  />
+                  40-47
+                </label>
+                <label className="d-flex align-items-center mx-2">
+                  <input
+                    type="checkbox"
+                    value="50-62"
+                    checked={selectedSizes.includes("50-62")}
+                    onChange={handleOptionChange}
+                  />
+                  50-62
+                </label>
+              </div> */}
+              {/* <div className="bg-warning">
+                Selected options: {selectedSizes.map((option) => `${option} `)}
+              </div> */}
               <PrimaryButton type="submit">Creat product</PrimaryButton>
             </form>
           </div>

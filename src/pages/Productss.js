@@ -125,14 +125,22 @@ function Productss() {
               </div>
               <p className="color__sel">Selected Color: {selectedColor}</p>
             </div>
-
-            <div className="productfilter">
-              <span>Size</span>
-              <div className="selectprodsize">{product.size}</div>
-            </div>
+            {product.size ? (
+              <div className="productcfilter">
+                <span>Size</span>
+                <div className="selectprodsize">{product.size}</div>
+              </div>
+            ) : (
+              <div className="productfilter">
+                <span>Size</span>
+                {product?.selectedSizes?.map((selsize, i) => (
+                  <div className="selectmultsize" key={i}>{selsize}</div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="productaddContainer">
-            <QuantityContainer product={product} setQty={setQty} qty={qty}/>
+            <QuantityContainer product={product} setQty={setQty} qty={qty} />
             <div className="addToCart" onClick={handleAddToCart}>
               ADD TO CART
             </div>

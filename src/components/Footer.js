@@ -78,7 +78,8 @@ function Footer() {
           <h2>Contact</h2>
           <span>
             <HomeIcon />
-            Address: Plot 188 Iganmode Road Tollgate Ota
+            Address: Plot 188 Iganmode road Opposite AUD Senior Sec. school.
+            Tollgate Road, Sango Ota
           </span>
           <span>
             <PhoneIcon />
@@ -86,7 +87,7 @@ function Footer() {
           </span>
           <span>
             <MailIcon />
-            Email: email@yahoo.com
+            Email: bamempire@yahoo.com
           </span>
           <div className="footer__img">
             <div className="footer__imgcont">
@@ -98,7 +99,7 @@ function Footer() {
       <div className="footer__bottom">
         {/* <span style={{fontSize:'9px', fontWeight:'bold', color:'black'}}>Call Center</span> */}
         <div className="whatsapp" onClick={openWhatsApp}>
-          <RiWhatsappFill size={30} className='whatsapp__icon' />
+          <RiWhatsappFill size={30} className="whatsapp__icon" />
         </div>
         {/* <button className="footerbtn"><Link to="/adminlogin">admin</Link></button> */}
         <span>

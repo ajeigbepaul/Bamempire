@@ -13,7 +13,7 @@ export default function AllProducts() {
   const { setTotalProducts } = useAuth();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
- const [updatedStatus, setUpdatedStatus] = useState([]);
+  const [updatedStatus, setUpdatedStatus] = useState([]);
   const [PerItem, setPerItem] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -43,6 +43,7 @@ export default function AllProducts() {
     };
   }, []);
   setTotalProducts(products?.length);
+  console.log(products)
   const handleDelete = async (id) => {
     alert("do you want to delete this product?");
     try {
@@ -58,30 +59,57 @@ export default function AllProducts() {
       toast.error("something went wrong!");
     }
   };
-  const handleStockStatus = async (id) => {
-    try {
-      const refreshToastnotify = toast.loading("Loading...");
 
-      // Update the stock status of the product on the server
-      await axiosPrivate.put(`/products/${id}`, { instock: "no" });
-
-      // Update the stock status in the local state immediately
-      setProducts((prevProducts) =>
-        prevProducts.map((product) => {
-          if (product.id === id) {
-            return { ...product, instock: "no" };
-          }
-          return product;
-        })
-      );
-      toast.success("Status updated to not in stock!", {
-        id: refreshToastnotify,
-      });
-    } catch (error) {
-      toast.error("Something went wrong!");
-    }
-  };
+  // const handleStockStatus = async (id) => {
+  //   try {
+  //     const refreshToastnotify = toast.loading("Loading...");
+  //     await axiosPrivate.put(`/products/${id}`, { instock: "no" });
+  //     setProducts((prevProducts) =>
+  //       prevProducts.map((product) => {
+  //         if (product.id === id) {
+  //           return { ...product, instock: "no" };
+  //         }
+  //         return product;
+  //       })
+  //     );
+  //     toast.success("Status updated to not in stock!", {
+  //       id: refreshToastnotify,
+  //     });
+  //   } catch (error) {
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
  
+ const toggleStatus = async (id) => {
+   try {
+     const updatedProducts = products.map((product) => {
+       if (product._id === id) {
+         const newStatus = product.instock === "yes" ? "no" : "yes";
+         return { ...product, instock: newStatus };
+       } else {
+         return product;
+       }
+     });
+
+     setProducts(updatedProducts);
+
+     const updatedProduct = updatedProducts.find(
+       (product) => product._id === id
+     );
+
+     if (updatedProduct) {
+       const response = await axiosPrivate.put(
+         `products/${id}`,
+         updatedProduct
+       );
+       console.log("Status updated successfully:", response.data);
+     } else {
+       console.log("Product not found");
+     }
+   } catch (error) {
+     console.log("Error updating status:", error);
+   }
+ };
 
   return (
     <div className="widgetLg">
@@ -92,7 +120,7 @@ export default function AllProducts() {
       </span>
 
       <h3 className="widgetLgTotalqty">Stock Quantity:{products.length}</h3>
-      
+
       <div className="card-body">
         <div className="table-responsive">
           <table className="table">
@@ -143,19 +171,14 @@ export default function AllProducts() {
                           </button>
                         </Link>
                       </td>
-                      <td className="widgetLgStatus">
+                      <td className="widgetLgStatus d-flex align-items-center justify-content-center">
                         <button
-                          type="submit"
-                          onClick={() => handleStockStatus(product._id)}
-                          className="btn3"
+                          onClick={() => toggleStatus(product._id)}
+                          className="btn btn-sm toggle_btn"
                         >
-                          inStock?
-                          <span className="instc">
-                            {updatedStatus.includes(product.id)
-                              ? "No"
-                              : product.instock}
-                          </span>
+                          Toggle
                         </button>
+                        <p>{product.instock}</p>
                       </td>
                     </tr>
                   );
@@ -195,6 +218,9 @@ export default function AllProducts() {
                 <option value="50">50</option>
                 <option value="75">75</option>
                 <option value="100">100</option>
+                <option value="100">150</option>
+                <option value="100">200</option>
+                <option value="100">250</option>
               </select>
             </div>
             <div className="col-auto"> of {currentItem.length} entries</div>

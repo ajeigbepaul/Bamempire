@@ -25,8 +25,11 @@ function Product({ product }) {
         <Link to={`/product/${product._id}`}>
           <img src={product.image.url} alt="products" />
         </Link>{" "}
-        <div className="product__inf">
-          <div className="product__pristock">
+        <div className="product__inf flex-column">
+          <div className="col-md-12 col-sm-12 align-items-start descr">
+            {product?.description}
+          </div>
+          <div className="product__pristock col-md-12 col-sm-12">
             <span className="prod__price">
               {" "}
               ₦ {product.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
@@ -37,21 +40,22 @@ function Product({ product }) {
             ) : (
               <span className="prod__instock">sold out</span>
             )}
-          </div>
-          <div className="product__iconcontainer">
-            {Array.isArray(product?.colors) && product?.colors.length === 1 ? (
-              <ShoppingBagOutlinedIcon
-                className="shopicon"
-                onClick={handleAddToCart}
-              />
-              // <span>{product?.colors}</span>
-            ) : Array.isArray(product?.colors) && product?.colors.length > 0 ? (
-              <Link to={`/product/${product._id}`}>
-                <BsHandIndexThumb className="shopicon" />
-              </Link>
-            ) : (
-              ""
-            )}
+            <div className="product__iconcontainer mx-2">
+              {Array.isArray(product?.colors) &&
+              product?.colors.length === 1 ? (
+                <ShoppingBagOutlinedIcon
+                  className="shopicon"
+                  onClick={handleAddToCart}
+                />
+              ) : // <span>{product?.colors}</span>
+              Array.isArray(product?.colors) && product?.colors.length > 0 ? (
+                <Link to={`/product/${product._id}`}>
+                  <BsHandIndexThumb className="shopicon" size={20} />
+                </Link>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </div>
       </div>

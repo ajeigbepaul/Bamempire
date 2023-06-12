@@ -87,6 +87,7 @@
       color: #2a7ade;
   
   }
+  .toggle_btn{background-color: orange!important;}
   
   @media screen and (max-width:576px) {
     .widgetLg {

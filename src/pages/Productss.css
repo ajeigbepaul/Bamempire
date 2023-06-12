@@ -18,7 +18,7 @@
 .productfilter h2{font-size: 14px;}
 .filter__color{display: flex; align-items: center;}
 
-
+.selectmultsize{display: flex; width: 100px;}
 .selectprodsize{padding: 5px 10px; margin: 0px 5px;}
 .productaddContainer{display: flex; align-items: center; margin-top: 10px; width: 60%; justify-content: space-between;}
 .addToCart{border: none; background-color: #eabe0e;padding: 10px 10px; color: white; transition: all ease 0.5s; cursor: pointer;}
