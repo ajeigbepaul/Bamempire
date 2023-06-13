@@ -25,17 +25,48 @@ function Product({ product }) {
         <Link to={`/product/${product._id}`}>
           <img src={product.image.url} alt="products" />
         </Link>{" "}
-        <div className="product__inf flex-column">
-          <div className="col-md-12 col-sm-12 align-items-start descr">
+        <div className="product__inf flex-column px-0">
+          <div className="col-md-12 col-sm-12 align-items-start descr px-2">
             {product?.description}
           </div>
-          <span className="col-md-12 col-sm-12 align-items-start prod__price">
+          <span className="col-md-12 col-sm-12 align-items-start prod__price px-2">
             {" "}
             ₦ {product.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
           </span>
-          <div className="product__pristock col-md-12 col-sm-12">
-            {" "}
-            <span className="prod__moq">MOQ of {product.moq}</span>{" "}
+
+          <div className="col-md-12 col-sm-12 px-2 product__pristock d-flex align-items-center justify-content-between">
+            <div className="col-md-auto d-flex align-items-center">
+              <span className="prod__moq">MOQ of {product.moq}</span>
+              <div className="col-md-auto">
+                {product.instock === "yes" ? (
+                  <span className="d-flex align-items-center prod__instock">
+                    instock
+                  </span>
+                ) : (
+                  <span className="d-flex align-items-center prod__instock">
+                    sold out
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="col-md-auto">
+              {Array.isArray(product?.colors) &&
+              product?.colors.length === 1 ? (
+                <ShoppingBagOutlinedIcon
+                  className="shopicon"
+                  onClick={handleAddToCart}
+                />
+              ) : // <span>{product?.colors}</span>
+              Array.isArray(product?.colors) && product?.colors.length > 0 ? (
+                <Link to={`/product/${product._id}`}>
+                  <BsHandIndexThumb className="shopicon" size={20} />
+                </Link>
+              ) : (
+                ""
+              )}
+            </div>
+            {/* <span className="prod__moq">MOQ of {product.moq}</span>{" "}
             {product.instock === "yes" ? (
               <span className="prod__instock">instock</span>
             ) : (
@@ -55,8 +86,8 @@ function Product({ product }) {
                 </Link>
               ) : (
                 ""
-              )}
-            </div>
+              )} */}
+            {/* </div> */}
           </div>
         </div>
       </div>
