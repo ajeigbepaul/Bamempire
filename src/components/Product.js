@@ -29,18 +29,19 @@ function Product({ product }) {
           <div className="col-md-12 col-sm-12 align-items-start descr">
             {product?.description}
           </div>
+          <span className="col-md-12 col-sm-12 align-items-start prod__price">
+            {" "}
+            ₦ {product.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+          </span>
           <div className="product__pristock col-md-12 col-sm-12">
-            <span className="prod__price">
-              {" "}
-              ₦ {product.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
-            </span>{" "}
+            {" "}
             <span className="prod__moq">MOQ of {product.moq}</span>{" "}
             {product.instock === "yes" ? (
               <span className="prod__instock">instock</span>
             ) : (
               <span className="prod__instock">sold out</span>
             )}
-            <div className="product__iconcontainer mx-2">
+            <div className="product__iconcontainer">
               {Array.isArray(product?.colors) &&
               product?.colors.length === 1 ? (
                 <ShoppingBagOutlinedIcon
