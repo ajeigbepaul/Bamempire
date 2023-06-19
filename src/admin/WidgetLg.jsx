@@ -51,13 +51,17 @@ export default function WidgetLg() {
       // ...
     };
   }, [axiosPrivate]);
-  const handleDelete = async (id) => {
-    const check = prompt("do you want to delete this order? YES or NO");
+  console.log(orders)
+  const handleDelete = async (orderNumber) => {
+  
+    const check = prompt(`do you want to delete this order?${orderNumber} YES or NO`);
     if(check){
 
       try {
         const refreshToastnotify = toast.loading("Loading...");
-        await axiosPrivate.delete(`/ordermes/${id}`);
+        await axiosPrivate.delete(
+          `/ordermes/order/${orderNumber}`
+        );
         toast.success("deleted successfully.", {
           id: refreshToastnotify,
         });
@@ -67,7 +71,7 @@ export default function WidgetLg() {
         toast.dismiss(refreshToastnotify);
       } catch (error) {
         toast.error("something went wrong!");
-        
+        toast.dismiss();
       }
     }
   };
@@ -222,7 +226,7 @@ export default function WidgetLg() {
                             View
                           </Link>
                           <button
-                            onClick={() => handleDelete(item._id)}
+                            onClick={() => handleDelete(item?.orderNumber)}
                             className="btn btn-sm rounded font-sm btn5 mx-1"
                           >
                             Delete
