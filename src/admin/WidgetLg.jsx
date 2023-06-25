@@ -6,11 +6,11 @@ import moment from "moment";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
-import { FaCheck } from "react-icons/fa";
 
 export default function WidgetLg() {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
+  // const [search, setSearch] = useState("");
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState({
     processing: "processing",
@@ -31,37 +31,70 @@ export default function WidgetLg() {
   const offset = currentPage * Number(PerItem);
   const currentItem = orders.slice(offset, offset + Number(PerItem));
   const pageCount = Math.ceil(orders.length / Number(PerItem));
+  const [searchQuery, setSearchQuery] = useState("");
   //End of Pagination
 
-  const fetchOrders = async () => {
-    const response = await axiosPrivate.get("ordermes");
-    return response.data;
+  // const fetchOrders = async () => {
+  //   const response = await axiosPrivate.get("ordermes");
+  //   return response.data;
+  // };
+
+  // useEffect(() => {
+  //   const fetchInitialOrders = async () => {
+  //     const initialOrders = await fetchOrders();
+  //     setOrders(initialOrders);
+  //   };
+
+  //   fetchInitialOrders();
+  // }, [axiosPrivate]);
+  const fetchOrders = async (orderNumber) => {
+    try {
+      let url = "ordermes";
+      if (orderNumber) {
+        url += `?orderNumber=${orderNumber}`;
+      }
+      const response = await axiosPrivate.get(url);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+
+  const handleSearch = async () => {
+    if (searchQuery) {
+      const searchOrders = await fetchOrders(searchQuery);
+      setOrders(searchOrders);
+    } else {
+      const allOrders = await fetchOrders(null); // Pass null or empty string as orderNumber parameter
+      setOrders(allOrders);
+    }
   };
 
   useEffect(() => {
-    const fetchInitialOrders = async () => {
-      const initialOrders = await fetchOrders();
-      setOrders(initialOrders);
-    };
+    if (searchQuery === "") {
+      const fetchAllOrders = async () => {
+        const allOrders = await fetchOrders(null); // Pass null or empty string as orderNumber parameter
+        setOrders(allOrders);
+      };
 
-    fetchInitialOrders();
-
-    // Cleanup: Unsubscribe from any subscriptions or clear any resources
-    return () => {
-      // ...
-    };
-  }, [axiosPrivate]);
+      fetchAllOrders();
+    } else {
+      handleSearch();
+    }
+  }, [searchQuery]);
   console.log(orders)
-  const handleDelete = async (orderNumber) => {
-  
-    const check = prompt(`do you want to delete this order?${orderNumber} YES or NO`);
-    if(check){
+ 
 
+ 
+  const handleDelete = async (orderNumber) => {
+    const check = prompt(
+      `do you want to delete this order?${orderNumber} YES or NO`
+    );
+    if (check) {
       try {
         const refreshToastnotify = toast.loading("Loading...");
-        await axiosPrivate.delete(
-          `/ordermes/order/${orderNumber}`
-        );
+        await axiosPrivate.delete(`/ordermes/order/${orderNumber}`);
         toast.success("deleted successfully.", {
           id: refreshToastnotify,
         });
@@ -75,23 +108,22 @@ export default function WidgetLg() {
       }
     }
   };
-  
- useEffect(() => {
-   // Retrieve the updated status from localStorage
-   const storedStatus = localStorage.getItem("updatedStatus");
-   const storedPackedS = localStorage.getItem("updatedPackedStatus");
-   const delivered = localStorage.getItem("updatedDeliveredStatus");
-   if (storedStatus) {
-     setUpdatedStatus(JSON.parse(storedStatus));
-   }
-   if (storedPackedS) {
-     setUpdatedPacked(JSON.parse(storedPackedS));
-   }
+
+  useEffect(() => {
+    // Retrieve the updated status from localStorage
+    const storedStatus = localStorage.getItem("updatedStatus");
+    const storedPackedS = localStorage.getItem("updatedPackedStatus");
+    const delivered = localStorage.getItem("updatedDeliveredStatus");
+    if (storedStatus) {
+      setUpdatedStatus(JSON.parse(storedStatus));
+    }
+    if (storedPackedS) {
+      setUpdatedPacked(JSON.parse(storedPackedS));
+    }
     if (delivered) {
       setUpdatedPacked(JSON.parse(delivered));
     }
-   
- }, []);
+  }, []);
   const handleStatusProcessing = async (id) => {
     try {
       // ... your existing code ...
@@ -131,7 +163,7 @@ export default function WidgetLg() {
       setStatus(res.data);
       setUpdatedPacked((prevStatus) => ({ ...prevStatus, [id]: "Pack Done" }));
       toast.success("Status updated!!");
-      console.log(updatedPacked)
+      console.log(updatedPacked);
       console.log(id);
       // setDisableButton(true);
       // Persist the updated status in localStorage
@@ -154,10 +186,13 @@ export default function WidgetLg() {
       });
 
       setStatus(res.data);
-      setUpdatedDelivered((prevStatus) => ({ ...prevStatus, [id]: "Delivery Done" }));
+      setUpdatedDelivered((prevStatus) => ({
+        ...prevStatus,
+        [id]: "Delivery Done",
+      }));
       toast.success("Status updated!!");
       // Persist the updated status in localStorage
-      console.log(id)
+      console.log(id);
       localStorage.setItem(
         "updatedDeliveredStatus",
         JSON.stringify({
@@ -173,9 +208,22 @@ export default function WidgetLg() {
     <>
       <div className="widgetLg">
         <h3 className="widgetLgTitle">ALL ORDERS</h3>
-        <span className="goback" onClick={() => navigate(-1)}>
-          Go Back
-        </span>
+        <div className="col-md-12 col-sm-12 d-flex justify-content-between">
+          <span className="goback mx-1" onClick={() => navigate(-1)}>
+            Go Back
+          </span>
+          <div className="col-md-auto col-sm-auto d-flex">
+            <input
+              type="text"
+              // value={search}
+              placeholder="Search with ORDERID..."
+              className="form-control bg-white mr-3"
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button className="btn btn-sm text-white" onClick={handleSearch}>Search</button>
+          </div>
+        </div>
+
         <div className="card-body">
           <div className="table-responsive">
             <table className="table table-hover">
@@ -203,7 +251,7 @@ export default function WidgetLg() {
                         <td>{item.orderNumber}</td>
                         <td>{item?.address?.fullname}</td>
                         <td className="items">
-                          {item.products.map((order, i) => (
+                          {item?.products?.map((order, i) => (
                             <div key={i} className="widgetLgitem">
                               <span>{order.description} </span>
                               <span>{order.qty} Qty</span>
@@ -220,7 +268,8 @@ export default function WidgetLg() {
                           )}
                         </td>
                         <td className="text-end btnwhite">
-                          <Link to={`/order/${item?._id}`}
+                          <Link
+                            to={`/order/${item?._id}`}
                             className="btn btn-sm rounded font-sm btn6 mx-1"
                           >
                             View
